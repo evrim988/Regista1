@@ -1,0 +1,500 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" name="viewport">
+    <title>@ViewData["Title"]</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/Content/Regista.ico">
+
+    @*bootstrap4*@
+    <link href="~/lib/bootstrap-4.5.3-dist/css/bootstrap-grid.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap-4.5.3-dist/css/bootstrap-reboot.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap-4.5.3-dist/css/bootstrap.css" rel="stylesheet" />
+
+    @*<link rel="stylesheet" href="~/css/site.css" />*@
+    <link rel="apple-touch-icon" href="/Content/Regista.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="/Content/Regista.ico">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i%7CQuicksand:300,400,500,700" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="~/Content/css/vendors.css">
+
+    @*  <link rel="stylesheet" href="~/Content/vendors/css/forms/selects/select2-bootstrap.css">*@
+
+    <link href="~/lib/line-awesome-1.3.0/css/line-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/dist/modules/ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="~/Content/dist/modules/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css">
+
+    @*datatables*@
+    <link href="~/lib/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/lib/datatables/css/responsive.dataTables.min.css" rel="stylesheet" />
+    <link href="~/lib/datatables/css/autoFill.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/lib/datatables/css/buttons.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/lib/datatables/css/colReorder.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/lib/datatables/css/fixedColumns.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/lib/datatables/css/fixedHeader.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/lib/datatables/css/keyTable.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/lib/datatables/css/responsive.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/lib/datatables/css/rowGroup.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/lib/datatables/css/rowReorder.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/lib/datatables/css/select.dataTables.min.css" rel="stylesheet" />
+    <link href="~/lib/datatables/css/searchPanes.dataTables.min.css" rel="stylesheet" />
+    @*<link href="~/Content/dist//modules/datatables/Responsive-2.2.1/css/responsive.dataTables.css" rel="stylesheet" />*@
+
+    <link rel="stylesheet" type="text/css" href="~/Content/css/app.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/core/menu/menu-types/vertical-menu.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/core/colors/palette-gradient.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/pages/hospital.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/assets/css/style.css">
+
+    <link href="~/css/mainSite.css" rel="stylesheet" />
+
+    @*toaster*@
+    <link href="~/lib/toastr-2.1.4/build/toastr.css" rel="stylesheet" />
+
+    @*sweetalert2*@
+    <link href="~/lib/sweetalert2/sweetalert2.css" rel="stylesheet" />
+
+    @*select2*@
+    <link href="~/lib/select2/select2.css" rel="stylesheet" />
+
+    @*clockpicker*@
+    <link href="~/lib/ClockPicker/jquery-clockpicker.css" rel="stylesheet" />
+    <link href="~/lib/ClockPicker/bootstrap-clockpicker.css" rel="stylesheet" />
+
+    @*iziToast*@
+    <link href="~/Content/dist/modules/iziToast/css/iziToast.css" rel="stylesheet" />
+
+    @*dropzone*@
+    <link href="~/lib/dropzone-5.7.0/dist/dropzone.css" rel="stylesheet" />
+    <link href="~/lib/dropzone-5.7.0/dist/basic.css" rel="stylesheet" />
+
+    @*fancybox*@
+    <link href="~/lib/fancybox/jquery.fancybox.css" rel="stylesheet" />
+
+    @*daterangepicker*@
+    <link href="~/lib/daterangepicker-3.1/daterangepicker.css" rel="stylesheet" />
+
+    @*devextreme*@
+    @*<link href="~/Content/devextremecss/devextreme/dx.common.css" rel="stylesheet" />
+    <link href="~/Content/devextremecss/devextreme/dx.light.css" rel="stylesheet" />*@
+
+    <style>
+        div.dt-buttons {
+            float: left;
+            margin-top: 25px !important;
+        }
+    </style>
+</head>
+
+<body class="vertical-layout vertical-menu 2-columns  menu-expanded fixed-navbar" data-open="click" data-menu="vertical-menu" data-col="2-columns">
+    <div id="myCover">
+        <div id="app">
+            <nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-semi-light bg-header-fix navbar-shadow">
+                <div class="navbar-wrapper">
+                    <div class="navbar-header" style="background-color:white">
+                        <ul class="nav navbar-nav flex-row position-relative">
+                            <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu font-large-1"></i></a></li>
+                            <li class="nav-item" style="display:table; margin:0px auto 0px auto;">
+                                <a class="navbar-brand" asp-action="Index" asp-controller="Home">
+                                    @*<img class="brand-logo" alt="modern admin logo" src="http://regista1.bipozitif.com/Content/Assets/CustomerLogos/customerK82e8b189-a51e-4c93-a4ff-79c5736dd7cc.jpg" style="width: 105px; height: 50px; margin-left:30%; margin-top: -3%;">
+                                    style="width: auto; max-height: 70px; margin-left: 20%; margin-top:-10% !important"*@
+                                    <img class="brand-logo" alt="modern admin logo" src="~/Content/logoo.PNG" style="width: auto; max-height: 60px; margin-top:-7%">
+                                </a>
+                            </li>
+                            <li class="nav-item d-md-none"><a class="nav-link open-navbar-container" data-toggle="collapse" data-target="#navbar-mobile"><i class="la la-ellipsis-v"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="navbar-container content">
+                        <div class="collapse navbar-collapse" id="navbar-mobile">
+                            <ul class="nav navbar-nav mr-auto float-left">
+                                <li class="nav-item d-none d-md-block"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu"></i></a></li>
+                                <li class="nav-item d-none d-md-block"><a onclick="fullScrean()" class="nav-link nav-link-expand" href="#"><i class="ficon ft-maximize"></i></a></li>
+                            </ul>
+                            <ul class="nav navbar-nav float-right">
+                                <li class="dropdown dropdown-user nav-item">
+                                    @*<a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown"><span class="mr-1">Merhaba,<span class="user-name text-bold-700"> </span></span><span class="avatar avatar-online"><img style="height:37px; width:37px;" src='@((user.Image!=null)?"/Content/Assets/ProfilePhotos/"+user.Image:"/Content/dist/img/avatar/avatar-3.png")' alt="avatar"><i></i></span></a>*@
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item" asp-action="UserDetail" asp-controller="User"><i class="ft-user"></i>Profilim</a>
+
+                                        <a class="dropdown-item" asp-action="Index" asp-controller="Ticket"><i class="ft-mail"></i>Bize Bildirin</a>
+                                        <div class="dropdown-divider">
+                                        </div><a class="dropdown-item" asp-action="Logout" asp-controller="Security"><i class="ft-power"></i>Çıkış Yap</a>
+                                    </div>
+                                </li>
+                                <li class="dropdown dropdown-notification nav-item">
+                                    <a class="nav-link nav-link-label" href="#" data-toggle="dropdown">
+                                        <i class="ficon ft-bell"></i>
+
+                                        <span id="spnNotificationCaoun" style="display: none;" class="badge badge-pill badge-default badge-danger badge-default badge-up badge-glow">1</span>
+
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
+                                        <li class="dropdown-menu-header">
+                                            <h6 class="dropdown-header m-0">
+                                                <span class="grey darken-2">Bildirimler</span>
+                                            </h6>
+                                            <span class="notification-tag badge badge-default badge-danger float-right m-0"><span id="spnInnerCount">0</span> Yeni Bildirim</span>
+                                        </li>
+                                        <li id="notificationList" class="scrollable-container media-list w-100">
+                                            <a href="#">
+                                                <div class="media">
+                                                    <div class="media-left align-self-center"><i class="ft-plus-square icon-bg-circle bg-cyan"></i></div>
+                                                    <div class="media-body">
+                                                        <h6 class="media-heading">Titile</h6>
+                                                        <p class="notification-text font-small-3 text-muted">Mesaj</p>
+                                                        <small>
+                                                            <time class="media-meta text-muted" datetime="2015-06-11T18:29:20+08:00">date</time>
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </a>
+
+                                        </li>
+                                        <li class="dropdown-menu-footer"><a class="dropdown-item text-muted text-center" asp-controller="Notification" asp-action="Index">Tümünü Gör</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <div class="main-menu menu-fixed menu-dark menu-bordered menu-accordion menu-shadow" data-scroll-to-active="true">
+                <div class="main-menu-content">
+                    <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+
+                        <li id="liHome" class="">
+                            <a asp-action="Index" asp-controller="Home"><i class="la la-home"></i><span class="menu-title" data-i18n="">Ana Sayfa</span></a>
+                        </li>
+                        <!-- Satış Yönetimi -->
+                        <li id="liSalesManagement" class=" nav-item">
+                            <a href="#"><i class="las la-chart-line"></i><span class="menu-title" data-i18n="nav.components.main">Proje Yönetimi</span></a>
+                            <ul class="menu-content">
+                                <li id="liOffer" class="">
+                                    <a asp-action="Index" asp-controller="Offer"><i class="la la-archive" style="font-size: 20px;"></i><span class="menu-title" data-i18n="">Projeler</span></a>
+                                </li>
+
+                                <li id="liSalesOrder" class="">
+                                    <a asp-action="Index" asp-controller="Sales"><i class="las la-money-check" style="font-size: 20px;"></i><span class="menu-title" data-i18n="">Proje Notları</span></a>
+                                </li>
+
+                            </ul>
+                        </li>
+
+                        <!-- Talep Yönetimi -->
+                        @*   <li id="liDemandManagement" class=" nav-item">
+                        <a href="#"><i class="la la-paperclip"></i><span class="menu-title" data-i18n="nav.components.main"> Talep Yönetimi</span></a>
+                        <ul class="menu-content">
+                        </ul>
+                        </li>*@
+
+
+                        <!-- Malzeme Yönetimi -->
+                        <li id="liMaterialManagement" class="">
+                            <a asp-action="Index" asp-controller="Customer"><i class="la la-paper-plane"></i><span class="menu-title" data-i18n="nav.components.main">Müşteriler</span></a>
+
+                        </li>
+
+
+                        <!-- Admin Panel -->
+                        <li id="liAdmin" class="nav-item">
+                            <a href="#"><i class="la la-key"></i><span class="menu-title" data-i18n="nav.components.main">Admin</span></a>
+                            <ul class="menu-content">
+
+                                <li id="liAllUsers" class="">
+                                    <a asp-action="Index" asp-controller="User"><i class="las la-users" style="font-size: 20px;"></i><span class="menu-title" data-i18n="">Kullanıcılar</span></a>
+                                </li>
+
+                            </ul>
+                        </li>
+
+
+
+                    </ul>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="app-content content">
+            <div class="content-wrapper">
+
+
+                @RenderBody()
+
+
+            </div>
+        </div>
+
+        <script src="~/lib/jquery/dist/jquery-3.5.1.js"></script>
+
+        <script src="/Content/vendors/js/vendors.min.js"></script>
+
+        @*bootstrap4*@
+        @*<script src="~/Content/dist/modules/popper.js"></script>*@
+        @*<script src="~/lib/bootstrap-4.5.3-dist/js/bootstrap.js"></script>*@
+
+        <script src="/Content/vendors/js/ui/headroom.min.js"></script>
+
+        <script src="/Content/js/core/app-menu.js"></script>
+        <script src="/Content/js/core/app.js"></script>
+
+        <script src="/Content/js/scripts/modal/components-modal.js"></script>
+
+        @*blockUI*@
+        <script src="/lib/jquery.blockUI/jquery.blockUI.js"></script>
+
+        <script src="/Content/vendors/js/extensions/wNumb.js"></script>
+        <script src="~/Content/js/scripts/customizer.js"></script>
+
+        @*momentjs*@
+        <script src="~/lib/momentjs/moment-with-locales.js"></script>
+
+        @*datatables*@
+        <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+        <script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
+        <script src="~/lib/datatables/js/dataTables.responsive.min.js"></script>
+        <script src="~/lib/datatables/js/responsive.bootstrap4.min.js"></script>
+        <script src="~/lib/datatables/js/dataTables.buttons.min.js"></script>
+        <script src="~/lib/datatables/js/buttons.bootstrap4.min.js"></script>
+        <script src="~/lib/datatables/js/buttons.colVis.min.js"></script>
+        <script src="~/lib/datatables/js/buttons.flash.min.js"></script>
+        <script src="~/lib/datatables/js/buttons.html5.min.js"></script>
+        <script src="~/lib/datatables/js/buttons.print.min.js"></script>
+        <script src="~/lib/datatables/js/dataTables.autoFill.min.js"></script>
+        <script src="~/lib/datatables/js/dataTables.colReorder.min.js"></script>
+        <script src="~/lib/datatables/js/dataTables.fixedColumns.min.js"></script>
+        <script src="~/lib/datatables/js/dataTables.fixedHeader.min.js"></script>
+        <script src="~/lib/datatables/js/dataTables.keyTable.min.js"></script>
+        <script src="~/lib/datatables/js/dataTables.rowGroup.min.js"></script>
+        <script src="~/lib/datatables/js/dataTables.rowReorder.min.js"></script>
+        <script src="~/lib/datatables/js/autoFill.bootstrap4.min.js"></script>
+        <script src="~/lib/momentjs/datetime-moment.js"></script>
+        <script src="~/lib/datatables/js/dataTables.select.min.js"></script>
+        <script src="~/lib/JSZip/jszip.js"></script>
+        <script src="~/lib/datatables/js/dataTables.searchPanes.min.js"></script>
+        <script src="~/lib/datatables/js/datetime-moment.js"></script>
+        <script src="~/lib/datatables/js/datetime.js"></script>
+        <script src="~/lib/datatables/js/ellipsis.js"></script>
+
+
+        @*sweetalert2*@
+        <script src="~/lib/sweetalert2/sweetalert2.js"></script>
+
+        @*select2*@
+        <script src="~/lib/select2/select2.js"></script>
+        <script src="~/lib/select2/tr.js"></script>
+
+        @*clockpicker*@
+        <script src="~/lib/ClockPicker/jquery-clockpicker.js"></script>
+        <script src="~/lib/ClockPicker/bootstrap-clockpicker.js"></script>
+
+        @*iziToast*@
+        <script src="~/Content/dist/modules/iziToast/js/iziToast.js"></script>
+
+        @*toaster*@
+        <script src="~/lib/toastr-2.1.4/toastr.js"></script>
+        <script src="~/lib/toastr-2.1.4/build/toastr.min.js"></script>
+
+        @*dropzone*@
+        <script src="~/lib/dropzone-5.7.0/dist/dropzone.js"></script>
+
+        @*jquery-validation*@
+        <script src="~/lib/jquery-validation-1.19.2/jquery.validate.js"></script>
+        <script src="~/lib/jquery-validation-1.19.2/additional-methods.js"></script>
+        <script src="~/lib/jquery-validation-1.19.2/messages_tr.js"></script>
+
+        @*jquery-mask*@
+        <script src="~/lib/jquery.mask/jquery.mask.js"></script>
+        <script src="~/lib/jquery.mask/jquery.maskMoney.js"></script>
+        @*automask*@
+        <script src="https://cdn.jsdelivr.net/npm/autonumeric@4.1.0"></script>
+
+        @**fancybox*@
+        <script src="~/lib/fancybox/jquery.fancybox.js"></script>
+
+        @*daterangepicker*@
+        <script src="~/lib/daterangepicker-3.1/daterangepicker.js"></script>
+
+        @RenderSection("DxScripts", required: false)
+
+        @RenderSection("Scripts", required: false)
+
+        @**Layout Scripts*@
+        <script src="~/lib/signalr/dist/browser/signalr.js"></script>
+
+
+        <script type="text/javascript">
+
+
+
+
+            $('.nav-menu-main').on('click', function () {
+
+                if ($("body").hasClass("menu-collapsed") == false) {
+                    $(".brand-logo").attr('src', '/Content/Registak.PNG');
+                    $(".brand-logo").css("width", "40");
+                    $(".brand-logo").css("height", "40");
+                    $(".brand-logo").css("margin-left", "0");
+                }
+
+                else {
+                    $(".brand-logo").attr('src', '/Content/logoo.PNG');
+                    $(".brand-logo").css("width", "160");
+                    $(".brand-logo").css("height", "50");
+                    $(".brand-logo").css("margin-left", "10%");
+                }
+            });
+
+            $('.select2').select2
+                ({
+                    width: '100%',
+                });
+
+            $.extend(true, $.fn.dataTable.defaults, {
+                paging: true,
+                ordering: true,
+                order: [[1, 'asc']],
+                searching: true,
+                language: {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.22/i18n/Turkish.json"
+                },
+            });
+
+            function ShowToastr(successTittle, successMessage, icon) {
+                toastr[icon](successMessage, successTittle); //icon: success, info, warning, error
+                toastr.options = {
+                    "closeButton": true,
+                    "debug": false,
+                    "newestOnTop": true,
+                    "progressBar": true,
+                }
+            }
+
+            function DeleteConfirm(href, desc) {
+                Swal.fire({
+                    title: "Emin Misiniz?",
+                    text: desc,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: "Evet",
+                    cancelButtonText: "İptal",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        location.href = href;
+                    }
+                })
+            }
+
+            function DeleteDialog(DeleteAjax, ID, desc) { //fonksiyon ismi, id, açıklama //ajax ile silerken
+
+                Swal.fire({
+                    title: desc,
+                    text: "Emin Misiniz?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#434445',
+                    confirmButtonText: "Evet",
+                    cancelButtonText: "İptal",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window[DeleteAjax](ID);
+                    }
+                })
+            }
+
+            function ImageUploadSelect(UploadFuncName) {
+                Swal.fire({
+                    title: 'Görsel Yükleme Türünü Seçiniz',
+                    showDenyButton: true,
+                    showCancelButton: true,
+                    confirmButtonText: 'Sürükle Bırak',
+                    denyButtonText: 'Kopyala Yapıştır',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window[UploadFuncName]();
+                    } else if (result.isDenied) {
+                        window[UploadFuncName]();
+                    }
+                })
+            }
+
+            function ResultAlert(titleTxt, descTxt, icon) {
+                Swal.fire({
+                    title: titleTxt,
+                    text: descTxt,
+                    icon: icon, // warning, success, error...
+                    confirmButtonText: "Tamam",
+                })
+            }
+
+            function ResultMessage(titleTxt, icon) {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: icon,  // warning, success, error...
+                    title: titleTxt,
+                    showConfirmButton: false,
+                    timer: 1000
+                })
+            }
+
+            function showModal(name) {
+                $('#' + name).modal('show');
+            }
+            function hideModal(name) {
+                $('#' + name).modal('toggle');
+            }
+
+            Dropzone.autoDiscover = false;
+
+            function BlockUIGlobal(messageString) {
+                //$.blockUI({ message: '<h3><img style="width:100px" src="/../../Content/Assets/loadingGift/load.gif" />' + messageString + '</h3>' });
+                $.blockUI({
+                    'z-index': 2000,
+                    message: '<h3><img style="width:100px" src="/../../Content/Assets/loadingGift/load.gif" />' + messageString + '</h3>'
+                });
+            }
+
+        </script>
+
+        <script src="~/Content/dist/js/scripts.js"></script>
+
+        <!--Devextrame js-->
+        @*<script src="~/lib/Devextrame/js/jquery.js"></script>
+
+
+
+        <script src="~/lib/Devextrame/js/cldr.js"></script>
+        <script src="~/lib/Devextrame/js/cldr/event.js"></script>
+        <script src="~/lib/Devextrame/js/cldr/supplemental.js"></script>
+        <script src="~/lib/Devextrame/js/cldr/unresolved.js"></script>
+
+
+        <script src="~/lib/Devextrame/js/globalize.js"></script>
+
+        <script src="~/lib/Devextrame/js/globalize/message.js"></script>
+
+        <script src="~/lib/Devextrame/js/globalize/number.js"></script>
+        <script src="~/lib/Devextrame/js/globalize/currency.js"></script>
+        <script src="~/lib/Devextrame/js/globalize/date.js"></script>
+
+        <script src="~/lib/Devextrame/js/dx.all.js"></script>
+
+
+        <script src="~/lib/Devextrame/js/vectormap-data/world.js"></script>
+        <script src="~/lib/Devextrame/js/aspnet/dx.aspnet.data.js"></script>
+
+        <script src="~/lib/Devextrame/js/aspnet/dx.aspnet.mvc.js"></script>*@
+
+
+
+        <script src="~/js/devextreme/localization/dx.messages.tr.js"></script>
+        <script src="~/js/devextreme/localization/dx.messages.en.js"></script>
+
+    </div>
+</body>
+</html>
