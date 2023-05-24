@@ -2,11 +2,13 @@
 using Regista1.Models;
 using System.Diagnostics;
 
-namespace Regista1.Controllers
+namespace Regista1.WebApp.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+
+
 
         public HomeController(ILogger<HomeController> logger)
         {

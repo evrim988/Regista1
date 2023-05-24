@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Regista.Application.Repositories;
 using Regista.Infasctructure.Repositories;
 using Regista.Persistance.Db;
 

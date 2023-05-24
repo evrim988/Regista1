@@ -10,12 +10,11 @@ namespace Regista.Infasctructure.Repositories
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection MyRepository(this IServiceCollection services)
+        public static void MyRepository(this IServiceCollection services)
         {
             services.AddTransient<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-
-            return services;
         }
     }
 }

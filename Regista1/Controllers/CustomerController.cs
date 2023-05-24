@@ -1,19 +1,26 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DevExtreme.AspNet.Data;
+using DevExtreme.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Regista.Application.Repositories;
 using Regista.Domain.Entities;
+using static DevExpress.Data.Helpers.ExpressiveSortInfo;
+
 namespace Regista1.WebApp.Controllers
 {
     public class CustomerController : Controller
     {
-        private readonly ICustomerRepository _customerRepository;
-        public CustomerController(ICustomerRepository customerRepository)
+        private readonly IUnitOfWork uow;
+        public CustomerController(IUnitOfWork _uow)
         {
-            _customerRepository = customerRepository;
+            this.uow = _uow;
         }
 
-        public async Task<IActionResult> GetList(DataSourceLoadOptions options)
+        public async Task<object> GetList(DataSourceLoadOptions options)
+
         {
-            return View(await _customerRepository.GetList());
+            var models = await uow.customerRepository.GetList();
+            return DataSourceLoader.Load(models, options);
         }
 
         public IActionResult Index()
@@ -21,41 +28,41 @@ namespace Regista1.WebApp.Controllers
             return View();
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Add(Customer model)
-        {
-            if (!ModelState.IsValid)
-                return View(model);
+        //[HttpPost]
+        //public async Task<IActionResult> Add(Customer model)
+        //{
+        //    if (!ModelState.IsValid)
+        //        return View(model);
 
-            var result = await _customerRepository.Add(model);
+        //    //var result = await _customerRepository.Add(model);
 
-            ViewBag.Result = result;
+        //    //ViewBag.Result = result;
 
-            return View(model);
-        }
+        //    return View(model);
+        //}
 
 
-        public async Task<IActionResult> Update(int id)
-        {
-            var customer = await _customerRepository.GetById(id);
+        //public async Task<object> Update(int id)
+        //{
+        //    var customer = await uow.customerRepository.GetById(id);
 
-            if (customer.ResultObject == null)
-                return RedirectToAction(nameof(GetList));
+        //    if (customer.ResultObject == null)
+        //        return RedirectToAction(nameof(GetList));
 
-            return View(customer.ResultObject);
-        }
+        //    return View(customer.ResultObject);
+        //}
 
-        [HttpPost]
-        public async Task<IActionResult> Update(Customer model)
-        {
-            if (!ModelState.IsValid)
-                return View(model);
+        //[HttpPost]
+        //public async Task<IActionResult> Update(Customer model)
+        //{
+        //    if (!ModelState.IsValid)
+        //        return View(model);
 
-            var result = await _customerRepository.Update(model);
+        //    //var result = await _customerRepository.Update(model);
 
-            ViewBag.Result = result;
+        //    //ViewBag.Result = result;
 
-            return View(model);
-        }
+        //    return View(model);
+        //}
     }
 }

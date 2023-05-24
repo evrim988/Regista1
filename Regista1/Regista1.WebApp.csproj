@@ -1,11 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
-
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="DevExpress.Data" Version="21.2.13" />
     <PackageReference Include="DevExtreme.AspNet.Data" Version="2.9.2" />
@@ -22,10 +20,9 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.13" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\Regista.Infasctructure\Regista.Infasctructure.csproj" />
     <ProjectReference Include="..\Regista.Persistance\Regista.Persistance.csproj" />
+    <PackageReference Include="DevExtreme.AspNet.Core" Version="21.2.6" />
   </ItemGroup>
-
 </Project>

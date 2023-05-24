@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace Regista.Application.Repositories
 {
-    public interface IProjectRepository : IRepository<Project>
+    public interface IProjectRepository : IRepository
     {
-
+        public Task<string> Add(int ID, string Name);
+        public void Delete(int id);
+        public Task<IQueryable<Customer>> GetList();
     }
 }

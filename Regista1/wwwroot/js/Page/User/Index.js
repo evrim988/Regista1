@@ -1,14 +1,13 @@
 ﻿$(document).ready(function () {
     DevExpress.localization.locale('tr');
     GetList();
-
 });
 
 function GetList() {
-    var grid = $(customersGridContainer).dxDataGrid({
+    var grid = $(userGridContainer).dxDataGrid({
         dataSource: DevExpress.data.AspNet.createStore({
             key: "id",
-            loadUrl: "/Customer/GetList",
+            loadUrl: "/User/GetList",
             //insertUrl: "/Customer/CreateCustomer",
             //updateUrl: "/Customer/EditCustomer",
             //deleteUrl: "/Customer/DeleteCustomer",
@@ -67,7 +66,7 @@ function GetList() {
         },
         export: {
             enabled: true,
-            fileName: "Müşteriler",
+            fileName: "Kullanıcılar",
         },
         loadPanel: {
             enabled: true,
@@ -119,25 +118,20 @@ function GetList() {
         },
 
         columns: [
-            
+
             {
                 dataField: "Name",
-                caption: "Müşteri Adı",
+                caption: "Adı",
                 alignment: 'center',
             },
             {
                 dataField: "Surname",
-                caption: "Müşteri Soyadı",
+                caption: " Soyadı",
                 alignment: 'center',
             },
             {
-                dataField: "Adress",
-                caption: "Adres",
-                alignment: 'center',
-            },
-            {
-                dataField: "FirmaAdı",
-                caption: "Firma Adı",
+                dataField: "UserName",
+                caption: "Kullanıcı Adı",
                 alignment: 'center',
             },
             {
@@ -173,35 +167,3 @@ function GetList() {
 
 }
 
-function deleteCustomerAsk(ID) {
-    DeleteDialog("DeleteCustomer", ID, "Firma Silinecektir!");
-}
-
-function DeleteCustomer(ID) {
-
-    var data = new FormData();
-
-    data.append('ID', ID);
-
-    $.ajax({
-        url: "/Customer/DeleteCustomer/",
-        type: 'POST',
-        async: false,
-        data: data,
-        cache: false,
-        processData: false,
-        contentType: false,
-        success: function (data2) {
-            if (data2 > 0) {
-                ShowToastr("Başarılı", "Firma Silindi", "success");
-                location.reload();
-            }
-            else {
-                ShowToastr("Hata", "Bir Hata Oluştu", "error");
-            }
-        },
-        error: function (textStatus) {
-            console.log('ERRORS:23 ');
-        },
-    });
-}

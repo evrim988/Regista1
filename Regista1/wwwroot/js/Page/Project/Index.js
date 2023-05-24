@@ -5,10 +5,10 @@
 });
 
 function GetList() {
-    var grid = $(customersGridContainer).dxDataGrid({
+    var grid = $(projectGridContainer).dxDataGrid({
         dataSource: DevExpress.data.AspNet.createStore({
             key: "id",
-            loadUrl: "/Customer/GetList",
+            loadUrl: "/Project/GetList",
             //insertUrl: "/Customer/CreateCustomer",
             //updateUrl: "/Customer/EditCustomer",
             //deleteUrl: "/Customer/DeleteCustomer",
@@ -67,7 +67,7 @@ function GetList() {
         },
         export: {
             enabled: true,
-            fileName: "Müşteriler",
+            fileName: "Projeler",
         },
         loadPanel: {
             enabled: true,
@@ -119,30 +119,15 @@ function GetList() {
         },
 
         columns: [
-            
+
             {
-                dataField: "Name",
-                caption: "Müşteri Adı",
+                dataField: "ProjectName",
+                caption: "Proje Adı",
                 alignment: 'center',
             },
             {
-                dataField: "Surname",
-                caption: "Müşteri Soyadı",
-                alignment: 'center',
-            },
-            {
-                dataField: "Adress",
-                caption: "Adres",
-                alignment: 'center',
-            },
-            {
-                dataField: "FirmaAdı",
-                caption: "Firma Adı",
-                alignment: 'center',
-            },
-            {
-                dataField: "EMail",
-                caption: "EMail",
+                dataField: "ProjectDescription",
+                caption: "Proje Açıklaması",
                 alignment: 'center',
             },
             //{
@@ -171,37 +156,4 @@ function GetList() {
 
     }).dxDataGrid("instance");
 
-}
-
-function deleteCustomerAsk(ID) {
-    DeleteDialog("DeleteCustomer", ID, "Firma Silinecektir!");
-}
-
-function DeleteCustomer(ID) {
-
-    var data = new FormData();
-
-    data.append('ID', ID);
-
-    $.ajax({
-        url: "/Customer/DeleteCustomer/",
-        type: 'POST',
-        async: false,
-        data: data,
-        cache: false,
-        processData: false,
-        contentType: false,
-        success: function (data2) {
-            if (data2 > 0) {
-                ShowToastr("Başarılı", "Firma Silindi", "success");
-                location.reload();
-            }
-            else {
-                ShowToastr("Hata", "Bir Hata Oluştu", "error");
-            }
-        },
-        error: function (textStatus) {
-            console.log('ERRORS:23 ');
-        },
-    });
 }

@@ -20,6 +20,8 @@ namespace Regista.Domain.Entities
         [MaxLength(150, ErrorMessage = "{0} {1} karakterden büyük olamaz")]
         public string SurName { get; set; }
 
+        [DisplayName("UserName")]
+        public string UserName { get; set; }
 
         [MinLength(3, ErrorMessage = "{0} {1} karakterden küçük olamaz")]
         [MaxLength(256, ErrorMessage = "{0} {1} karakterden büyük olamaz")]

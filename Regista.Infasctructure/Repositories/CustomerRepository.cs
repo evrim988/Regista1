@@ -1,163 +1,61 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Regista.Application.Repositories;
+﻿using Regista.Application.Repositories;
 using Regista.Domain.Entities;
-using Regista.Domain.ResponseEntities;
 using Regista.Persistance.Db;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Regista.Infasctructure.Repositories
 {
-    public class CustomerRepository : ICustomerRepository
+    public class CustomerRepository : Repository,ICustomerRepository
     {
+        private readonly RegistaContext context;
 
-        private readonly RegistaContext _registaContext;
+        private readonly IUnitOfWork uow;
 
-        public CustomerRepository(RegistaContext dataContext)
+        public CustomerRepository(RegistaContext _context, IUnitOfWork _uow) : base(_context)
         {
-            _registaContext = dataContext;
+            this.context = _context;
+            this.uow = _uow;
         }
 
-        public async Task<BaseResponse<Customer>> Add(Customer model)
+        public async Task<string> Add(int ID, string Name) 
         {
-            try
+            var customer = new Customer()
             {
-                _registaContext.Customers.Add(model);
-
-                var result = await _registaContext.SaveChangesAsync();
-
-                if (result > 0)
-                {
-                    return new BaseResponse<Customer>
-                    {
-                        Message = "Müşteri Ekleme Başarılı",
-                        ResultObject = model,
-                        ResultStatus = Domain.Enums.ResultStatus.Success
-                    };
-                }
-
-                return new BaseResponse<Customer>
-                {
-                    Message = "Müşteri Ekleme Sırasında Hata Oluştu",
-                    ResultObject = model,
-                    ResultStatus = Domain.Enums.ResultStatus.Error
-                };
-            }
-            catch (Exception)
-            {
-                return new BaseResponse<Customer>
-                {
-                    Message = "Müşteri Ekleme Sırasında Hata Oluştu",
-                    ResultObject = model,
-                    ResultStatus = Domain.Enums.ResultStatus.Error
-                };
-            }
-        }
-
-        public async Task<BaseResponse<Customer>> Delete(Customer model)
-        {
-            try
-            {
-                _registaContext.Customers.Remove(model);
-
-                var result = await _registaContext.SaveChangesAsync();
-
-                if (result > 0)
-                {
-                    return new BaseResponse<Customer>
-                    {
-                        Message = "Müşteri Silme Başarılı",
-                        ResultStatus = Domain.Enums.ResultStatus.Success
-                    };
-                }
-
-                return new BaseResponse<Customer>
-                {
-                    Message = "Müşteri Silme Sırasında Hata Oluştu",
-                    ResultObject = model,
-                    ResultStatus = Domain.Enums.ResultStatus.Error
-                };
-            }
-            catch (Exception)
-            {
-                return new BaseResponse<Customer>
-                {
-                    Message = "Müşteri Silme Sırasında Hata Oluştu",
-                    ResultObject = model,
-                    ResultStatus = Domain.Enums.ResultStatus.Error
-                };
-            }
-        }
-
-        public async Task<BaseResponse<Customer>> GetById(int id)
-        {
-            return new BaseResponse<Customer>
-            {
-                ResultObject = await _registaContext.Customers.FirstOrDefaultAsync(t => t.id == id)
+                Name = Name
             };
+            await Add(customer);
+
+            return "1";
         }
 
-        public async Task<BaseResponse<Customer>> GetList()
+        public void Delete(int id) 
         {
+           var customer = GetNonDeletedAndActive<Customer>(t => t.id == id);
+           DeleteRange(customer.ToList());
 
-            return new BaseResponse<Customer>
-            {
-                ResultObjects = await _registaContext.Customers.Where(t => !t.IsDeleted).ToListAsync()
-            };
+            Delete<Customer>(id);
         }
 
-        public async Task<BaseResponse<Customer>> Update(Customer model)
+        //public Task<IQueryable<Customer>> GetById(int id)
+        //{
+        //    var model = GetNonDeletedAndActive<Customer>(t => t.IsDeleted == false);
+        //    return model;
+        //}
+
+        public async Task<IQueryable<Customer>> GetList()
         {
-            try
-            {
-                var currentCustomer = _registaContext.Customers.FirstOrDefault(t => t.id == model.id);
+            var model = GetNonDeletedAndActive<Customer>(t => t.IsDeleted == false);
+            return model;
+        }
 
-                if (currentCustomer == null)
-                {
-                    return new BaseResponse<Customer>
-                    {
-                        Message = "Müşteri Bulunamadı",
-                        ResultStatus = Domain.Enums.ResultStatus.Warning
-                    };
-                }
-
-                currentCustomer.Adress = model.Adress;
-                currentCustomer.Name = model.Name;
-                currentCustomer.Surname = model.Surname;
-
-                _registaContext.Customers.Update(model);
-
-                var result = await _registaContext.SaveChangesAsync();
-
-                if (result > 0)
-                {
-                    return new BaseResponse<Customer>
-                    {
-                        Message = "Müşteri Güncelleme Başarılı",
-                        ResultObject = model,
-                        ResultStatus = Domain.Enums.ResultStatus.Success
-                    };
-                }
-
-                return new BaseResponse<Customer>
-                {
-                    Message = "Müşteri Güncelleme Sırasında Hata Oluştu",
-                    ResultObject = model,
-                    ResultStatus = Domain.Enums.ResultStatus.Error
-                };
-            }
-            catch (Exception)
-            {
-                return new BaseResponse<Customer>
-                {
-                    Message = "Müşteri Güncelleme Sırasında Hata Oluştu",
-                    ResultObject = model,
-                    ResultStatus = Domain.Enums.ResultStatus.Error
-                };
-            }
+        public T Update<T>(T _object) where T : BaseEntitiy
+        {
+            throw new NotImplementedException();
         }
     }
 }

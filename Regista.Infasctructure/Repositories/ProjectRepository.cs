@@ -1,145 +1,55 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Regista.Application.Repositories;
+﻿using Regista.Application.Repositories;
 using Regista.Domain.Entities;
-using Regista.Domain.ResponseEntities;
 using Regista.Persistance.Db;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Regista.Infasctructure.Repositories
 {
-    public class ProjectRepository : IProjectRepository
+    public class ProjectRepository : Repository,IProjectRepository
     {
-        private readonly RegistaContext _registaContext;
+        private readonly RegistaContext context;
 
-        public ProjectRepository(RegistaContext dataContext)
+        private readonly IUnitOfWork uow;
+
+        public ProjectRepository(RegistaContext _context, IUnitOfWork _uow) : base(_context)
         {
-            _registaContext = dataContext;
+            this.context = _context;
+            this.uow = _uow;
         }
-
-        public async Task<BaseResponse<Project>> Add(Project model)
+        public async Task<string> Add(int ID, string Name)
         {
-            try
+            var customer = new Customer()
             {
-                _registaContext.Projects.Add(model);
-
-                var result = await _registaContext.SaveChangesAsync();
-
-                if (result > 0)
-                {
-                    return new BaseResponse<Project>
-                    {
-                        Message = "Proje Ekleme Başarılı",
-                        ResultObject = model,
-                        ResultStatus = Domain.Enums.ResultStatus.Success,
-                    };
-                }
-
-                return new BaseResponse<Project>
-                {
-                    Message = "Proje Ekleme Sırasında Hata Oluştu",
-                    ResultObject = model,
-                    ResultStatus = Domain.Enums.ResultStatus.Success,
-                };
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        public async Task<BaseResponse<Project>> Delete(Project model)
-        {
-            try
-            {
-                _registaContext.Projects.Remove(model);
-
-                var result = await _registaContext.SaveChangesAsync();
-
-                if (result > 0)
-                {
-                    return new BaseResponse<Project>
-                    {
-                        Message = "Müşteri Silme Başarılı",
-                        ResultStatus = Domain.Enums.ResultStatus.Success
-                    };
-                }
-                return new BaseResponse<Project>
-                {
-                    Message = "Müşteri Silme Sırasında Hata Oluştu",
-                    ResultObject = model,
-                    ResultStatus = Domain.Enums.ResultStatus.Error
-                };
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-
-        public async Task<BaseResponse<Project>> GetById(int id)
-        {
-            return new BaseResponse<Project>
-            {
-                ResultObject = await _registaContext.Projects.FirstOrDefaultAsync(t => t.id == id)
+                Name = Name
             };
+            await Add(customer);
+
+            return "1";
         }
 
-        public async Task<BaseResponse<Project>> GetList()
+        public void Delete(int id)
         {
-            return new BaseResponse<Project>
-            {
-                ResultObjects = await _registaContext.Projects.Where(t => !t.IsDeleted).ToListAsync()
-            };
+            var customer = GetNonDeletedAndActive<Customer>(t => t.id == id);
+            DeleteRange(customer.ToList());
+
+            Delete<Customer>(id);
         }
 
-        public async Task<BaseResponse<Project>> Update(Project model)
+        public async Task<IQueryable<Customer>> GetList()
         {
-            try
-            {
-                var projectCustomer = _registaContext.Projects.FirstOrDefault(t => t.id == model.id);
-
-                if (projectCustomer == null)
-                {
-                    return new BaseResponse<Project>
-                    {
-                        Message = "Müşteri Bulunamadı",
-                        ResultStatus = Domain.Enums.ResultStatus.Warning
-                    };
-                }
-
-                projectCustomer.ProjeAdı = model.ProjeAdı;
-                projectCustomer.ProjeAçıklaması = model.ProjeAçıklaması;
-
-                _registaContext.Projects.Update(model);
-
-                var result = await _registaContext.SaveChangesAsync();
-
-                if (result > 0)
-                {
-                    return new BaseResponse<Project>
-                    {
-                        Message = "Müşteri Güncelleme Başarılı",
-                        ResultObject = model,
-                        ResultStatus = Domain.Enums.ResultStatus.Success
-                    };
-                }
-
-                return new BaseResponse<Project>
-                {
-                    Message = "Müşteri Güncelleme Sırasında Hata Oluştu",
-                    ResultObject = model,
-                    ResultStatus = Domain.Enums.ResultStatus.Error
-                };
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            var model = GetNonDeletedAndActive<Customer>(t => t.IsDeleted == false);
+            return model;
         }
+
+        public T Update<T>(T _object) where T : BaseEntitiy
+        {
+            throw new NotImplementedException();
+        }
+       
     }
 }
