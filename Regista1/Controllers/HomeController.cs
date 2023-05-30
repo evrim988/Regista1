@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Regista1.Models;
+using Regista1.WebApp.Filter;
 using System.Diagnostics;
 
 namespace Regista1.WebApp.Controllers
@@ -14,7 +15,7 @@ namespace Regista1.WebApp.Controllers
         {
             _logger = logger;
         }
-
+        [Auth]
         public IActionResult Index()
         {
             return View();

@@ -1,5 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 using Regista.Application.Repositories;
+using Regista.Application.Services.SecurityServices;
+using Regista.Infasctructure.Services.SecurityServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +15,10 @@ namespace Regista.Infasctructure.Repositories
     {
         public static void MyRepository(this IServiceCollection services)
         {
-            services.AddTransient<ICustomerRepository, CustomerRepository>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-
+            services.AddTransient<ISessionService, SessionService>();
+            services.AddTransient<ISecurityRepository, SecurityRepository>();
         }
     }
 }

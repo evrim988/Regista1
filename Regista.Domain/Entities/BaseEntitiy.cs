@@ -21,7 +21,6 @@ namespace Regista.Domain.Entities
         public DateTime CreatedDate { get; set; }
         public string CreatedBy { get; set; }
         public string ModifiedBy { get; set; }
-        public bool IsDeleted { get; set; }
 
         [DisplayName("Silindi Bilgisi")]
         [DefaultValue(0)]

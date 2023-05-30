@@ -15,7 +15,7 @@ namespace Regista1.WebApp.Controllers
         public async Task<object> GetList(DataSourceLoadOptions options)
 
         {
-            var models = await uow.customerRepository.GetList();
+            var models = await uow.projectRepository.GetList();
             return DataSourceLoader.Load(models, options);
         }
         public IActionResult Index()

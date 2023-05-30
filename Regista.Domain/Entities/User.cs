@@ -27,5 +27,10 @@ namespace Regista.Domain.Entities
         [MaxLength(256, ErrorMessage = "{0} {1} karakterden büyük olamaz")]
         [EmailAddress(ErrorMessage = "Geçerli mail Adresi giriniz")]
         public string EMail { get; set; }
+        public string password { get; set; }
+
+        public int CustomerID { get; set; }
+
+        public string img { get; set; }
     }
 }

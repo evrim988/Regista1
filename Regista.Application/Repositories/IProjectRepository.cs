@@ -11,6 +11,6 @@ namespace Regista.Application.Repositories
     {
         public Task<string> Add(int ID, string Name);
         public void Delete(int id);
-        public Task<IQueryable<Customer>> GetList();
+        public Task<IQueryable<Project>> GetList();
     }
 }

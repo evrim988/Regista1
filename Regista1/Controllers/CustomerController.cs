@@ -2,6 +2,7 @@
 using DevExtreme.AspNet.Mvc;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using Regista.Application.Repositories;
 using Regista.Domain.Entities;
 using static DevExpress.Data.Helpers.ExpressiveSortInfo;
@@ -28,18 +29,13 @@ namespace Regista1.WebApp.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> Add(Customer model)
-        //{
-        //    if (!ModelState.IsValid)
-        //        return View(model);
 
-        //    //var result = await _customerRepository.Add(model);
-
-        //    //ViewBag.Result = result;
-
-        //    return View(model);
-        //}
+        public async Task<IActionResult> Add(string values)
+        {
+            var model = JsonConvert.DeserializeObject<Customer>(values);
+            await uow.customerRepository.Add(model);
+            return Ok();
+        }
 
 
         //public async Task<object> Update(int id)

@@ -14,8 +14,9 @@ namespace Regista.Infasctructure.Repositories
         private readonly RegistaContext context;
 
         private readonly IUnitOfWork uow;
+        private readonly SessionModel session;
 
-        public UserRepository(RegistaContext _context, IUnitOfWork _uow) : base(_context)
+        public UserRepository(RegistaContext _context,SessionModel _session, IUnitOfWork _uow) : base(_context,_session)
         {
             this.context = _context;
             this.uow = _uow;
@@ -32,14 +33,14 @@ namespace Regista.Infasctructure.Repositories
         }
         public void Delete(int id)
         {
-            var user = GetNonDeletedAndActive<Customer>(t => t.id == id);
+            var user = GetNonDeletedAndActive<User>(t => t.id == id);
             DeleteRange(user.ToList());
 
             Delete<User>(id);
         }
         public async Task<IQueryable<User>> GetList()
         {
-            var model = GetNonDeletedAndActive<User>(t => t.IsDeleted == true);
+            var model = GetNonDeletedAndActive<User>(t => true);
             return model;
         }
     }

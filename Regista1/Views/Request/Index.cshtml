@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<link href="~/Content/devextremecss/devextreme/dx.common.css" rel="stylesheet" />
+<link href="~/Content/devextremecss/devextreme/dx.light.css" rel="stylesheet" />
+
+<div class="main-content">
+    <div class="row">
+        <div class="col-12">
+            <div class="card card-primary">
+                <div class="card-header">
+                </div>
+                <div class="card-content collapse show">
+                    <div class="card-body card-dashboard">
+                        <h3>Talepler</h3>
+
+                        <div class="demo-container">
+                            <div id="requestGridContainer"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts
+    {
+
+    <script src="~/js/Page/Request/Index.js"></script>
+
+
+}

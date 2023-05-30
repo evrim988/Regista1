@@ -21,7 +21,7 @@ function GetList() {
             }
         },
         onRowPrepared: function (e) {
-            if (e.rowType == "header") { e.rowElement.css("background-color", "#dff0f7"); e.rowElement.css('color', '#4f5052'); e.rowElement.css('font-weight', 'bold'); };
+            if (e.rowType == "header") { e.rowElement.css("background-color", "#b9ceff"); e.rowElement.css('color', '#4f5052'); e.rowElement.css('font-weight', 'bold'); };
         },
         rowAlternationEnabled: true,
         grouping: {
@@ -30,10 +30,7 @@ function GetList() {
         groupPanel: {
             visible: true   // or "auto"
         },
-        columnChooser: {
-            enabled: true,
-            mode: "select" // or "dragAndDrop"
-        },
+        
         columnAutoWidth: true,
         remoteOperations: true,
         allowColumnReordering: true,
@@ -64,10 +61,7 @@ function GetList() {
         onInitNewRow: function (e) {
             title = "";
         },
-        export: {
-            enabled: true,
-            fileName: "Kullanıcılar",
-        },
+       
         loadPanel: {
             enabled: true,
         },
@@ -103,39 +97,27 @@ function GetList() {
 
         //},
 
-        onContentReady: function (e) {
-
-            var $filterButton = $('<div id="filterButton">').dxButton({
-                icon: 'clearformat',
-                onClick: function () {
-                    grid.clearFilter();
-                }
-            });
-            if (e.element.find('#filterButton').length == 0)
-                e.element
-                    .find('.dx-toolbar-after')
-                    .prepend($filterButton);
-        },
+        
 
         columns: [
 
             {
-                dataField: "Name",
+                dataField: "name",
                 caption: "Adı",
                 alignment: 'center',
             },
             {
-                dataField: "Surname",
+                dataField: "surname",
                 caption: " Soyadı",
                 alignment: 'center',
             },
             {
-                dataField: "UserName",
+                dataField: "userName",
                 caption: "Kullanıcı Adı",
                 alignment: 'center',
             },
             {
-                dataField: "EMail",
+                dataField: "eMail",
                 caption: "EMail",
                 alignment: 'center',
             },

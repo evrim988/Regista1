@@ -15,22 +15,20 @@ namespace Regista.Infasctructure.Repositories
         private readonly RegistaContext context;
 
         private readonly IUnitOfWork uow;
-
-        public CustomerRepository(RegistaContext _context, IUnitOfWork _uow) : base(_context)
+        private readonly SessionModel session;
+        public CustomerRepository(RegistaContext _context,SessionModel _session, IUnitOfWork _uow) : base(_context, _session)
         {
             this.context = _context;
             this.uow = _uow;
+            this.session = _session;
         }
 
-        public async Task<string> Add(int ID, string Name) 
+        public async Task<string> Add(Customer model) 
         {
-            var customer = new Customer()
-            {
-                Name = Name
-            };
-            await Add(customer);
-
-            return "1";
+            model.id = session.CustomerID;
+            await Add(model);
+            await uow.SaveChanges();
+            return "";
         }
 
         public void Delete(int id) 
@@ -49,7 +47,7 @@ namespace Regista.Infasctructure.Repositories
 
         public async Task<IQueryable<Customer>> GetList()
         {
-            var model = GetNonDeletedAndActive<Customer>(t => t.IsDeleted == false);
+            var model = GetNonDeletedAndActive<Customer>(t => true);
             return model;
         }
 

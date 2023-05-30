@@ -15,34 +15,35 @@ namespace Regista.Infasctructure.Repositories
         private readonly RegistaContext context;
 
         private readonly IUnitOfWork uow;
-
-        public ProjectRepository(RegistaContext _context, IUnitOfWork _uow) : base(_context)
+        private readonly SessionModel session;
+        public ProjectRepository(RegistaContext _context,SessionModel _session, IUnitOfWork _uow) : base(_context,_session)
         {
             this.context = _context;
             this.uow = _uow;
+            this.session = _session;
         }
         public async Task<string> Add(int ID, string Name)
         {
-            var customer = new Customer()
+            var project = new Project()
             {
-                Name = Name
+                ProjeAdı = Name
             };
-            await Add(customer);
+            await Add(project);
 
             return "1";
         }
 
         public void Delete(int id)
         {
-            var customer = GetNonDeletedAndActive<Customer>(t => t.id == id);
-            DeleteRange(customer.ToList());
+            var project = GetNonDeletedAndActive<Project>(t => t.id == id);
+            DeleteRange(project.ToList());
 
-            Delete<Customer>(id);
+            Delete<Project>(id);
         }
 
-        public async Task<IQueryable<Customer>> GetList()
+        public async Task<IQueryable<Project>> GetList()
         {
-            var model = GetNonDeletedAndActive<Customer>(t => t.IsDeleted == false);
+            var model = GetNonDeletedAndActive<Project>(t => true);
             return model;
         }
 
@@ -50,6 +51,7 @@ namespace Regista.Infasctructure.Repositories
         {
             throw new NotImplementedException();
         }
+
        
     }
 }

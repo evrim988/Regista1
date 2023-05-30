@@ -19,5 +19,7 @@ namespace Regista.Persistance.Db
         public DbSet<User> Users { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
+        public DbSet<ProjectNote> projectNotes { get; set; } 
+        public DbSet<Request> requests { get; set; }
     }
 }

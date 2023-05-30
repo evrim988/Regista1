@@ -22,8 +22,24 @@ function GetList() {
             }
         },
         onRowPrepared: function (e) {
-            if (e.rowType == "header") { e.rowElement.css("background-color", "#dff0f7"); e.rowElement.css('color', '#4f5052'); e.rowElement.css('font-weight', 'bold'); };
+            if (e.rowType == "header") { e.rowElement.css("background-color", "#b9ceff"); e.rowElement.css('color', '#4f5052'); e.rowElement.css('font-weight', 'bold'); };
         },
+        //onToolbarPreparing: function (e) {
+        //    let toolbarItems = e.toolbarOptions.items;
+        //    toolbarItems.push({
+        //        widget: "dxButton",
+        //        options: {
+        //            icon: "add", text: "Yeni Müşteri", onClick: function () {
+        //                loadUrl: "customer/Add",
+        //                    $('#confirmeModal').modal();
+        //            }
+        //        },
+
+        //        location: "after",
+
+
+        //    });
+        //},
         rowAlternationEnabled: true,
         grouping: {
             contextMenuEnabled: true
@@ -31,10 +47,7 @@ function GetList() {
         groupPanel: {
             visible: true   // or "auto"
         },
-        columnChooser: {
-            enabled: true,
-            mode: "select" // or "dragAndDrop"
-        },
+
         columnAutoWidth: true,
         remoteOperations: true,
         allowColumnReordering: true,
@@ -65,10 +78,7 @@ function GetList() {
         onInitNewRow: function (e) {
             title = "";
         },
-        export: {
-            enabled: true,
-            fileName: "Projeler",
-        },
+
         loadPanel: {
             enabled: true,
         },
@@ -104,19 +114,7 @@ function GetList() {
 
         //},
 
-        onContentReady: function (e) {
 
-            var $filterButton = $('<div id="filterButton">').dxButton({
-                icon: 'clearformat',
-                onClick: function () {
-                    grid.clearFilter();
-                }
-            });
-            if (e.element.find('#filterButton').length == 0)
-                e.element
-                    .find('.dx-toolbar-after')
-                    .prepend($filterButton);
-        },
 
         columns: [
 

@@ -10,7 +10,7 @@ namespace Regista.Application.Repositories
     public interface ICustomerRepository : IRepository
     {
         public Task<IQueryable<Customer>> GetList();
-        public Task<string> Add(int ID, string Name);
+        public Task<string> Add(Customer model);
         public void Delete(int id);
     }
 }
