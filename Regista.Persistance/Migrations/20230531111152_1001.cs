@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Regista.Persistance.Migrations
 {
     /// <inheritdoc />
-    public partial class init1 : Migration
+    public partial class _1001 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

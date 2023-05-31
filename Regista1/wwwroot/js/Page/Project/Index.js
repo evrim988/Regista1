@@ -24,37 +24,20 @@ function GetList() {
         onRowPrepared: function (e) {
             if (e.rowType == "header") { e.rowElement.css("background-color", "#b9ceff"); e.rowElement.css('color', '#4f5052'); e.rowElement.css('font-weight', 'bold'); };
         },
-        //onToolbarPreparing: function (e) {
-        //    let toolbarItems = e.toolbarOptions.items;
-        //    toolbarItems.push({
-        //        widget: "dxButton",
-        //        options: {
-        //            icon: "add", text: "Yeni Müşteri", onClick: function () {
-        //                loadUrl: "customer/Add",
-        //                    $('#confirmeModal').modal();
-        //            }
-        //        },
-
-        //        location: "after",
-
-
-        //    });
-        //},
+      
         rowAlternationEnabled: true,
         grouping: {
             contextMenuEnabled: true
         },
         groupPanel: {
-            visible: true   // or "auto"
+            visible: true  
         },
 
         columnAutoWidth: true,
         remoteOperations: true,
         allowColumnReordering: true,
         showBorders: true,
-        filterRow: {
-            visible: true,
-        },
+       
         searchPanel: {
             visible: true,
             width: 240,

@@ -12,8 +12,8 @@ using Regista.Persistance.Db;
 namespace Regista.Persistance.Migrations
 {
     [DbContext(typeof(RegistaContext))]
-    [Migration("20230530142846_init1")]
-    partial class init1
+    [Migration("20230531111152_1001")]
+    partial class _1001
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

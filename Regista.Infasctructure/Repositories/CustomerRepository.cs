@@ -18,14 +18,14 @@ namespace Regista.Infasctructure.Repositories
         private readonly SessionModel session;
         public CustomerRepository(RegistaContext _context,SessionModel _session, IUnitOfWork _uow) : base(_context, _session)
         {
-            this.context = _context;
-            this.uow = _uow;
-            this.session = _session;
+            context = _context;
+            uow = _uow;
+            session = _session;
         }
 
         public async Task<string> Add(Customer model) 
         {
-            model.id = session.CustomerID;
+            model.CustomerID = session.CustomerID;
             await Add(model);
             await uow.SaveChanges();
             return "";

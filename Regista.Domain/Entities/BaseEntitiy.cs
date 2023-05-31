@@ -18,12 +18,8 @@ namespace Regista.Domain.Entities
 
         public DateTime LastModifedBy { get; set; }
         public DateTime LastModifedOn { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public string CreatedBy { get; set; }
-        public string ModifiedBy { get; set; }
 
         [DisplayName("Silindi Bilgisi")]
-        [DefaultValue(0)]
         public ObjectStatus ObjectStatus { get; set; }
 
         [DisplayName("Durum")]

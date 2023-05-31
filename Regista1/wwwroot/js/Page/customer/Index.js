@@ -38,9 +38,7 @@ function GetList() {
         remoteOperations: true,
         allowColumnReordering: true,
         showBorders: true,
-        filterRow: {
-            visible: true,
-        },
+        
         searchPanel: {
             visible: true,
             width: 240,
@@ -86,23 +84,23 @@ function GetList() {
                     colSpan: 2,
                     items: [
                         {
-                            dataField: "Name",
+                            dataField: "name",
                             caption: "Müşteri Adı",
                         },
                         {
-                            dataField: "Surname",
+                            dataField: "surname",
                             caption: "Müşteri Soyadı",
                         },
                         {
-                            dataField: "Adress",
+                            dataField: "adress",
                             caption: "Adres",
                         },
                         {
-                            dataField: "FirmaAdı",
+                            dataField: "firmaAdı",
                             caption: "Firma Adı",
                         },
                         {
-                            dataField: "EMail",
+                            dataField: "eMail",
                             caption: "EMail",
                         },
                     ],

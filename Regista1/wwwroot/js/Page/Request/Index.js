@@ -35,9 +35,7 @@ function GetList() {
         remoteOperations: true,
         allowColumnReordering: true,
         showBorders: true,
-        filterRow: {
-            visible: true,
-        },
+        
         searchPanel: {
             visible: true,
             width: 240,
