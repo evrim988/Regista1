@@ -1,4 +1,5 @@
 ﻿using Regista.Application.Repositories;
+using Regista.Application.Services.SecurityServices;
 using Regista.Domain.Entities;
 using Regista.Persistance.Db;
 using System;
@@ -14,55 +15,50 @@ namespace Regista.Infasctructure.Repositories
     {
         private readonly RegistaContext context;
         private readonly SessionModel session;
-        public UnitOfWork(RegistaContext _context)
+        public UnitOfWork(RegistaContext _context, ISessionService sessionService)
         {
+            session = sessionService.GetInjection();
             context = _context;
         }
 
         private IRepository _repository;
-        public IRepository Repository
+        public IRepository repository
         {
-            get => _repository ?? (_repository = new Repository(context,session));
+            get => _repository ?? (_repository = new Repository(context, session));
         }
-        private ICustomerRepository _customerrepository;
+
+        private ICustomerRepository _customerRepository;
         public ICustomerRepository customerRepository
         {
-            get => _customerrepository ?? (_customerrepository = new CustomerRepository(context,session,this));
+            get => _customerRepository ?? (_customerRepository = new CustomerRepository(context, session,this));
         }
+
         private IUserRepository _userRepository;
         public IUserRepository userRepository
         {
-            get => _userRepository ?? (_userRepository = new UserRepository(context,session ,this));
+            get => _userRepository ?? (_userRepository = new UserRepository(context, session, this));
         }
-
-        public IRepository repository => throw new NotImplementedException();
-
-
-        public IRequestRepository _requestRepository;
-        public IRequestRepository requestRepository
-        {
-            get => _requestRepository ?? (_requestRepository = new RequestRepository(context,session,this));
-        }
-
-        public IProjectRepository _projectRepository;
+        private IProjectRepository _projectRepository;
         public IProjectRepository projectRepository
         {
-            get => _projectRepository ?? (_projectRepository = new ProjectRepository(context,session, this));
-        }
-        public IProjectNoteRepository _projectNoteRepository;
-        public IProjectNoteRepository projectNoteRepository
-        {
-            get => _projectNoteRepository ?? (_projectNoteRepository = new ProjectNoteRepository(context,session, this));
-        }
-       
-        public Task<int> SaveChanges()
-        {
-            throw new NotImplementedException();
+            get => _projectRepository ?? (_projectRepository = new ProjectRepository(context, session, this));
         }
 
-        Task<int> IUnitOfWork.SaveChanges()
+        private IProjectNoteRepository _projectNoteRepository;
+        public IProjectNoteRepository projectNoteRepository
         {
-            throw new NotImplementedException();
+            get => _projectNoteRepository ?? (_projectNoteRepository = new ProjectNoteRepository(context, session, this));
+        }
+
+        private IRequestRepository _requestRepository;
+        public IRequestRepository requestRepository
+        {
+            get => _requestRepository ?? (_requestRepository = new RequestRepository(context, session, this));
+        }
+
+        public async Task<int> SaveChanges()
+        {
+            return await context.SaveChangesAsync();
         }
     }
 }

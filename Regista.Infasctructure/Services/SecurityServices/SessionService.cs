@@ -103,7 +103,7 @@ namespace Regista.Infasctructure.Services.SecurityServices
                 var sesionmodel = new SessionModel()
                 {
                     CustomerID = user.CustomerID,
-                    ID = user.id,
+                    ID = user.ID,
                     Image = user.img,
                     Name = user.Name,
                     Surname = user.SurName

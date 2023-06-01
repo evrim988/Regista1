@@ -9,9 +9,9 @@ function GetList() {
         dataSource: DevExpress.data.AspNet.createStore({
             key: "id",
             loadUrl: "/Customer/GetList",
-            insertUrl: "/Customer/Add",
-            //updateUrl: "/Customer/EditCustomer",
-            //deleteUrl: "/Customer/DeleteCustomer",
+            insertUrl: "/Customer/CustomerAdd",
+            updateUrl: "/Customer/CustomerEdit",
+            deleteUrl: "/Customer/DeleteCustomer",
             onBeforeSend: function (method, ajaxOptions) {
                 ajaxOptions.xhrFields = { withCredentials: true };
             }
@@ -114,48 +114,33 @@ function GetList() {
         columns: [
 
             {
-                dataField: "Name",
+                dataField: "name",
                 caption: "Müşteri Adı",
                 alignment: 'center',
             },
             {
-                dataField: "Surname",
+                dataField: "surname",
                 caption: "Müşteri Soyadı",
                 alignment: 'center',
             },
             {
-                dataField: "Adress",
+                dataField: "adress",
                 caption: "Adres",
                 alignment: 'center',
             },
             {
-                dataField: "FirmaAdı",
+                dataField: "firmaAdı",
                 caption: "Firma Adı",
                 alignment: 'center',
             },
             {
-                dataField: "EMail",
+                dataField: "eMail",
                 caption: "EMail",
                 alignment: 'center',
             },
             {
                 type: "buttons",
                 buttons: ["edit", "delete",
-
-                    {
-                        hint: "Detay",
-                        icon: "edit",
-                        onClick: function (e) {
-                            location.href = '../../Customer/EditCustomer/' + e.row.data.id;
-                        }
-                    },
-                    {
-                        hint: "Sil",
-                        icon: "remove",
-                        onClick: function (e) {
-                            deleteCustomerAsk(e.row.data.id);
-                        }
-                    },
 
                 ]
 
@@ -166,35 +151,3 @@ function GetList() {
 
 }
 
-//function deleteCustomerAsk(ID) {
-//    DeleteDialog("DeleteCustomer", ID, "Firma Silinecektir!");
-//}
-
-//function DeleteCustomer(ID) {
-
-//    var data = new FormData();
-
-//    data.append('ID', ID);
-
-//    $.ajax({
-//        url: "/Customer/DeleteCustomer/",
-//        type: 'POST',
-//        async: false,
-//        data: data,
-//        cache: false,
-//        processData: false,
-//        contentType: false,
-//        success: function (data2) {
-//            if (data2 > 0) {
-//                ShowToastr("Başarılı", "Firma Silindi", "success");
-//                location.reload();
-//            }
-//            else {
-//                ShowToastr("Hata", "Bir Hata Oluştu", "error");
-//            }
-//        },
-//        error: function (textStatus) {
-//            console.log('ERRORS:23 ');
-//        },
-//    });
-//}

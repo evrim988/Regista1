@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Regista.Persistance.Db;
 
@@ -11,9 +12,11 @@ using Regista.Persistance.Db;
 namespace Regista.Persistance.Migrations
 {
     [DbContext(typeof(RegistaContext))]
-    partial class RegistaContextModelSnapshot : ModelSnapshot
+    [Migration("20230601062549_1000")]
+    partial class _1000
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,22 +27,16 @@ namespace Regista.Persistance.Migrations
 
             modelBuilder.Entity("Regista.Domain.Entities.Customer", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
                     b.Property<string>("Adress")
                         .IsRequired()
                         .HasMaxLength(600)
                         .HasColumnType("nvarchar(600)");
-
-                    b.Property<int>("CreatedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("CreatedOn")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("EMail")
                         .IsRequired()
@@ -49,10 +46,10 @@ namespace Regista.Persistance.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("LastModifiedBy")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("LastModifedBy")
+                        .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("LastModifiedOn")
+                    b.Property<DateTime>("LastModifedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
@@ -71,67 +68,55 @@ namespace Regista.Persistance.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
-                    b.HasKey("ID");
+                    b.HasKey("id");
 
                     b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("Regista.Domain.Entities.Project", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
-                    b.Property<int>("CreatedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("CreatedOn")
+                    b.Property<DateTime>("LastModifedBy")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("LastModifiedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("LastModifiedOn")
+                    b.Property<DateTime>("LastModifedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("ObjectStatus")
                         .HasColumnType("int");
 
-                    b.Property<string>("ProjectDescription")
+                    b.Property<string>("ProjeAdı")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ProjectName")
+                    b.Property<string>("ProjeAçıklaması")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.HasKey("ID");
+                    b.HasKey("id");
 
                     b.ToTable("Projects");
                 });
 
             modelBuilder.Entity("Regista.Domain.Entities.ProjectNote", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
                     b.Property<string>("AddUserNote")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("CreatedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("CreatedOn")
-                        .HasColumnType("datetime2");
 
                     b.Property<int>("CustomerID")
                         .HasColumnType("int");
@@ -143,10 +128,10 @@ namespace Regista.Persistance.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("LastModifiedBy")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("LastModifedBy")
+                        .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("LastModifiedOn")
+                    b.Property<DateTime>("LastModifedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("NoteType")
@@ -159,33 +144,27 @@ namespace Regista.Persistance.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.HasKey("ID");
+                    b.HasKey("id");
 
                     b.ToTable("projectNotes");
                 });
 
             modelBuilder.Entity("Regista.Domain.Entities.Request", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
-
-                    b.Property<int>("CreatedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("CreatedOn")
-                        .HasColumnType("datetime2");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("LastModifiedBy")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("LastModifedBy")
+                        .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("LastModifiedOn")
+                    b.Property<DateTime>("LastModifedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("ObjectStatus")
@@ -198,24 +177,18 @@ namespace Regista.Persistance.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.HasKey("ID");
+                    b.HasKey("id");
 
                     b.ToTable("requests");
                 });
 
             modelBuilder.Entity("Regista.Domain.Entities.Ticket", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
-
-                    b.Property<int>("CreatedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("CreatedOn")
-                        .HasColumnType("datetime2");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
                     b.Property<int>("CustomerID")
                         .HasColumnType("int");
@@ -223,10 +196,10 @@ namespace Regista.Persistance.Migrations
                     b.Property<string>("Desc")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("LastModifiedBy")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("LastModifedBy")
+                        .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("LastModifiedOn")
+                    b.Property<DateTime>("LastModifedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("ObjectStatus")
@@ -241,7 +214,7 @@ namespace Regista.Persistance.Migrations
                     b.Property<int>("UserID")
                         .HasColumnType("int");
 
-                    b.HasKey("ID");
+                    b.HasKey("id");
 
                     b.HasIndex("CustomerID");
 
@@ -252,17 +225,11 @@ namespace Regista.Persistance.Migrations
 
             modelBuilder.Entity("Regista.Domain.Entities.User", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
-
-                    b.Property<int>("CreatedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("CreatedOn")
-                        .HasColumnType("datetime2");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
                     b.Property<int>("CustomerID")
                         .HasColumnType("int");
@@ -272,10 +239,10 @@ namespace Regista.Persistance.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<int>("LastModifiedBy")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("LastModifedBy")
+                        .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("LastModifiedOn")
+                    b.Property<DateTime>("LastModifedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
@@ -306,7 +273,7 @@ namespace Regista.Persistance.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.HasKey("id");
 
                     b.ToTable("Users");
                 });

@@ -30,13 +30,53 @@ namespace Regista1.WebApp.Controllers
         }
 
 
-        public async Task<IActionResult> Add(string values)
+        public async Task<IActionResult> CustomerAdd(string values)
         {
-            var model = JsonConvert.DeserializeObject<Customer>(values);
-            await uow.customerRepository.Add(model);
-            return Ok();
-        }
+            try
+            {
+                var model = JsonConvert.DeserializeObject<Customer>(values);
+                await uow.customerRepository.CustomerAdd(model);
+                return Ok();
+            }
+            catch (Exception e)
+            {
 
+                throw e;
+            }
+           
+        }
+        public async Task<string> CustomerEdit(int Key, string values)
+        {
+            try
+            {
+                var size = await uow.repository.GetById<Customer>(Key);
+                JsonConvert.PopulateObject(values, size);
+                uow.customerRepository.Update(size);
+                await uow.SaveChanges();
+
+                return "1";
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public async Task<string> DeleteCustomer(int Key)
+        {
+            try
+            {
+                await uow.repository.Delete<Customer>(Key);
+                await uow.SaveChanges();
+
+
+                return "1";
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         //public async Task<object> Update(int id)
         //{

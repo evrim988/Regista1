@@ -23,17 +23,25 @@ namespace Regista.Infasctructure.Repositories
             session = _session;
         }
 
-        public async Task<string> Add(Customer model) 
+        public async Task<string> CustomerAdd(Customer model) 
         {
-            model.CustomerID = session.CustomerID;
-            await Add(model);
-            await uow.SaveChanges();
-            return "";
+            try
+            {
+                await uow.repository.Add(model);
+                await uow.SaveChanges();
+                return "";
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+           
         }
 
         public void Delete(int id) 
         {
-           var customer = GetNonDeletedAndActive<Customer>(t => t.id == id);
+           var customer = GetNonDeletedAndActive<Customer>(t => t.ID == id);
            DeleteRange(customer.ToList());
 
             Delete<Customer>(id);
@@ -51,9 +59,12 @@ namespace Regista.Infasctructure.Repositories
             return model;
         }
 
-        public T Update<T>(T _object) where T : BaseEntitiy
+        public async Task<string> Update(Customer model)
         {
-            throw new NotImplementedException();
+            Update(model);
+
+            await uow.SaveChanges();
+            return "";
         }
     }
 }

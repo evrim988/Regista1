@@ -9,10 +9,10 @@ namespace Regista.Domain.Entities
 {
     public class Project : BaseEntitiy
     {
-        [DisplayName("ProjectName")]
-        public string ProjeAdı { get; set; }
-
-        [DisplayName("ProjectDescription")]
-        public string ProjeAçıklaması { get; set; }
+        [DisplayName("ProjeAdı")]
+        public string ProjectName { get; set; }
+       
+        [DisplayName("ProjeAçıklaması")]
+        public string ProjectDescription { get; set; }
     }
 }

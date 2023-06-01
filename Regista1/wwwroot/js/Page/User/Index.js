@@ -119,28 +119,28 @@ function GetList() {
                 caption: "EMail",
                 alignment: 'center',
             },
-            //{
-            //    type: "buttons",
-            //    buttons: ["edit", "delete",
+            {
+                type: "buttons",
+                buttons: ["edit", "delete",
 
-            //        {
-            //            hint: "Detay",
-            //            icon: "edit",
-            //            onClick: function (e) {
-            //                location.href = '../../Customer/EditCustomer/' + e.row.data.id;
-            //            }
-            //        },
-            //        {
-            //            hint: "Sil",
-            //            icon: "remove",
-            //            onClick: function (e) {
-            //                deleteCustomerAsk(e.row.data.id);
-            //            }
-            //        },
+                    {
+                        hint: "Detay",
+                        icon: "edit",
+                        onClick: function (e) {
+                            location.href = '../../Customer/EditCustomer/' + e.row.data.id;
+                        }
+                    },
+                    {
+                        hint: "Sil",
+                        icon: "remove",
+                        onClick: function (e) {
+                            deleteCustomerAsk(e.row.data.id);
+                        }
+                    },
 
-            //    ]
+                ]
 
-            //},
+            },
         ],
 
     }).dxDataGrid("instance");

@@ -35,7 +35,7 @@ namespace Regista.Infasctructure.Repositories
 
         public void Delete(int id)
         {
-            var request = GetNonDeletedAndActive<Request>(t => t.id == id);
+            var request = GetNonDeletedAndActive<Request>(t => t.ID == id);
             DeleteRange(request.ToList());
 
             Delete<Request>(id);

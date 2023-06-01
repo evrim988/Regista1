@@ -33,6 +33,6 @@ namespace Regista.Domain.Entities
 
         [DisplayName("EMail")]
         public string EMail { get; set; }
-        public int CustomerID { get; set; }
+        
     }
 }

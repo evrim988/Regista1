@@ -36,7 +36,7 @@ namespace Regista.Infasctructure.Repositories
 
         public void Delete(int id)
         {
-            var project = GetNonDeletedAndActive<ProjectNote>(t => t.id == id);
+            var project = GetNonDeletedAndActive<ProjectNote>(t => t.ID == id);
             DeleteRange(project.ToList());
 
             Delete<ProjectNote>(id);

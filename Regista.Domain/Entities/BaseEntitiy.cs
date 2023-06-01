@@ -14,12 +14,22 @@ namespace Regista.Domain.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int id { get; set; }
+        public int ID { get; set; }
 
-        public DateTime LastModifedBy { get; set; }
-        public DateTime LastModifedOn { get; set; }
+        [DisplayName("Oluşturulma Tarihi")]
+        public DateTime? CreatedOn { get; set; }
+
+        [DisplayName("Güncellenme Tarihi")]
+        public DateTime? LastModifiedOn { get; set; }
+
+        [DisplayName("Oluşturan Kullanıcı")]
+        public int CreatedBy { get; set; }
+
+        [DisplayName("Güncelleyen Kullanıcı")]
+        public int LastModifiedBy { get; set; }
 
         [DisplayName("Silindi Bilgisi")]
+        [DefaultValue(0)]
         public ObjectStatus ObjectStatus { get; set; }
 
         [DisplayName("Durum")]

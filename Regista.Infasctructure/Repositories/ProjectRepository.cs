@@ -22,20 +22,24 @@ namespace Regista.Infasctructure.Repositories
             this.uow = _uow;
             this.session = _session;
         }
-        public async Task<string> Add(int ID, string Name)
+        public async Task<string> AddProject(Project model)
         {
-            var project = new Project()
+            try
             {
-                ProjeAdı = Name
-            };
-            await Add(project);
+                await uow.repository.Add(model);
+                await uow.SaveChanges();
+                return "";
+            }
+            catch (Exception e)
+            {
 
-            return "1";
+                throw e;
+            }
         }
 
         public void Delete(int id)
         {
-            var project = GetNonDeletedAndActive<Project>(t => t.id == id);
+            var project = GetNonDeletedAndActive<Project>(t => t.ID == id);
             DeleteRange(project.ToList());
 
             Delete<Project>(id);

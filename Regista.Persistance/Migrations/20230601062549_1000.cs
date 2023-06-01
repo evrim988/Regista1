@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Regista.Persistance.Migrations
 {
     /// <inheritdoc />
-    public partial class _1001 : Migration
+    public partial class _1000 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -22,11 +22,8 @@ namespace Regista.Persistance.Migrations
                     Adress = table.Column<string>(type: "nvarchar(600)", maxLength: 600, nullable: false),
                     FirmaAdı = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     EMail = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastModifedBy = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    LastModifedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastModifedBy = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ObjectStatus = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false)
                 },
@@ -46,11 +43,8 @@ namespace Regista.Persistance.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AddUserNote = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CustomerID = table.Column<int>(type: "int", nullable: false),
-                    LastModifedBy = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    LastModifedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastModifedBy = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ObjectStatus = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false)
                 },
@@ -67,11 +61,8 @@ namespace Regista.Persistance.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProjeAdı = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ProjeAçıklaması = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastModifedBy = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    LastModifedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastModifedBy = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ObjectStatus = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false)
                 },
@@ -88,11 +79,8 @@ namespace Regista.Persistance.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     RequestName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastModifedBy = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    LastModifedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastModifedBy = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ObjectStatus = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false)
                 },
@@ -114,11 +102,8 @@ namespace Regista.Persistance.Migrations
                     password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CustomerID = table.Column<int>(type: "int", nullable: false),
                     img = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastModifedBy = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    LastModifedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastModifedBy = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ObjectStatus = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false)
                 },
@@ -137,11 +122,8 @@ namespace Regista.Persistance.Migrations
                     TicketStatus = table.Column<int>(type: "int", nullable: false),
                     Desc = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CustomerID = table.Column<int>(type: "int", nullable: false),
-                    LastModifedBy = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    LastModifedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastModifedBy = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ObjectStatus = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false)
                 },

@@ -45,7 +45,7 @@ namespace Regista.Infasctructure.Repositories
                 foreach (var item in _objectList)
                 {
                    
-                    item.LastModifedOn = DateTime.Now;
+                    item.LastModifiedOn = DateTime.Now;
                 }
                 GetTable<T>().UpdateRange(_objectList);
             }
@@ -85,13 +85,19 @@ namespace Regista.Infasctructure.Repositories
         }
         public async Task<T> Add<T>(T _object) where T : BaseEntitiy
         {
+            _object.CreatedBy = session.ID;
+            _object.LastModifiedBy = session.ID;
+            _object.LastModifiedOn = DateTime.Now;
+            _object.CreatedOn = DateTime.Now;
+            _object.Status = status.Active;
+            _object.ObjectStatus = ObjectStatus.NonDeleted;
             await GetTable<T>().AddAsync(_object);
             return _object;
         }
 
         public async Task<T> Delete<T>(int id) where T : BaseEntitiy
         {
-            var obj = await Find<T>(t => t.id == id);
+            var obj = await Find<T>(t => t.ID == id);
             await Delete<T>(obj);
             return obj;
         }
@@ -117,14 +123,14 @@ namespace Regista.Infasctructure.Repositories
 
         public T Update<T>(T _object) where T : BaseEntitiy
         {
-            _object.LastModifedOn = DateTime.Now;
+            _object.LastModifiedOn = DateTime.Now;
             GetTable<T>().Update(_object);
             return _object;
         }
 
         public async Task<T> GetById<T>(int id) where T : BaseEntitiy
         {
-            return await Find<T>(t => t.id == id);
+            return await Find<T>(t => t.ID == id);
         }
 
         public IQueryable<T> GetList<T>(Expression<Func<T, bool>> where) where T : BaseEntitiy
