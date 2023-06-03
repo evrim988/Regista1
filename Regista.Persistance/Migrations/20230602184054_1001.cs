@@ -5,24 +5,10 @@
 namespace Regista.Persistance.Migrations
 {
     /// <inheritdoc />
-    public partial class _1003 : Migration
+    public partial class _1001 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.RenameColumn(
-                name: "ProjeAçıklaması",
-                table: "Projects",
-                newName: "ProjectName");
-
-            migrationBuilder.RenameColumn(
-                name: "ProjeAdı",
-                table: "Projects",
-                newName: "ProjectDescription");
-        }
-
-        /// <inheritdoc />
-        protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.RenameColumn(
                 name: "ProjectName",
@@ -33,6 +19,20 @@ namespace Regista.Persistance.Migrations
                 name: "ProjectDescription",
                 table: "Projects",
                 newName: "ProjeAdı");
+        }
+
+        /// <inheritdoc />
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.RenameColumn(
+                name: "ProjeAçıklaması",
+                table: "Projects",
+                newName: "ProjectName");
+
+            migrationBuilder.RenameColumn(
+                name: "ProjeAdı",
+                table: "Projects",
+                newName: "ProjectDescription");
         }
     }
 }

@@ -104,7 +104,6 @@ namespace Regista.Infasctructure.Services.SecurityServices
                 {
                     CustomerID = user.CustomerID,
                     ID = user.ID,
-                    Image = user.img,
                     Name = user.Name,
                     Surname = user.SurName
                 };

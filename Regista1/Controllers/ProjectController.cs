@@ -35,7 +35,35 @@ namespace Regista1.WebApp.Controllers
             }
 
         }
+        public async Task<string> ProjectEdit(int Key, string values)
+        {
+            try
+            {
+                var size = await uow.repository.GetById<Project>(Key);
+                JsonConvert.PopulateObject(values, size);
+                uow.projectRepository.Update(size);
+                await uow.SaveChanges();
 
+                return "1";
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public async Task<string> DeleteProject(int Key)
+        {
+            try
+            {
+                await uow.repository.Delete<Project>(Key);
+                await uow.SaveChanges();
+                return "1";
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public IActionResult Index()
         {
             return View();

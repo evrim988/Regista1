@@ -78,27 +78,6 @@ namespace Regista1.WebApp.Controllers
             }
         }
 
-        //public async Task<object> Update(int id)
-        //{
-        //    var customer = await uow.customerRepository.GetById(id);
-
-        //    if (customer.ResultObject == null)
-        //        return RedirectToAction(nameof(GetList));
-
-        //    return View(customer.ResultObject);
-        //}
-
-        //[HttpPost]
-        //public async Task<IActionResult> Update(Customer model)
-        //{
-        //    if (!ModelState.IsValid)
-        //        return View(model);
-
-        //    //var result = await _customerRepository.Update(model);
-
-        //    //ViewBag.Result = result;
-
-        //    return View(model);
-        //}
+       
     }
 }

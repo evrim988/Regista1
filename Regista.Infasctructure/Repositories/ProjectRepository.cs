@@ -51,9 +51,11 @@ namespace Regista.Infasctructure.Repositories
             return model;
         }
 
-        public T Update<T>(T _object) where T : BaseEntitiy
+        public async Task<string> Update(Project model)
         {
-            throw new NotImplementedException();
+            Update(model);
+            await uow.SaveChanges();
+            return "";
         }
 
        

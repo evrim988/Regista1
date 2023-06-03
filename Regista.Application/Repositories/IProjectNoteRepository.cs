@@ -9,7 +9,7 @@ namespace Regista.Application.Repositories
 {
     public interface IProjectNoteRepository : IRepository
     {
-        public Task<string> Add(int ID, string Name);
+        public Task<string> ProjectNoteAdd(ProjectNote projectNote);
         public void Delete(int id);
         public Task<IQueryable<ProjectNote>> GetList();
     }

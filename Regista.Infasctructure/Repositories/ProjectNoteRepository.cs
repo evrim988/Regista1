@@ -23,33 +23,39 @@ namespace Regista.Infasctructure.Repositories
             this.session = _session;
         }
 
-        public async Task<string> Add(int ID, string description)
+        public async Task<string> ProjectNoteAdd(ProjectNote model)
         {
-            var project = new ProjectNote()
+            try
             {
-                Description = description
-            };
-            await Add(project);
+                await uow.repository.Add(model);
+                await uow.SaveChanges();
+                return "";
+            }
+            catch (Exception e)
+            {
 
-            return "1";
+                throw e;
+            }
         }
 
         public void Delete(int id)
         {
             var project = GetNonDeletedAndActive<ProjectNote>(t => t.ID == id);
             DeleteRange(project.ToList());
-
             Delete<ProjectNote>(id);
         }
-
-      
 
         public async Task<IQueryable<ProjectNote>> GetList()
         {
             var model = GetNonDeletedAndActive<ProjectNote>(t => true);
             return model;
         }
+        public async Task<string> Update(Project model)
+        {
+            Update(model);
+            await uow.SaveChanges();
+            return "";
+        }
 
-      
     }
 }

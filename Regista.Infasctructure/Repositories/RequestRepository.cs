@@ -22,17 +22,27 @@ namespace Regista.Infasctructure.Repositories
             this.session= _session;
         }
 
-        public async Task<string> Add(int ID, string RequestName)
+        public async Task<string> RequestAdd(Request model)
         {
-            var request = new Request()
+            try
             {
-                RequestName = RequestName
-            };
-            await Add(request);
+                await uow.repository.Add(model);
+                await uow.SaveChanges();
+                return "";
+            }
+            catch (Exception e)
+            {
 
-            return "1";
+                throw e;
+            }
+
         }
-
+        public async Task<string> Update(Request model)
+        {
+            Update(model);
+            await uow.SaveChanges();
+            return "";
+        }
         public void Delete(int id)
         {
             var request = GetNonDeletedAndActive<Request>(t => t.ID == id);
@@ -40,21 +50,11 @@ namespace Regista.Infasctructure.Repositories
 
             Delete<Request>(id);
         }
-
-        //public Task<T> GetById<T>(int id) where T : BaseEntitiy
-        //{
-        //    throw new NotImplementedException();
-        //}
-
         public async Task<IQueryable<Request>> GetList()
         {
             var model = GetNonDeletedAndActive<Request>(t => true);
             return model;
         }
 
-        //public T Update<T>(T _object) where T : BaseEntitiy
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 }

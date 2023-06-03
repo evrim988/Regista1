@@ -8,9 +8,9 @@ function GetList() {
         dataSource: DevExpress.data.AspNet.createStore({
             key: "id",
             loadUrl: "/ProjectNote/GetList",
-            //insertUrl: "/Customer/CreateCustomer",
-            //updateUrl: "/Customer/EditCustomer",
-            //deleteUrl: "/Customer/DeleteCustomer",
+            insertUrl: "/ProjectNote/ProjectNoteAdd",
+            updateUrl: "/ProjectNote/ProjectEdit",
+            deleteUrl: "/ProjectNote/DeleteProject",
             onBeforeSend: function (method, ajaxOptions) {
                 ajaxOptions.xhrFields = { withCredentials: true };
             }
@@ -63,59 +63,67 @@ function GetList() {
         loadPanel: {
             enabled: true,
         },
-        //editing: {
-        //    mode: 'popup',
-        //    allowUpdating: true,
-        //    allowDeleting: true,
-        //    allowAdding: true,
-        //    popup: {
-        //        title: 'Ekle',
-        //        showTitle: true,
-        //        width: 500,
-        //        height: 325,
-        //    },
-        //    form: {
-        //        items: [{
-        //            itemType: 'group',
-        //            colCount: 2,
-        //            colSpan: 2,
-        //            items: [
-        //                {
-        //                    dataField: "Name",
-        //                    caption: "Firma Adı",
-        //                },
-        //                {
-        //                    dataField: "TaxNumber",
-        //                    caption: "Vergi Numarası",
-        //                },
-        //            ],
-        //        }],
+        editing: {
+            mode: 'popup',
+            allowUpdating: true,
+            allowDeleting: true,
+            allowAdding: true,
+            popup: {
+                title: 'Yeni Proje Notu Ekle',
+                showTitle: true,
+                width: 500,
+                height: 325,
+            },
+            form: {
+                items: [{
+                    itemType: 'group',
+                    colCount: 2,
+                    colSpan: 2,
+                    items: [
+                        {
+                            dataField: "date",
+                            caption: "Tarih",
+                        },
+                        {
+                            dataField: "noteType",
+                            caption: "Not Türü",
+                        },
+                        {
+                            dataField: "description",
+                            caption: "Not Açıklaması",
+                        },
+                        {
+                            dataField: "addUserNote",
+                            caption: "Not Ekleyen Kullanıcı",
+                        },
+                    ],
+                }],
 
-        //    },
+            },
 
-        //},
+        },
 
 
 
         columns: [
 
             {
-                dataField: "Tarih",
+                dataField: "date",
                 caption: "Tarih",
                 alignment: 'center',
             },
             {
-                dataField: "Tür",
+                dataField: "noteType",
                 caption: "Not Türü",
                 alignment: 'center',
             },
             {
-                dataField: "Açıklama",
+                dataField: "description",
                 caption: "Not Açıklaması",
                 alignment: 'center',
             },
             {
-                dataField: "NotEkleyenKullanıcı",
+                dataField: "addUserNote",
                 caption: "Not Ekleyen Kullanıcı",
                 alignment: 'center',
             },

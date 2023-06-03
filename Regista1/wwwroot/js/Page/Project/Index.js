@@ -10,12 +10,13 @@ function GetList() {
             key: "id",
             loadUrl: "/Project/GetList",
             insertUrl: "/Project/AddProject",
-            //updateUrl: "/Customer/EditCustomer",
-            //deleteUrl: "/Customer/DeleteCustomer",
+            updateUrl: "/Project/ProjectEdit",
+            deleteUrl: "/Project/DeleteProject",
             onBeforeSend: function (method, ajaxOptions) {
                 ajaxOptions.xhrFields = { withCredentials: true };
             }
         }),
+
         onCellPrepared(e) {
             if (e.rowType == "header") {
                 e.cellElement.css("text-align", "center");
@@ -24,20 +25,20 @@ function GetList() {
         onRowPrepared: function (e) {
             if (e.rowType == "header") { e.rowElement.css("background-color", "#b9ceff"); e.rowElement.css('color', '#4f5052'); e.rowElement.css('font-weight', 'bold'); };
         },
-      
+
         rowAlternationEnabled: true,
         grouping: {
             contextMenuEnabled: true
         },
         groupPanel: {
-            visible: true  
+            visible: true   // or "auto"
         },
 
         columnAutoWidth: true,
         remoteOperations: true,
         allowColumnReordering: true,
         showBorders: true,
-       
+
         searchPanel: {
             visible: true,
             width: 240,
@@ -61,17 +62,17 @@ function GetList() {
         onInitNewRow: function (e) {
             title = "";
         },
-
         loadPanel: {
             enabled: true,
         },
+
         editing: {
             mode: 'popup',
             allowUpdating: true,
             allowDeleting: true,
             allowAdding: true,
             popup: {
-                title: 'Ekle',
+                title: 'Yeni Proje Ekle',
                 showTitle: true,
                 width: 500,
                 height: 325,
@@ -83,11 +84,11 @@ function GetList() {
                     colSpan: 2,
                     items: [
                         {
-                            dataField: "ProjectName",
+                            dataField: "projectName",
                             caption: "Proje Adı",
                         },
                         {
-                            dataField: "ProjectDescription",
+                            dataField: "projectDescription",
                             caption: "Proje Açıklaması",
                         },
                     ],
@@ -96,9 +97,6 @@ function GetList() {
             },
 
         },
-
-
-
         columns: [
 
             {
@@ -111,30 +109,9 @@ function GetList() {
                 caption: "Proje Açıklaması",
                 alignment: 'center',
             },
-            //{
-            //    type: "buttons",
-            //    buttons: ["edit", "delete",
-
-            //        {
-            //            hint: "Detay",
-            //            icon: "edit",
-            //            onClick: function (e) {
-            //                location.href = '../../Customer/EditCustomer/' + e.row.data.id;
-            //            }
-            //        },
-            //        {
-            //            hint: "Sil",
-            //            icon: "remove",
-            //            onClick: function (e) {
-            //                deleteCustomerAsk(e.row.data.id);
-            //            }
-            //        },
-
-            //    ]
-
-            //},
         ],
 
     }).dxDataGrid("instance");
 
 }
+

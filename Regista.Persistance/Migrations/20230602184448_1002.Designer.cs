@@ -12,7 +12,7 @@ using Regista.Persistance.Db;
 namespace Regista.Persistance.Migrations
 {
     [DbContext(typeof(RegistaContext))]
-    [Migration("20230601073012_1002")]
+    [Migration("20230602184448_1002")]
     partial class _1002
     {
         /// <inheritdoc />
@@ -102,11 +102,11 @@ namespace Regista.Persistance.Migrations
                     b.Property<int>("ObjectStatus")
                         .HasColumnType("int");
 
-                    b.Property<string>("ProjeAdı")
+                    b.Property<string>("ProjectDescription")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ProjeAçıklaması")
+                    b.Property<string>("ProjectName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

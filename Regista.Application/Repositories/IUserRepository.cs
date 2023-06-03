@@ -9,7 +9,7 @@ namespace Regista.Application.Repositories
 {
     public interface IUserRepository : IRepository
     {
-        public Task<string> Add(int ID, string Name);
+        public Task<string> AddUser(User user);
         public void Delete(int id);
         public Task<IQueryable<User>> GetList();
     }

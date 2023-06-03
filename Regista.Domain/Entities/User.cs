@@ -31,6 +31,5 @@ namespace Regista.Domain.Entities
 
         public int CustomerID { get; set; }
 
-        public string img { get; set; }
     }
 }

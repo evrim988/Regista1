@@ -18,18 +18,28 @@ namespace Regista.Infasctructure.Repositories
 
         public UserRepository(RegistaContext _context,SessionModel _session, IUnitOfWork _uow) : base(_context,_session)
         {
-            this.context = _context;
-            this.uow = _uow;
+            context = _context;
+            uow = _uow;
         }
-        public async Task<string> Add(int ID, string Name)
+        public async Task<string> AddUser(User model)
         {
-            var user = new User()
+            try
             {
-                Name = Name
-            };
-            await Add(user);
+                await uow.repository.Add(model);
+                await uow.SaveChanges();
+                return "";
+            }
+            catch (Exception e)
+            {
 
-            return "1";
+                throw e;
+            }
+        }
+        public async Task<string> Update(User model)
+        {
+            Update(model);
+            await uow.SaveChanges();
+            return "";
         }
         public void Delete(int id)
         {

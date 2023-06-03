@@ -8,9 +8,9 @@ function GetList() {
         dataSource: DevExpress.data.AspNet.createStore({
             key: "id",
             loadUrl: "/User/GetList",
-            //insertUrl: "/Customer/CreateCustomer",
-            //updateUrl: "/Customer/EditCustomer",
-            //deleteUrl: "/Customer/DeleteCustomer",
+            insertUrl: "/User/AddUser",
+            updateUrl: "/User/UserEdit",
+            deleteUrl: "/User/DeleteUser",
             onBeforeSend: function (method, ajaxOptions) {
                 ajaxOptions.xhrFields = { withCredentials: true };
             }
@@ -63,39 +63,49 @@ function GetList() {
         loadPanel: {
             enabled: true,
         },
-        //editing: {
-        //    mode: 'popup',
-        //    allowUpdating: true,
-        //    allowDeleting: true,
-        //    allowAdding: true,
-        //    popup: {
-        //        title: 'Ekle',
-        //        showTitle: true,
-        //        width: 500,
-        //        height: 325,
-        //    },
-        //    form: {
-        //        items: [{
-        //            itemType: 'group',
-        //            colCount: 2,
-        //            colSpan: 2,
-        //            items: [
-        //                {
-        //                    dataField: "Name",
-        //                    caption: "Firma Adı",
-        //                },
-        //                {
-        //                    dataField: "TaxNumber",
-        //                    caption: "Vergi Numarası",
-        //                },
-        //            ],
-        //        }],
+        editing: {
+            mode: 'popup',
+            allowUpdating: true,
+            allowDeleting: true,
+            allowAdding: true,
+            popup: {
+                title: 'Yeni Kullanıcı Ekle',
+                showTitle: true,
+                width: 500,
+                height: 325,
+            },
+            form: {
+                items: [{
+                    itemType: 'group',
+                    colCount: 2,
+                    colSpan: 2,
+                    items: [
+                        {
+                            dataField: "name",
+                            caption: "Ad",
+                        },
+                        {
+                            dataField: "surName",
+                            caption: "Soyad",
+                        },
+                        {
+                            dataField: "userName",
+                            caption: "Kullanıcı Adı",
+                        },
+                        {
+                            dataField: "password",
+                            caption: "Şifre",
+                        },
+                        {
+                            dataField: "eMail",
+                            caption: "Email",
+                        },
+                    ],
+                }],
 
-        //    },
+            },
 
-        //},
-
-        
+        },
 
         columns: [
 
@@ -105,13 +115,18 @@ function GetList() {
                 alignment: 'center',
             },
             {
-                dataField: "surname",
-                caption: " Soyadı",
+                dataField: "surName",
+                caption: "Soyadı",
                 alignment: 'center',
             },
             {
                 dataField: "userName",
                 caption: "Kullanıcı Adı",
+                alignment: 'center',
+            },
+            {
+                dataField: "password",
+                caption: "Şifre",
                 alignment: 'center',
             },
             {
@@ -121,25 +136,7 @@ function GetList() {
             },
             {
                 type: "buttons",
-                buttons: ["edit", "delete",
-
-                    {
-                        hint: "Detay",
-                        icon: "edit",
-                        onClick: function (e) {
-                            location.href = '../../Customer/EditCustomer/' + e.row.data.id;
-                        }
-                    },
-                    {
-                        hint: "Sil",
-                        icon: "remove",
-                        onClick: function (e) {
-                            deleteCustomerAsk(e.row.data.id);
-                        }
-                    },
-
-                ]
-
+                buttons: ["edit", "delete"]
             },
         ],
 

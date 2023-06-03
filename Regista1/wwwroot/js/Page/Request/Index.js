@@ -8,9 +8,9 @@ function GetList() {
         dataSource: DevExpress.data.AspNet.createStore({
             key: "id",
             loadUrl: "/Request/GetList",
-            //insertUrl: "/Customer/CreateCustomer",
-            //updateUrl: "/Customer/EditCustomer",
-            //deleteUrl: "/Customer/DeleteCustomer",
+            insertUrl: "/Request/RequestAdd",
+            updateUrl: "/Request/RequestEdit",
+            deleteUrl: "/Request/RequestDelete",
             onBeforeSend: function (method, ajaxOptions) {
                 ajaxOptions.xhrFields = { withCredentials: true };
             }
@@ -63,75 +63,55 @@ function GetList() {
         loadPanel: {
             enabled: true,
         },
-        //editing: {
-        //    mode: 'popup',
-        //    allowUpdating: true,
-        //    allowDeleting: true,
-        //    allowAdding: true,
-        //    popup: {
-        //        title: 'Ekle',
-        //        showTitle: true,
-        //        width: 500,
-        //        height: 325,
-        //    },
-        //    form: {
-        //        items: [{
-        //            itemType: 'group',
-        //            colCount: 2,
-        //            colSpan: 2,
-        //            items: [
-        //                {
-        //                    dataField: "Name",
-        //                    caption: "Firma Adı",
-        //                },
-        //                {
-        //                    dataField: "TaxNumber",
-        //                    caption: "Vergi Numarası",
-        //                },
-        //            ],
-        //        }],
+        editing: {
+            mode: 'popup',
+            allowUpdating: true,
+            allowDeleting: true,
+            allowAdding: true,
+            popup: {
+                title: 'Ekle',
+                showTitle: true,
+                width: 500,
+                height: 325,
+            },
+            form: {
+                items: [{
+                    itemType: 'group',
+                    colCount: 2,
+                    colSpan: 2,
+                    items: [
+                        {
+                            dataField: "requestName",
+                            caption: "Talep Adı",
+                        },
+                        {
+                            dataField: "description",
+                            caption: "Açıklama",
+                        },
+                    ],
+                }],
 
-        //    },
+            },
 
-        //},
-
-
+        },
 
         columns: [
 
             {
-                dataField: "TalepAdı",
+                dataField: "requestName",
                 caption: "Talep Adı",
                 alignment: 'center',
             },
             {
-                dataField: "Açıklama",
+                dataField: "description",
                 caption: "Açıklama",
                 alignment: 'center',
             },
            
-            //{
-            //    type: "buttons",
-            //    buttons: ["edit", "delete",
-
-            //        {
-            //            hint: "Detay",
-            //            icon: "edit",
-            //            onClick: function (e) {
-            //                location.href = '../../Customer/EditCustomer/' + e.row.data.id;
-            //            }
-            //        },
-            //        {
-            //            hint: "Sil",
-            //            icon: "remove",
-            //            onClick: function (e) {
-            //                deleteCustomerAsk(e.row.data.id);
-            //            }
-            //        },
-
-            //    ]
-
-            //},
+            {
+                type: "buttons",
+                buttons: ["edit", "delete"]
+            },
         ],
 
     }).dxDataGrid("instance");
