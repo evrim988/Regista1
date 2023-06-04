@@ -38,7 +38,7 @@ namespace Regista.Infasctructure.Repositories
                 throw e;
             }
         }
-        public async Task UpdateRange<T>(ICollection<T> _objectList) where T : BaseEntitiy
+        public async System.Threading.Tasks.Task UpdateRange<T>(ICollection<T> _objectList) where T : BaseEntitiy
         {
             try
             {

@@ -8,22 +8,19 @@ using System.Xml.Linq;
 
 namespace Regista.Domain.Enums
 {
-    public enum TicketStatus
+    public enum TaskStatus
     {
 
-        [Display(Name = "Değerlendiriliyor")]
-        Evaluation = 0,
-
         [Display(Name = "Başlamadı")]
-        NotStart = 1,
+        NotStart = 0,
+
+        [Display(Name = "Başladı")]
+        Start = 1,
 
         [Display(Name = "Devam Ediyor")]
         Continued = 2,
 
-        [Display(Name = "Tamamlandı")]
-        Completed = 3,
-
-        [Display(Name = "İptal")]
-        Cancel = 4,
+        [Display(Name = "İptal/Reddedildi")]
+        Cancel = 3,
     }
 }
