@@ -1,4 +1,5 @@
-﻿using Regista.Domain.Enums;
+﻿using Regista.Domain.Entities;
+using Regista.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,12 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using TaskStatus = Regista.Domain.Enums.TaskStatus;
 
-namespace Regista.Domain.Entities
+namespace Regista.Domain.Dto.Entities.TaskModel
 {
-    public class Task:BaseEntitiy
+    public class TaskDto
     {
         public int UserID { get; set; }
-        public virtual User User { get; set; }
 
         [DisplayName("Planlanan Başlangıç Tarihi")]
         public DateTime PlanedStart { get; set; }
@@ -34,7 +34,9 @@ namespace Regista.Domain.Entities
 
         [DisplayName("Öncelik")]
         public PriorityStatus PriorityStatus { get; set; }
+
+        [DisplayName("Görüntü")]
+        public string img { get; set; }
         public int CustomerID { get; set; }
-        public virtual Customer Customer { get; set; }
     }
 }

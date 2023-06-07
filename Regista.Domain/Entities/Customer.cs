@@ -28,6 +28,16 @@ namespace Regista.Domain.Entities
         [MaxLength(600, ErrorMessage = "{0} {1} karakterden büyük olamaz")]
         public string Adress { get; set; }
 
+        public string? ContectEmail { get; set; }
+
+        public string? EmailHost { get; set; }
+
+        public string? EmailPort { get; set; }
+
+        public bool EnableSsl { get; set; }
+
+        public string? EmailPassword { get; set; }
+
         [DisplayName("FirmaAdı")]
         public string FirmaAdı { get; set; }
 

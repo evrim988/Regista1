@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Regista.Persistance.Db;
 
@@ -11,9 +12,11 @@ using Regista.Persistance.Db;
 namespace Regista.Persistance.Migrations
 {
     [DbContext(typeof(RegistaContext))]
-    partial class RegistaContextModelSnapshot : ModelSnapshot
+    [Migration("20230605110508_1001")]
+    partial class _1001
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,9 +38,6 @@ namespace Regista.Persistance.Migrations
                         .HasMaxLength(600)
                         .HasColumnType("nvarchar(600)");
 
-                    b.Property<string>("ContectEmail")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("CreatedBy")
                         .HasColumnType("int");
 
@@ -47,18 +47,6 @@ namespace Regista.Persistance.Migrations
                     b.Property<string>("EMail")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("EmailHost")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("EmailPassword")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("EmailPort")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("EnableSsl")
-                        .HasColumnType("bit");
 
                     b.Property<string>("FirmaAdı")
                         .IsRequired()
@@ -232,6 +220,9 @@ namespace Regista.Persistance.Migrations
                     b.Property<DateTime?>("CreatedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("CustomerID")
+                        .HasColumnType("int");
+
                     b.Property<int>("LastModifiedBy")
                         .HasColumnType("int");
 
@@ -241,43 +232,45 @@ namespace Regista.Persistance.Migrations
                     b.Property<int>("ObjectStatus")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("PlanedEnd")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("PlanedStart")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("PriorityStatus")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Responsible")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<int>("customerID")
+                    b.Property<int>("TaskStatus")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserID")
                         .HasColumnType("int");
 
                     b.Property<string>("description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("planedEnd")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("planedStart")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("priorityStatus")
-                        .HasColumnType("int");
-
-                    b.Property<int>("responsibleID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("taskStatus")
-                        .HasColumnType("int");
+                    b.Property<string>("img")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("userID")
-                        .HasColumnType("int");
-
                     b.HasKey("ID");
 
-                    b.HasIndex("customerID");
+                    b.HasIndex("CustomerID");
 
-                    b.HasIndex("userID");
+                    b.HasIndex("UserID");
 
                     b.ToTable("Tasks");
                 });
@@ -343,13 +336,13 @@ namespace Regista.Persistance.Migrations
                 {
                     b.HasOne("Regista.Domain.Entities.Customer", "Customer")
                         .WithMany()
-                        .HasForeignKey("customerID")
+                        .HasForeignKey("CustomerID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Regista.Domain.Entities.User", "User")
                         .WithMany()
-                        .HasForeignKey("userID")
+                        .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

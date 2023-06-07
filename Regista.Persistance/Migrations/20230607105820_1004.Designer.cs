@@ -12,8 +12,8 @@ using Regista.Persistance.Db;
 namespace Regista.Persistance.Migrations
 {
     [DbContext(typeof(RegistaContext))]
-    [Migration("20230602184448_1002")]
-    partial class _1002
+    [Migration("20230607105820_1004")]
+    partial class _1004
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,6 +38,9 @@ namespace Regista.Persistance.Migrations
                         .HasMaxLength(600)
                         .HasColumnType("nvarchar(600)");
 
+                    b.Property<string>("ContectEmail")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("CreatedBy")
                         .HasColumnType("int");
 
@@ -47,6 +50,18 @@ namespace Regista.Persistance.Migrations
                     b.Property<string>("EMail")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EmailHost")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EmailPassword")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EmailPort")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("EnableSsl")
+                        .HasColumnType("bit");
 
                     b.Property<string>("FirmaAdı")
                         .IsRequired()
@@ -206,7 +221,7 @@ namespace Regista.Persistance.Migrations
                     b.ToTable("requests");
                 });
 
-            modelBuilder.Entity("Regista.Domain.Entities.Ticket", b =>
+            modelBuilder.Entity("Regista.Domain.Entities.Task", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -223,9 +238,6 @@ namespace Regista.Persistance.Migrations
                     b.Property<int>("CustomerID")
                         .HasColumnType("int");
 
-                    b.Property<string>("Desc")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("LastModifiedBy")
                         .HasColumnType("int");
 
@@ -235,14 +247,34 @@ namespace Regista.Persistance.Migrations
                     b.Property<int>("ObjectStatus")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("PlanedEnd")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("PlanedStart")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("PriorityStatus")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ResponsibleID")
+                        .HasColumnType("int");
+
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<int>("TicketStatus")
+                    b.Property<int>("TaskStatus")
                         .HasColumnType("int");
 
                     b.Property<int>("UserID")
                         .HasColumnType("int");
+
+                    b.Property<string>("description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
 
@@ -250,7 +282,7 @@ namespace Regista.Persistance.Migrations
 
                     b.HasIndex("UserID");
 
-                    b.ToTable("Tickets");
+                    b.ToTable("Tasks");
                 });
 
             modelBuilder.Entity("Regista.Domain.Entities.User", b =>
@@ -301,10 +333,6 @@ namespace Regista.Persistance.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("img")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -314,7 +342,7 @@ namespace Regista.Persistance.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Regista.Domain.Entities.Ticket", b =>
+            modelBuilder.Entity("Regista.Domain.Entities.Task", b =>
                 {
                     b.HasOne("Regista.Domain.Entities.Customer", "Customer")
                         .WithMany()

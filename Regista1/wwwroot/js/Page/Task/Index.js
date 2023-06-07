@@ -1,0 +1,236 @@
+﻿$(document).ready(function () {
+    DevExpress.localization.locale('tr');
+    GetList();
+});
+
+function GetList() {
+    var grid = $(tasksGridContainer).dxDataGrid({
+        dataSource: DevExpress.data.AspNet.createStore({
+            key: "id",
+            loadUrl: "/Task/GetList",
+            insertUrl: "/Task/AddTask",
+            //updateUrl: "/Task/TaskUpdate",
+            //deleteUrl: "/Task/Delete",
+            onBeforeSend: function (method, ajaxOptions) {
+                ajaxOptions.xhrFields = { withCredentials: true };
+            }
+        }),
+        onCellPrepared(e) {
+            if (e.rowType == "header") {
+                e.cellElement.css("text-align", "center");
+            }
+        },
+        onRowPrepared: function (e) {
+            if (e.rowType == "header") { e.rowElement.css("background-color", "#b9ceff"); e.rowElement.css('color', '#4f5052'); e.rowElement.css('font-weight', 'bold'); };
+        },
+        rowAlternationEnabled: true,
+        grouping: {
+            contextMenuEnabled: true
+        },
+        groupPanel: {
+            visible: true   // or "auto"
+        },
+
+        columnAutoWidth: true,
+        remoteOperations: true,
+        allowColumnReordering: true,
+        showBorders: true,
+
+        searchPanel: {
+            visible: true,
+            width: 240,
+            placeholder: 'Ara...',
+        },
+        headerFilter: {
+            visible: true,
+        },
+        paging: { enabled: true },
+        height: "100%",
+        pager: {
+            visible: true,
+            allowedPageSizes: [10, 20, 50],
+            showPageSizeSelector: true,
+            showInfo: true,
+            showNavigationButtons: true,
+        },
+        onEditingStart: function (e) {
+            title = e.data.Date;
+        },
+        onInitNewRow: function (e) {
+            title = "";
+        },
+
+        loadPanel: {
+            enabled: true,
+        },
+        editing: {
+            mode: 'popup',
+            allowUpdating: true,
+            allowDeleting: true,
+            allowAdding: true,
+            popup: {
+                title: 'Yeni Görev Ekle',
+                showTitle: true,
+                width: 800,
+                height: 350,
+            },
+            form: {
+                items: [{
+                    itemType: 'group',
+                    colCount: 2,
+                    colSpan: 2,
+                    items: [
+                        {
+                            dataField: "planedStart",
+                            caption: "Planlanan Başlangıç Tarihi",
+                            dataType: 'date',
+                            format: 'dd/MM/yyyy',
+                        },
+                        {
+                            dataField: "title",
+                            caption: "Konu",
+                        },
+                        {
+                            dataField: "description",
+                            caption: "Açıklama",
+                        },
+                        {
+                            dataField: "responsibleID",
+                            caption: "Sorumlu",
+                            lookup: {
+                                dataSource: DevExpress.data.AspNet.createStore({
+                                    key: "id",
+                                    loadUrl: "/Task/GetResponsible/",
+                                    onBeforeSend: function (method, ajaxOptions) {
+                                        ajaxOptions.xhrFields = { withCredentials: true, };
+                                    },
+                                }),
+                                valueExpr: "id",
+                                displayExpr: "Name",
+                            }
+                        },
+                        {
+                            dataField: "taskStatus",
+                            caption: "Durum",
+                            lookup: {
+                                dataSource: DevExpress.data.AspNet.createStore({
+                                    key: "id",
+                                    loadUrl: "/Task/GetTaskStatus/",
+                                    onBeforeSend: function (method, ajaxOptions) {
+                                        ajaxOptions.xhrFields = { withCredentials: true, };
+                                    },
+                                }),
+                                valueExpr: "id",
+                                displayExpr: "text",
+                            }
+                        },
+                        {
+                            dataField: "priorityStatus",
+                            caption: "Öncelik",
+                            lookup: {
+                                dataSource: DevExpress.data.AspNet.createStore({
+                                    key: "id",
+                                    loadUrl: "/Task/GetPriorityStatus/",
+                                    onBeforeSend: function (method, ajaxOptions) {
+                                        ajaxOptions.xhrFields = { withCredentials: true, };
+                                    },
+                                }),
+                                valueExpr: "id",
+                                displayExpr: "Text",
+                            }
+                        },
+                        
+                    ],
+                }],
+
+            },
+
+        },
+
+        columns: [
+
+            {
+                dataField: "iD",
+                caption: "No",
+                alignment: 'center',
+            },
+            {
+                dataField: "planedStart",
+                caption: "Planlanan Başlangıç Tarihi",
+                alignment: 'center',
+                dataType: 'date',
+                format: 'dd/MM/yyyy',
+            },
+            {
+                dataField: "planedEnd",
+                caption: "Planlanan Bitiş Tarihi",
+                alignment: 'center',
+            },
+            {
+                dataField: "title",
+                caption: "Konu",
+                alignment: 'center',
+            },
+            {
+                dataField: "description",
+                caption: "Açıklama",
+                alignment: 'center',
+            },
+            {
+                dataField: "responsibleID",
+                caption: "Sorumlu",
+                alignment: 'center',
+                lookup: {
+                    dataSource: DevExpress.data.AspNet.createStore({
+                        key: "id",
+                        loadUrl: "/Task/GetResponsible/",
+                        onBeforeSend: function (method, ajaxOptions) {
+                            ajaxOptions.xhrFields = { withCredentials: true, };
+                        },
+                    }),
+                    valueExpr: "id",
+                    displayExpr: "name",
+                }
+            },
+            {
+                dataField: "taskStatus",
+                caption: "Durum",
+                alignment: 'center',
+                lookup: {
+                    dataSource: DevExpress.data.AspNet.createStore({
+                        key: "id",
+                        loadUrl: "/Task/GetTaskStatus/",
+                        onBeforeSend: function (method, ajaxOptions) {
+                            ajaxOptions.xhrFields = { withCredentials: true, };
+                        },
+                    }),
+                    valueExpr: "id",
+                    displayExpr: "Text",
+                }
+            },
+            {
+                dataField: "priorityStatus",
+                caption: "Öncelik",
+                alignment: 'center',
+                lookup: {
+                    dataSource: DevExpress.data.AspNet.createStore({
+                        key: "id",
+                        loadUrl: "/Task/GetPriorityStatus/",
+                        onBeforeSend: function (method, ajaxOptions) {
+                            ajaxOptions.xhrFields = { withCredentials: true, };
+                        },
+                    }),
+                    valueExpr: "id",
+                    displayExpr: "Text",
+                }
+            },
+            {
+                type: "buttons",
+                buttons: ["edit", "delete"]
+            },
+        ],
+
+    }).dxDataGrid("instance");
+
+}
+

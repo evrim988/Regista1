@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Regista.Application.Repositories;
+using Regista.Application.Services.EmailServices;
 using Regista.Application.Services.SecurityServices;
+using Regista.Infasctructure.Services.EmailServices;
 using Regista.Infasctructure.Services.SecurityServices;
 using System;
 using System.Collections.Generic;
@@ -18,6 +20,7 @@ namespace Regista.Infasctructure.Repositories
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddTransient<ISessionService, SessionService>();
+            services.AddTransient<IEmailServices, EmailService>();
             services.AddTransient<ISecurityRepository, SecurityRepository>();
         }
     }

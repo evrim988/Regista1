@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Regista.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,8 @@ namespace Regista.Application.Repositories
        IProjectRepository projectRepository { get; }
        IProjectNoteRepository projectNoteRepository { get; }
        IRequestRepository requestRepository { get; }
+       ITaskRepository taskRepository { get; }
        Task<int> SaveChanges();
-
+       SessionModel GetSession();
     }
 }

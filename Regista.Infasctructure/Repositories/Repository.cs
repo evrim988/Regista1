@@ -1,12 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Regista.Application.Repositories;
+using Regista.Domain.Dto.SelectModels;
 using Regista.Domain.Entities;
 using Regista.Domain.Enums;
 using Regista.Persistance.Db;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Collections.Specialized.BitVector32;
@@ -44,7 +47,6 @@ namespace Regista.Infasctructure.Repositories
             {
                 foreach (var item in _objectList)
                 {
-                   
                     item.LastModifiedOn = DateTime.Now;
                 }
                 GetTable<T>().UpdateRange(_objectList);
@@ -138,16 +140,44 @@ namespace Regista.Infasctructure.Repositories
             return GetTable<T>().Where(where);
         }
 
-        public Task<T> GetById<T>(T _object) where T : BaseEntitiy
+        public List<SelectModel> GetEnumSelect<E>()
         {
-            throw new NotImplementedException();
-        }
+            try
+            {
+                return (Enum.GetValues(typeof(E)).Cast<E>().Select(e => new SelectModel() { Text = GetDisplayValue<E>(e), Value = e.ToString(), Id = Convert.ToInt32(e) })).ToList();
 
-        public IQueryable<T> GetList<T>(T _object) where T : BaseEntitiy
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+        }
+        public string GetDisplayValue<E>(E value)
         {
-            throw new NotImplementedException();
-        }
+            var fieldInfo = value.GetType().GetField(value.ToString());
 
-       
+            var descriptionAttributes = fieldInfo.GetCustomAttributes(
+                    typeof(DisplayAttribute), false) as DisplayAttribute[];
+
+            if (descriptionAttributes[0].ResourceType != null)
+                return lookupResource(descriptionAttributes[0].ResourceType, descriptionAttributes[0].Name);
+
+            if (descriptionAttributes == null) return string.Empty;
+            return (descriptionAttributes.Length > 0) ? descriptionAttributes[0].Name : value.ToString();
+        }
+        public string lookupResource(Type resourceManagerProvider, string resourceKey)
+        {
+            foreach (PropertyInfo staticProperty in resourceManagerProvider.GetProperties(BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public))
+            {
+                if (staticProperty.PropertyType == typeof(System.Resources.ResourceManager))
+                {
+                    System.Resources.ResourceManager resourceManager = (System.Resources.ResourceManager)staticProperty.GetValue(null, null);
+                    return resourceManager.GetString(resourceKey);
+                }
+            }
+
+            return resourceKey; // Fallback with the key name
+        }
     }
 }

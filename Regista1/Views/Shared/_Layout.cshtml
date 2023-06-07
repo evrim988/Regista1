@@ -68,7 +68,7 @@
                         <li class="sidebar-item">
                             <a class="sidebar-link" asp-action="Index" asp-controller="Customer" aria-expanded="false">
                                 <span>
-                                    <i class="ti ti-login"></i>
+                                    <i class="ti ti-user"></i>
                                 </span>
                                 <span class="hide-menu">Müşteriler</span>
                             </a>
@@ -81,9 +81,22 @@
                         <li class="sidebar-item">
                             <a class="sidebar-link" asp-action="Index" asp-controller="Request" aria-expanded="false">
                                 <span>
-                                    <i class="ti ti-mood-happy"></i>
+                                    <i class="ti  ti-file-description"></i>
                                 </span>
                                 <span class="hide-menu">Talepler</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-small-cap">
+                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                            <span class="hide-menu">Görev Yönetimi</span>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" asp-action="Index" asp-controller="Task" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-aperture"></i>
+                                </span>
+                                <span class="hide-menu">Görevler</span>
                             </a>
                         </li>
 
@@ -95,20 +108,14 @@
                         <li class="sidebar-item">
                             <a class="sidebar-link" asp-action="Index" asp-controller="User" aria-expanded="false">
                                 <span>
-                                    <i class="ti ti-mood-happy"></i>
+                                    <i class="ti ti-login"></i>
                                 </span>
                                 <span class="hide-menu">Kullanıcılar</span>
                             </a>
                         </li>
                         
                     </ul>
-                    <div class="unlimited-access hide-menu bg-light-primary position-relative mb-7 mt-5 rounded">
-                        <div class="d-flex">
-                            <div class="unlimited-access-img">
-                                <img src="/Modernize/src/assets/images/backgrounds/rocket.png" alt="" class="img-fluid"> 
-                            </div>
-                        </div>
-                    </div>
+                    
                 </nav>
                 <!-- End Sidebar navigation -->
             </div>

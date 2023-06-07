@@ -12,8 +12,8 @@ using Regista.Persistance.Db;
 namespace Regista.Persistance.Migrations
 {
     [DbContext(typeof(RegistaContext))]
-    [Migration("20230604152729_1004")]
-    partial class _1004
+    [Migration("20230605120512_1002")]
+    partial class _1002
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,6 +38,9 @@ namespace Regista.Persistance.Migrations
                         .HasMaxLength(600)
                         .HasColumnType("nvarchar(600)");
 
+                    b.Property<string>("ContectEmail")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("CreatedBy")
                         .HasColumnType("int");
 
@@ -47,6 +50,18 @@ namespace Regista.Persistance.Migrations
                     b.Property<string>("EMail")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EmailHost")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EmailPassword")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EmailPort")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("EnableSsl")
+                        .HasColumnType("bit");
 
                     b.Property<string>("FirmaAdı")
                         .IsRequired()
@@ -241,6 +256,10 @@ namespace Regista.Persistance.Migrations
                     b.Property<int>("PriorityStatus")
                         .HasColumnType("int");
 
+                    b.Property<string>("Responsible")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
@@ -268,7 +287,7 @@ namespace Regista.Persistance.Migrations
 
                     b.HasIndex("UserID");
 
-                    b.ToTable("Tickets");
+                    b.ToTable("Tasks");
                 });
 
             modelBuilder.Entity("Regista.Domain.Entities.User", b =>

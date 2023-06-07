@@ -5,25 +5,25 @@
 namespace Regista.Persistance.Migrations
 {
     /// <inheritdoc />
-    public partial class _1003 : Migration
+    public partial class _1001 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "img",
-                table: "Users");
+            migrationBuilder.AddColumn<string>(
+                name: "Responsible",
+                table: "Tasks",
+                type: "nvarchar(max)",
+                nullable: false,
+                defaultValue: "");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<string>(
-                name: "img",
-                table: "Users",
-                type: "nvarchar(max)",
-                nullable: false,
-                defaultValue: "");
+            migrationBuilder.DropColumn(
+                name: "Responsible",
+                table: "Tasks");
         }
     }
 }

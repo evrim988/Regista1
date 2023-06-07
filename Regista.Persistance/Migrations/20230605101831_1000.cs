@@ -109,7 +109,6 @@ namespace Regista.Persistance.Migrations
                     EMail = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CustomerID = table.Column<int>(type: "int", nullable: false),
-                    img = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<int>(type: "int", nullable: false),
@@ -123,14 +122,19 @@ namespace Regista.Persistance.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tickets",
+                name: "Tasks",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserID = table.Column<int>(type: "int", nullable: false),
-                    TicketStatus = table.Column<int>(type: "int", nullable: false),
-                    Desc = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PlanedStart = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PlanedEnd = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TaskStatus = table.Column<int>(type: "int", nullable: false),
+                    PriorityStatus = table.Column<int>(type: "int", nullable: false),
+                    img = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CustomerID = table.Column<int>(type: "int", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -141,15 +145,15 @@ namespace Regista.Persistance.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tickets", x => x.ID);
+                    table.PrimaryKey("PK_Tasks", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Tickets_Customers_CustomerID",
+                        name: "FK_Tasks_Customers_CustomerID",
                         column: x => x.CustomerID,
                         principalTable: "Customers",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Tickets_Users_UserID",
+                        name: "FK_Tasks_Users_UserID",
                         column: x => x.UserID,
                         principalTable: "Users",
                         principalColumn: "ID",
@@ -157,13 +161,13 @@ namespace Regista.Persistance.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Tickets_CustomerID",
-                table: "Tickets",
+                name: "IX_Tasks_CustomerID",
+                table: "Tasks",
                 column: "CustomerID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Tickets_UserID",
-                table: "Tickets",
+                name: "IX_Tasks_UserID",
+                table: "Tasks",
                 column: "UserID");
         }
 
@@ -180,7 +184,7 @@ namespace Regista.Persistance.Migrations
                 name: "requests");
 
             migrationBuilder.DropTable(
-                name: "Tickets");
+                name: "Tasks");
 
             migrationBuilder.DropTable(
                 name: "Customers");

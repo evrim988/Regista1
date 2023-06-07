@@ -56,9 +56,34 @@ namespace Regista.Infasctructure.Repositories
             get => _requestRepository ?? (_requestRepository = new RequestRepository(context, session, this));
         }
 
+        private ITaskRepository _taskRepository;
+        public ITaskRepository taskRepository
+        {
+            get => _taskRepository ?? (_taskRepository = new TaskRepository(context, session, this));
+        }
+
         public async Task<int> SaveChanges()
         {
-            return await context.SaveChangesAsync();
+            try
+            {
+                return await context.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+        public SessionModel GetSession()
+        {
+            try
+            {
+                return session;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            
         }
     }
 }
