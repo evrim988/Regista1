@@ -28,7 +28,7 @@ namespace Regista.Domain.Entities
         [EmailAddress(ErrorMessage = "Geçerli mail Adresi giriniz")]
         public string EMail { get; set; }
         public string password { get; set; }
-
+        public virtual Customer Customer { get; set; }
         public int CustomerID { get; set; }
 
     }

@@ -23,6 +23,9 @@ namespace Regista.Domain.Dto.Entities.TaskModel
         [DisplayName("Konu/Başlık")]
         public string title { get; set; }
 
+        [DisplayName("Bildirim Açıklama")]
+        public string TicketContent { get; set; }
+
         [DisplayName("Açıklama")]
         public string description { get; set; }
 

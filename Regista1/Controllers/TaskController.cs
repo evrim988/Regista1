@@ -23,6 +23,12 @@ namespace Regista1.WebApp.Controllers
         {
             return View();
         }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
         public async Task<object> GetList(DataSourceLoadOptions options)
         {
             var models = await uow.taskRepository.Getlist();
@@ -30,30 +36,34 @@ namespace Regista1.WebApp.Controllers
         }
         public async Task<IActionResult> AddTask(string values)
         {
-            var model = JsonConvert.DeserializeObject<Task>(values);
-           // await uow.taskRepository.AddTask(model);
-            var task = new Task()
+            try
             {
-                PlanedStart = DateTime.Now,
-                PlanedEnd = DateTime.Now.AddDays(7),
-            };
-             await uow.taskRepository.AddTask(task);
-            return Ok();
+                
+                var model = JsonConvert.DeserializeObject<Task>(values);
+                model.PlanedEnd = DateTime.Now.AddDays(7);
+                await uow.taskRepository.AddTask(model);
+                var email = await uow.taskRepository.SendMail(model);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+           
         }
         public async Task<string> TaskUpdate(int Key, string values)
         {
-            var size = await uow.repository.GetById<Task>(Key);
+            var size = await uow.taskRepository.GetById<Task>(Key);
             JsonConvert.PopulateObject(values, size);
             uow.taskRepository.Update(size);
             await uow.SaveChanges();
-
             return "1";
         }
         public async Task<string> Delete(int Key)
         {
             try
             {
-                await uow.repository.Delete<Task>(Key);
+                await uow.taskRepository.Delete<Task>(Key);
                 await uow.SaveChanges();
                 return "1";
 

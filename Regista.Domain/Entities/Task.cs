@@ -11,8 +11,6 @@ namespace Regista.Domain.Entities
 {
     public class Task:BaseEntitiy
     {
-        public int UserID { get; set; }
-        public virtual User User { get; set; }
 
         [DisplayName("Planlanan Başlangıç Tarihi")]
         public DateTime PlanedStart { get; set; }

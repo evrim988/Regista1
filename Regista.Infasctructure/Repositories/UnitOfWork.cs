@@ -1,6 +1,8 @@
 ﻿using Regista.Application.Repositories;
+using Regista.Application.Services.EmailServices;
 using Regista.Application.Services.SecurityServices;
 using Regista.Domain.Entities;
+using Regista.Infasctructure.Services.EmailServices;
 using Regista.Persistance.Db;
 using System;
 using System.Collections.Generic;
@@ -15,10 +17,12 @@ namespace Regista.Infasctructure.Repositories
     {
         private readonly RegistaContext context;
         private readonly SessionModel session;
-        public UnitOfWork(RegistaContext _context, ISessionService sessionService)
+        private readonly IEmailServices emailService;
+        public UnitOfWork(RegistaContext _context, ISessionService sessionService,IEmailServices _emailServices)
         {
             session = sessionService.GetInjection();
             context = _context;
+            emailService = _emailServices;
         }
 
         private IRepository _repository;
@@ -59,7 +63,7 @@ namespace Regista.Infasctructure.Repositories
         private ITaskRepository _taskRepository;
         public ITaskRepository taskRepository
         {
-            get => _taskRepository ?? (_taskRepository = new TaskRepository(context, session, this));
+            get => _taskRepository ?? (_taskRepository = new TaskRepository(context, session, this, emailService));
         }
 
         public async Task<int> SaveChanges()

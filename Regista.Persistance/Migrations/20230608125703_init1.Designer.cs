@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Regista.Persistance.Db;
 
@@ -11,9 +12,11 @@ using Regista.Persistance.Db;
 namespace Regista.Persistance.Migrations
 {
     [DbContext(typeof(RegistaContext))]
-    partial class RegistaContextModelSnapshot : ModelSnapshot
+    [Migration("20230608125703_init1")]
+    partial class init1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,6 +34,7 @@ namespace Regista.Persistance.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
                     b.Property<string>("Adress")
+                        .IsRequired()
                         .HasMaxLength(600)
                         .HasColumnType("nvarchar(600)");
 
@@ -231,7 +235,7 @@ namespace Regista.Persistance.Migrations
                     b.Property<DateTime?>("CreatedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("CustomerID")
+                    b.Property<int?>("CustomerID")
                         .HasColumnType("int");
 
                     b.Property<int>("LastModifiedBy")
@@ -260,12 +264,6 @@ namespace Regista.Persistance.Migrations
 
                     b.Property<int>("TaskStatus")
                         .HasColumnType("int");
-
-                    b.Property<string>("TicketContent")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TicketTitle")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("description")
                         .IsRequired()
@@ -336,8 +334,6 @@ namespace Regista.Persistance.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("CustomerID");
-
                     b.ToTable("Users");
                 });
 
@@ -345,20 +341,7 @@ namespace Regista.Persistance.Migrations
                 {
                     b.HasOne("Regista.Domain.Entities.Customer", "Customer")
                         .WithMany()
-                        .HasForeignKey("CustomerID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Customer");
-                });
-
-            modelBuilder.Entity("Regista.Domain.Entities.User", b =>
-                {
-                    b.HasOne("Regista.Domain.Entities.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CustomerID");
 
                     b.Navigation("Customer");
                 });

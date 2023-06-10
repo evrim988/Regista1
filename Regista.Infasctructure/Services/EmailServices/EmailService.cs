@@ -27,7 +27,7 @@ namespace Regista.Infasctructure.Services.EmailServices
      
         public EmailService(IHttpContextAccessor _httpContextAccessor)
         {
-            httpContextAccessor = httpContextAccessor;
+            httpContextAccessor = _httpContextAccessor;
         }
 
         public bool Send(EmailSendDto email, Customer UserWhitCustomer)

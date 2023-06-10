@@ -9,8 +9,8 @@ function GetList() {
             key: "id",
             loadUrl: "/Task/GetList",
             insertUrl: "/Task/AddTask",
-            //updateUrl: "/Task/TaskUpdate",
-            //deleteUrl: "/Task/Delete",
+            updateUrl: "/Task/TaskUpdate",
+            deleteUrl: "/Task/Delete",
             onBeforeSend: function (method, ajaxOptions) {
                 ajaxOptions.xhrFields = { withCredentials: true };
             }
@@ -99,14 +99,14 @@ function GetList() {
                             caption: "Sorumlu",
                             lookup: {
                                 dataSource: DevExpress.data.AspNet.createStore({
-                                    key: "id",
+                                    key: "Id",
                                     loadUrl: "/Task/GetResponsible/",
                                     onBeforeSend: function (method, ajaxOptions) {
                                         ajaxOptions.xhrFields = { withCredentials: true, };
                                     },
                                 }),
                                 valueExpr: "id",
-                                displayExpr: "Name",
+                                displayExpr: "name",
                             }
                         },
                         {
@@ -114,14 +114,14 @@ function GetList() {
                             caption: "Durum",
                             lookup: {
                                 dataSource: DevExpress.data.AspNet.createStore({
-                                    key: "id",
+                                    key: "iD",
                                     loadUrl: "/Task/GetTaskStatus/",
                                     onBeforeSend: function (method, ajaxOptions) {
                                         ajaxOptions.xhrFields = { withCredentials: true, };
                                     },
                                 }),
-                                valueExpr: "id",
-                                displayExpr: "text",
+                                valueExpr: "Id",
+                                displayExpr: "Text",
                             }
                         },
                         {
@@ -129,13 +129,13 @@ function GetList() {
                             caption: "Öncelik",
                             lookup: {
                                 dataSource: DevExpress.data.AspNet.createStore({
-                                    key: "id",
+                                    key: "Id",
                                     loadUrl: "/Task/GetPriorityStatus/",
                                     onBeforeSend: function (method, ajaxOptions) {
                                         ajaxOptions.xhrFields = { withCredentials: true, };
                                     },
                                 }),
-                                valueExpr: "id",
+                                valueExpr: "Id",
                                 displayExpr: "Text",
                             }
                         },
@@ -150,7 +150,7 @@ function GetList() {
         columns: [
 
             {
-                dataField: "iD",
+                dataField: "id",
                 caption: "No",
                 alignment: 'center',
             },
@@ -165,6 +165,8 @@ function GetList() {
                 dataField: "planedEnd",
                 caption: "Planlanan Bitiş Tarihi",
                 alignment: 'center',
+                dataType: 'date',
+                format: 'dd/MM/yyyy',
             },
             {
                 dataField: "title",
@@ -182,7 +184,7 @@ function GetList() {
                 alignment: 'center',
                 lookup: {
                     dataSource: DevExpress.data.AspNet.createStore({
-                        key: "id",
+                        key: "Id",
                         loadUrl: "/Task/GetResponsible/",
                         onBeforeSend: function (method, ajaxOptions) {
                             ajaxOptions.xhrFields = { withCredentials: true, };
@@ -198,13 +200,13 @@ function GetList() {
                 alignment: 'center',
                 lookup: {
                     dataSource: DevExpress.data.AspNet.createStore({
-                        key: "id",
+                        key: "Id",
                         loadUrl: "/Task/GetTaskStatus/",
                         onBeforeSend: function (method, ajaxOptions) {
                             ajaxOptions.xhrFields = { withCredentials: true, };
                         },
                     }),
-                    valueExpr: "id",
+                    valueExpr: "Id",
                     displayExpr: "Text",
                 }
             },
@@ -214,13 +216,13 @@ function GetList() {
                 alignment: 'center',
                 lookup: {
                     dataSource: DevExpress.data.AspNet.createStore({
-                        key: "id",
+                        key: "Id",
                         loadUrl: "/Task/GetPriorityStatus/",
                         onBeforeSend: function (method, ajaxOptions) {
                             ajaxOptions.xhrFields = { withCredentials: true, };
                         },
                     }),
-                    valueExpr: "id",
+                    valueExpr: "Id",
                     displayExpr: "Text",
                 }
             },

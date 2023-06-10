@@ -26,7 +26,7 @@ namespace Regista.Domain.Entities
         [StringLength(600)]
         [MinLength(3, ErrorMessage = "{0} {1} karakterden küçük olamaz")]
         [MaxLength(600, ErrorMessage = "{0} {1} karakterden büyük olamaz")]
-        public string Adress { get; set; }
+        public string? Adress { get; set; }
 
         public string? ContectEmail { get; set; }
 

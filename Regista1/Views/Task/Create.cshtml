@@ -1,0 +1,62 @@
+﻿@model Regista.Domain.Dto.Entities.TaskModel.TaskDto
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+<h6>jkfh</h6>
+<div class="main-content">
+    <div class="row">
+        <div class="col-12">
+            <div class="card card-primary">
+                <div class="card-header">
+                </div>
+                <div class="card-content collapse show">
+                    <div class="heading-elements">
+                        <div class="row col-md-2" style="position:absolute; right:15px; margin:15px;">
+                            <a asp-action="Create" asp-controller="Task" class="btn btn-success"><i class="ion ion-android-add"></i>Kaydet</a>
+                        </div>
+                    </div>
+                    <div class="card-body card-dashboard">
+                        <h3>Görevler</h3>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label style="font-weight:bold;" class="col-md-2 col-form-label">Konu:<span class="text-danger"></span></label>
+                                        <div class="col-md-9">
+                                            <input asp-for="title" type="text" required class="form-control" name="title" />
+                                            <span asp-validation-for="title" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label style="font-weight:bold;" class="col-md-2">Planlanan Başlangıç Tarihi:<span class="text-danger"></span></label>
+                                        <div class="col-md-9">
+                                            <input asp-for="title" type="date" required class="form-control" name="title" />
+                                            <span asp-validation-for="title" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label style="font-weight:bold;" class="col-md-2 col-form-label">Açıklama:<span class="text-danger"></span></label>
+                                        <div class="col-md-9">
+                                            <input asp-for="description" type="text" required class="form-control" name="title" />
+                                            <span asp-validation-for="description" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
