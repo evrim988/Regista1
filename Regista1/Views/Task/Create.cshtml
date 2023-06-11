@@ -49,6 +49,39 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label style="font-weight:bold;" class="col-md-2 col-form-label">Sorumlu:<span class="text-danger"></span></label>
+                                        <div class="col-md-9">
+                                            <select asp-for="ResponsibleID" required  class="form-control select2">
+                                                <option selected="selected" disabled value="-1">Lütfen Seçiniz</option>
+                                            </select>
+                                            <span asp-validation-for="ResponsibleID" class="text-danger" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label style="font-weight:bold;" class="col-md-2 col-form-label">Durum:<span class="text-danger"></span></label>
+                                        <div class="col-md-9">
+                                            <select asp-for="TaskStatus" required asp-items="Html.GetEnumSelectList<Regista.Domain.Enums.TaskStatus>()" class="form-control select2">
+                                                <option selected="selected" disabled value="-1">Lütfen Seçiniz</option>
+                                            </select>
+                                            <span asp-validation-for="TaskStatus" class="text-danger" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label style="font-weight:bold;" class="col-md-2 col-form-label">Öncelik:<span class="text-danger"></span></label>
+                                        <div class="col-md-9">
+                                            <select asp-for="PriorityStatus" required asp-items="Html.GetEnumSelectList<Regista.Domain.Enums.PriorityStatus>()" class="form-control select2">
+                                                <option selected="selected" disabled value="-1">Lütfen Seçiniz</option>
+                                            </select>
+                                            <span asp-validation-for="PriorityStatus" class="text-danger" />
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
