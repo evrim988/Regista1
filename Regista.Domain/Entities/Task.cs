@@ -18,6 +18,9 @@ namespace Regista.Domain.Entities
         [DisplayName("Planlanan Bitiş Tarihi")]
         public DateTime PlanedEnd { get; set; }
 
+        [DisplayName("Resim/Ekran Görüntüsü")]
+        public string? Image { get; set; }
+
         [DisplayName("Konu/Başlık")]
         public string title { get; set; }
 

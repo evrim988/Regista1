@@ -26,7 +26,7 @@
                         <div class="card mb-0">
                             <div class="card-body">
                                 <a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
-                                    <img src="/Modernize/src/assets/images/logos/dark-logo.svg" width="180" alt=""> 
+                                    <img src="/Modernize/Img/logoo.png" width="180" alt=""> 
                                 </a>
                                 <p class="text-center">Your Social Campaigns</p>
                                 <form asp-action="Login" method="post">
@@ -48,22 +48,7 @@
                                         <span style="color:blue" asp-validation-for="Password"></span>
                                     </fieldset>
                                     <span asp-validation-for="Password"></span>
-                                    <div class="form-group row">
-                                        <div class="col-md-6 col-12 text-center text-md-left">
-                                            <fieldset>
-                                                <input type="checkbox" asp-for="RememberMe" class="chk-remember">
-                                                <label asp-for="RememberMe">Beni Hatırla</label>
-                                            </fieldset>
-                                        </div>
-                                        <div class="col-md-6 col-12 text-center text-md-right">
-                                            <fieldset>
-                                                <span>
-                                                    <a asp-action="PasswordForget" asp-controller="Security">Parolamı Unuttum</a>
-                                                </span>
-                                            </fieldset>
-                                        </div>
-
-                                    </div>
+                                    
                                     <button type="submit" class="btn btn-info btn-lg btn-block">Giriş Yap</button>
                                 </form>
                             </div>

@@ -83,6 +83,7 @@ function GetList() {
                         {
                             dataField: "date",
                             caption: "Tarih",
+                            type: 'date',
                         },
                         {
                             dataField: "noteType",

@@ -3,6 +3,7 @@ using DevExtreme.AspNet.Mvc;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Regista.Application.Repositories;
+using Regista.Domain.Dto.Entities.UserModel;
 using Regista.Domain.Entities;
 
 namespace Regista1.WebApp.Controllers
@@ -12,7 +13,7 @@ namespace Regista1.WebApp.Controllers
         private readonly IUnitOfWork uow;
         public UserController(IUnitOfWork _uow)
         {
-            this.uow = _uow;
+            uow = _uow;
         }
         public async Task<object> GetList(DataSourceLoadOptions options)
 
@@ -61,6 +62,55 @@ namespace Regista1.WebApp.Controllers
                 await uow.SaveChanges();
                 return "1";
 
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        [HttpGet]
+        public async Task<IActionResult> UserDetail()
+        {
+            try
+            {
+                var model = await uow.userRepository.GetById<User>(uow.GetSession().ID);
+
+                var userdetail = new UserDetailDto()
+                {
+                    ID = model.ID.ToString(),
+                    UserName = model.UserName,
+                    Name = model.Name,
+                    Surname = model.SurName,
+                    Parola = model.password,
+                    Email = model.EMail,
+                };
+
+                return View(userdetail);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UserDetail(UserDetailDto userDetail)
+        {
+            try
+            {
+                var model = await uow.userRepository.GetById<User>(uow.GetSession().ID);
+
+                model.UserName = userDetail.UserName;
+                model.Name = userDetail.Name;
+                model.password = userDetail.Parola;
+                model.EMail = userDetail.Email;
+
+
+                uow.userRepository.Update<User>(model);
+                await uow.SaveChanges();
+
+
+                return RedirectToAction("Login", "Security");
             }
             catch (Exception ex)
             {

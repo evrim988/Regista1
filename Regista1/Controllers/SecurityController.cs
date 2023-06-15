@@ -50,5 +50,10 @@ namespace Regista1.WebApp.Controllers
                 return View(model);
             }
         }
+        public IActionResult Logout()
+        {
+            sessionService.CleanSession();
+            return RedirectToAction("Login");
+        }
     }
 }

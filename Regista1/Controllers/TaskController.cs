@@ -1,10 +1,13 @@
 ﻿using DevExtreme.AspNet.Data;
 using DevExtreme.AspNet.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Regista.Application.Repositories;
+using Regista.Domain.Dto.Entities.TaskModel;
 using Regista.Domain.Entities;
 using Regista.Domain.Enums;
+using Regista1.WebApp.Filter;
 using System.Net.Sockets;
 using System.Xml.Linq;
 using Task = Regista.Domain.Entities.Task;
@@ -15,18 +18,91 @@ namespace Regista1.WebApp.Controllers
     public class TaskController : Controller
     {
         private readonly IUnitOfWork uow;
-        public TaskController(IUnitOfWork _uow)
+        private IWebHostEnvironment env;
+        public TaskController(IUnitOfWork _uow, IWebHostEnvironment _env)
         {
             uow = _uow;
+            env = _env;
         }
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult Create()
+       
+        [HttpGet]
+        public async Task<IActionResult> Create()
         {
-            return View();
+            var model = new TaskDto();
+            model.ResponsiblehelperModelList = await uow.taskRepository.ResponsiblehelperModelList();
+            model.PlanedStart = DateTime.Now;
+            return View(model);
+        }
+
+       
+        [HttpPost]
+        public async Task<string> Create(TaskDto model)
+        {
+            try
+            {
+               
+                var fileName = "";
+
+                if (model.base64 != null)
+                    fileName = await GetBase64(model.base64);
+
+                var task = new Task()
+                {
+                    CustomerID = uow.GetSession().ID,
+                    PlanedStart = DateTime.Now,
+                    PlanedEnd = DateTime.Now.AddDays(7),
+                    title = model.title,
+                    description = model.description,
+                    ResponsibleID =model.ResponsibleID,
+                    Image = fileName,
+                    TaskStatus = TaskStatus.NotStart,
+                    PriorityStatus = PriorityStatus.low,
+
+                };
+                await uow.taskRepository.AddTask(task);
+               
+                await uow.SaveChanges();
+
+                var email = await uow.taskRepository.SendMail(task);
+
+                return "1";
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return "1";
+        }
+        public async Task<string> GetBase64(string base64)
+        {
+            try
+            {
+                string webRootPath = env.WebRootPath;
+                var ımageString = base64.Split(',');
+                Guid guidFile = Guid.NewGuid();
+                string fileName = string.Format("Task" + guidFile + ".jpg");
+                var path = Path.Combine(webRootPath + "\\Modernize\\Img\\TaskFiles\\", fileName);
+
+                var bytes = Convert.FromBase64String(ımageString[1]);
+                using (var imageFile = new FileStream(path, FileMode.Create))
+                {
+                    imageFile.Write(bytes, 0, bytes.Length);
+                    imageFile.Flush();
+                }
+
+
+                return fileName;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public async Task<object> GetList(DataSourceLoadOptions options)
@@ -111,6 +187,27 @@ namespace Regista1.WebApp.Controllers
             {
                 throw e;
             }
+        }
+
+        public IActionResult MyTask()
+        {
+            return View();
+        }
+        public async Task<object> GetMyTaskUserID(DataSourceLoadOptions options)
+
+        {
+            var models = await uow.taskRepository.GetMyTaskUserID();
+            return DataSourceLoader.Load(models, options);
+        }
+
+        [HttpPut]
+        public async Task<object> MyTaskUpdate(int Key, string values)
+        {
+            var model = await uow.taskRepository.MyTaskUpdate(Key, values);
+            if (model == "1")
+                await uow.SaveChanges();
+
+            return Ok();
         }
     }
 }

@@ -21,10 +21,10 @@ namespace Regista.Infasctructure.Repositories
         public readonly RegistaContext context;
 
         public readonly SessionModel session;
-        public Repository(RegistaContext _context, SessionModel session)
+        public Repository(RegistaContext _context, SessionModel _session)
         {
             context = _context;
-            this.session = session;
+            session = _session;
         }
         private DbSet<T> GetTable<T>() where T : BaseEntitiy
         {

@@ -25,4 +25,7 @@
     <ProjectReference Include="..\Regista.Persistance\Regista.Persistance.csproj" />
     <PackageReference Include="DevExtreme.AspNet.Core" Version="21.2.6" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\Modernize\Img\TaskFiles\" />
+  </ItemGroup>
 </Project>

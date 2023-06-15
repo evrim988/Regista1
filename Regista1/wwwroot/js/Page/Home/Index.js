@@ -7,10 +7,8 @@ function GetList() {
     var grid = $(tasksGridContainer).dxDataGrid({
         dataSource: DevExpress.data.AspNet.createStore({
             key: "id",
-            loadUrl: "/Task/GetList",
-            //insertUrl: "/Task/AddTask",
-            updateUrl: "/Task/TaskUpdate",
-            deleteUrl: "/Task/Delete",
+            loadUrl: "/Home/GetTaskHome",
+           
             onBeforeSend: function (method, ajaxOptions) {
                 ajaxOptions.xhrFields = { withCredentials: true };
             }
@@ -28,7 +26,7 @@ function GetList() {
             contextMenuEnabled: true
         },
         groupPanel: {
-            visible: true   // or "auto"
+            visible: true
         },
 
         columnAutoWidth: true,
@@ -63,101 +61,14 @@ function GetList() {
         loadPanel: {
             enabled: true,
         },
-        editing: {
-            mode: 'row',
-            allowUpdating: true,
-            allowDeleting: true,
-        },
-        //editing: {
-        //    mode: 'popup',
-        //    allowUpdating: true,
-        //    allowDeleting: true,
-        //    allowAdding: true,
-        //    popup: {
-        //        title: 'Yeni Görev Ekle',
-        //        showTitle: true,
-        //        width: 800,
-        //        height: 350,
-        //    },
-        //    form: {
-        //        items: [{
-        //            itemType: 'group',
-        //            colCount: 2,
-        //            colSpan: 2,
-        //            items: [
-        //                {
-        //                    dataField: "planedStart",
-        //                    caption: "Planlanan Başlangıç Tarihi",
-        //                    dataType: 'date',
-        //                    format: 'dd/MM/yyyy',
-        //                },
-        //                {
-        //                    dataField: "title",
-        //                    caption: "Konu",
-        //                },
-        //                {
-        //                    dataField: "description",
-        //                    caption: "Açıklama",
-        //                },
-        //                {
-        //                    dataField: "responsibleID",
-        //                    caption: "Sorumlu",
-        //                    lookup: {
-        //                        dataSource: DevExpress.data.AspNet.createStore({
-        //                            key: "Id",
-        //                            loadUrl: "/Task/GetResponsible/",
-        //                            onBeforeSend: function (method, ajaxOptions) {
-        //                                ajaxOptions.xhrFields = { withCredentials: true, };
-        //                            },
-        //                        }),
-        //                        valueExpr: "id",
-        //                        displayExpr: "name",
-        //                    }
-        //                },
-        //                {
-        //                    dataField: "taskStatus",
-        //                    caption: "Durum",
-        //                    lookup: {
-        //                        dataSource: DevExpress.data.AspNet.createStore({
-        //                            key: "iD",
-        //                            loadUrl: "/Task/GetTaskStatus/",
-        //                            onBeforeSend: function (method, ajaxOptions) {
-        //                                ajaxOptions.xhrFields = { withCredentials: true, };
-        //                            },
-        //                        }),
-        //                        valueExpr: "Id",
-        //                        displayExpr: "Text",
-        //                    }
-        //                },
-        //                {
-        //                    dataField: "priorityStatus",
-        //                    caption: "Öncelik",
-        //                    lookup: {
-        //                        dataSource: DevExpress.data.AspNet.createStore({
-        //                            key: "Id",
-        //                            loadUrl: "/Task/GetPriorityStatus/",
-        //                            onBeforeSend: function (method, ajaxOptions) {
-        //                                ajaxOptions.xhrFields = { withCredentials: true, };
-        //                            },
-        //                        }),
-        //                        valueExpr: "Id",
-        //                        displayExpr: "Text",
-        //                    }
-        //                },
-                        
-        //            ],
-        //        }],
-
-        //    },
-
-        //},
-
+     
         columns: [
 
             {
                 dataField: "id",
                 caption: "No",
                 alignment: 'center',
+                allowEditing: false,
             },
             {
                 dataField: "planedStart",
@@ -165,6 +76,7 @@ function GetList() {
                 alignment: 'center',
                 dataType: 'date',
                 format: 'dd/MM/yyyy',
+                allowEditing: false,
             },
             {
                 dataField: "planedEnd",
@@ -172,21 +84,25 @@ function GetList() {
                 alignment: 'center',
                 dataType: 'date',
                 format: 'dd/MM/yyyy',
+                allowEditing: false,
             },
             {
                 dataField: "title",
                 caption: "Konu",
                 alignment: 'center',
+                allowEditing: false,
             },
             {
                 dataField: "description",
                 caption: "Açıklama",
                 alignment: 'center',
+                allowEditing: false,
             },
             {
                 dataField: "responsibleID",
                 caption: "Sorumlu",
                 alignment: 'center',
+                allowEditing: false,
                 lookup: {
                     dataSource: DevExpress.data.AspNet.createStore({
                         key: "Id",
@@ -219,6 +135,7 @@ function GetList() {
                 dataField: "priorityStatus",
                 caption: "Öncelik",
                 alignment: 'center',
+                allowEditing: false,
                 lookup: {
                     dataSource: DevExpress.data.AspNet.createStore({
                         key: "Id",
@@ -231,13 +148,7 @@ function GetList() {
                     displayExpr: "Text",
                 }
             },
-            {
-                caption: "İşlemler",
-                type: "buttons",
-                fixed: true,
-                fixedPosition: "right",
-                buttons: ["edit", "delete"]
-            },
+          
         ],
 
     }).dxDataGrid("instance");

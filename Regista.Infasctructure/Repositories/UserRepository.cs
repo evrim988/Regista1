@@ -22,11 +22,13 @@ namespace Regista.Infasctructure.Repositories
         {
             context = _context;
             uow = _uow;
+            session = _session;
         }
         public async Task<string> AddUser(User model)
         {
             try
             {
+                model.CustomerID = session.CustomerID;
                 await uow.repository.Add(model);
                 await uow.SaveChanges();
                 return "";

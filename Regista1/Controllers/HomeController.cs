@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DevExtreme.AspNet.Data;
+using DevExtreme.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
+using Regista.Application.Repositories;
 using Regista1.Models;
 using Regista1.WebApp.Filter;
 using System.Diagnostics;
@@ -8,22 +11,22 @@ namespace Regista1.WebApp.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IUnitOfWork _uow;
+        public HomeController(ILogger<HomeController> logger,IUnitOfWork uow)
         {
             _logger = logger;
+            _uow = uow;
         }
         [Auth]
         public IActionResult Index()
         {
             return View();
         }
-
-        public IActionResult Privacy()
+        [Auth]
+        public async Task<object> GetTaskHome(DataSourceLoadOptions options)
         {
-            return View();
+            var models = await _uow.homeRepository.GetTaskHome();
+            return DataSourceLoader.Load(models, options);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

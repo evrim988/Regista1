@@ -66,6 +66,12 @@ namespace Regista.Infasctructure.Repositories
             get => _taskRepository ?? (_taskRepository = new TaskRepository(context, session, this, emailService));
         }
 
+        private IHomeRepository _homeRepository;
+        public IHomeRepository homeRepository
+        {
+            get => _homeRepository ?? (_homeRepository = new HomeRepository(context, session, this));
+        }
+
         public async Task<int> SaveChanges()
         {
             try

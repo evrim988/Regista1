@@ -1,5 +1,6 @@
 ﻿using Regista.Domain.Entities;
 using Regista.Domain.Enums;
+using Regista.Domain.Dto.ResponsibleHelperModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaskStatus = Regista.Domain.Enums.TaskStatus;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Regista.Domain.Dto.Entities.TaskModel
 {
@@ -41,5 +43,7 @@ namespace Regista.Domain.Dto.Entities.TaskModel
         [DisplayName("Görüntü")]
         public string img { get; set; }
         public int CustomerID { get; set; }
+        public string base64 { get; set; }
+        public List<SelectListItem> ResponsiblehelperModelList { get; set; }
     }
 }

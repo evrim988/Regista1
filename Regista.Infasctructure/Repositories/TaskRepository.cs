@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using Regista.Application.Repositories;
 using Regista.Application.Services.EmailServices;
 using Regista.Domain.Dto.EmailModels;
@@ -77,6 +79,51 @@ namespace Regista.Infasctructure.Repositories
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        public async Task<List<SelectListItem>> ResponsiblehelperModelList()
+        {
+            try
+            {
+                return GetNonDeletedAndActive<User>(t => true)
+                    .Select(s => new SelectListItem { Value = s.ID.ToString(), Text = s.Name + s.SurName}).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<IQueryable<Task>> GetMyTaskUserID()
+        {
+            try
+            {
+                var model = GetNonDeletedAndActive<Task>(t => t.ResponsibleID == session.ID);
+                return model;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public async Task<string> MyTaskUpdate(int Key, string values)
+        {
+            try
+            {
+                var TaskModel = context.Tasks.FirstOrDefault(t => t.ID == Key);
+
+                var task = JsonConvert.DeserializeObject<Task>(values);
+
+                if (task.TaskStatus != null)
+                    TaskModel.TaskStatus = task.TaskStatus;
+
+                return "1";
+            }
+            catch (Exception e)
+            {
+                throw e;
             }
         }
     }
