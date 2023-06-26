@@ -9,10 +9,16 @@ namespace Regista.Domain.Entities
 {
     public class Project : BaseEntitiy
     {
-        [DisplayName("ProjeAdı")]
+        public Project()
+        {
+            ProjectGuid = Guid.NewGuid();
+        }
+
+        [DisplayName("Proje Adı")]
         public string ProjectName { get; set; }
-       
-        [DisplayName("ProjeAçıklaması")]
+
+        [DisplayName("Proje Açıklaması")]
         public string ProjectDescription { get; set; }
+        public Guid ProjectGuid { get; set; }
     }
 }

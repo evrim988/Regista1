@@ -117,5 +117,56 @@ namespace Regista1.WebApp.Controllers
                 throw ex;
             }
         }
+        [HttpGet]
+        public async Task<IActionResult> Create()
+        {
+            var model = new UserDetailDto();
+            return View(model);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Create(UserDetailDto userDetailDto)
+        {
+            var user = new User()
+            {
+                Name = userDetailDto.Name,
+                SurName = userDetailDto.Surname,
+                UserName = userDetailDto.UserName,
+                EMail = userDetailDto.Email,
+                password = userDetailDto.Parola,
+                Image=userDetailDto.Image
+            };
+
+            await uow.userRepository.AddUser(user);
+
+            await uow.SaveChanges();
+
+            return RedirectToAction("Index", "User");
+
+        }
+        public async Task<string> FileUpload(IFormFile FileUrl)
+        {
+            try
+            {
+                string fileName = "";
+                if (FileUrl != null)
+                {
+                    string extension = Path.GetExtension(FileUrl.FileName);
+                    Guid guidFile = Guid.NewGuid();
+                    fileName = "customer" + guidFile + extension;
+                    var path = Path.Combine("wwwroot/Modernize/Img/ProfilePhotos/", fileName);
+
+                    using (var stream = new FileStream(path, FileMode.Create))
+                    {
+                        FileUrl.CopyTo(stream);
+                    }
+                }
+                return fileName;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }

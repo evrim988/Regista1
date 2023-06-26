@@ -64,51 +64,78 @@ function GetList() {
             enabled: true,
         },
         editing: {
-            mode: 'popup',
+            mode: 'row',
             allowUpdating: true,
             allowDeleting: true,
-            allowAdding: true,
-            popup: {
-                title: 'Yeni Kullanıcı Ekle',
-                showTitle: true,
-                width: 500,
-                height: 325,
-            },
-            form: {
-                items: [{
-                    itemType: 'group',
-                    colCount: 2,
-                    colSpan: 2,
-                    items: [
-                        {
-                            dataField: "name",
-                            caption: "Ad",
-                        },
-                        {
-                            dataField: "surName",
-                            caption: "Soyad",
-                        },
-                        {
-                            dataField: "userName",
-                            caption: "Kullanıcı Adı",
-                        },
-                        {
-                            dataField: "password",
-                            caption: "Şifre",
-                        },
-                        {
-                            dataField: "eMail",
-                            caption: "Email",
-                        },
-                    ],
-                }],
-
-            },
-
         },
 
-        columns: [
+        //editing: {
+        //    mode: 'popup',
+        //    allowUpdating: true,
+        //    allowDeleting: true,
+        //    allowAdding: true,
+        //    popup: {
+        //        title: 'Yeni Kullanıcı Ekle',
+        //        showTitle: true,
+        //        width: 500,
+        //        height: 325,
+        //    },
+        //    form: {
+        //        items: [{
+        //            itemType: 'group',
+        //            colCount: 2,
+        //            colSpan: 2,
+        //            items: [
+        //                {
+        //                    dataField: "name",
+        //                    caption: "Ad",
+        //                },
+        //                {
+        //                    dataField: "surName",
+        //                    caption: "Soyad",
+        //                },
+        //                {
+        //                    dataField: "userName",
+        //                    caption: "Kullanıcı Adı",
+        //                },
+        //                {
+        //                    dataField: "password",
+        //                    caption: "Şifre",
+        //                },
+        //                {
+        //                    dataField: "eMail",
+        //                    caption: "Email",
+        //                },
+        //            ],
+        //        }],
 
+        //    },
+
+        //},
+
+        columns: [
+            {
+                dataField: 'Image',
+                caption: "Fotoğraf",
+                allowExporting: false,
+                width: 100,
+                allowFiltering: false,
+                allowEditing: false,
+                allowSorting: false,
+                cellTemplate(container, options) {
+                    if (options.data.UserImageURL === null) {
+                        $('<div>')
+                            .append($('<img>', { src: '/Modernize/Img/yok.png', class: "rounded-circle", width: "35", height: "35" }))
+                            .appendTo(container);
+                    }
+                    else {
+                        $('<div>')
+                            .append($('<img>', { src: '/Modernize/Img/ProfilePhotos/' + options.value, class: "rounded-circle", width: "35", height: "35" }))
+                            .appendTo(container);
+                    }
+                },
+
+            },
             {
                 dataField: "name",
                 caption: "Adı",

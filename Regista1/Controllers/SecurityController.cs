@@ -14,9 +14,9 @@ namespace Regista1.WebApp.Controllers
 
         public SecurityController(IUnitOfWork _uow, ISecurityRepository _securityRepository,ISessionService _sessionService)
         {
-            this.uow = _uow;
-            this.securityRepository = _securityRepository;
-            this.sessionService= _sessionService;
+            uow = _uow;
+            securityRepository = _securityRepository;
+            sessionService= _sessionService;
         }
 
         public IActionResult Index()

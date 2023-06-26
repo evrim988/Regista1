@@ -84,6 +84,8 @@ function GetList() {
                             dataField: "date",
                             caption: "Tarih",
                             type: 'date',
+                            dataType: 'date',
+                            format: 'dd/MM/yyyy',
                         },
                         {
                             dataField: "noteType",
@@ -112,6 +114,8 @@ function GetList() {
                 dataField: "date",
                 caption: "Tarih",
                 alignment: 'center',
+                dataType: 'date',
+                format: 'dd/MM/yyyy',
             },
             {
                 dataField: "noteType",

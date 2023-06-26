@@ -27,6 +27,7 @@ namespace Regista.Domain.Entities
         [DisplayName("NotEkleyenKullanıcı")]
         public string AddUserNote { get; set; }
 
-        public int CustomerID { get; set; }
+        public int ProjectID { get; set; }
+        public Project Project { get; set; }    
     }
 }

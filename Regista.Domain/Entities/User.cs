@@ -23,6 +23,8 @@ namespace Regista.Domain.Entities
         [DisplayName("UserName")]
         public string UserName { get; set; }
 
+        public string? Image { get; set; }
+
         [MinLength(3, ErrorMessage = "{0} {1} karakterden küçük olamaz")]
         [MaxLength(256, ErrorMessage = "{0} {1} karakterden büyük olamaz")]
         [EmailAddress(ErrorMessage = "Geçerli mail Adresi giriniz")]
