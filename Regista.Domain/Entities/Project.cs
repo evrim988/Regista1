@@ -20,5 +20,9 @@ namespace Regista.Domain.Entities
         [DisplayName("Proje Açıklaması")]
         public string ProjectDescription { get; set; }
         public Guid ProjectGuid { get; set; }
+        public int RequestID { get; set; }
+        public Request Request { get; set; }
+        public int TaskID { get; set; }
+        public Task Task { get; set; }  
     }
 }

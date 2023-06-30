@@ -37,5 +37,6 @@ namespace Regista.Domain.Entities
         public PriorityStatus PriorityStatus { get; set; }
         public int CustomerID { get; set; }
         public virtual Customer Customer { get; set; }
+        public ICollection<Request> Requests { get; set; }
     }
 }

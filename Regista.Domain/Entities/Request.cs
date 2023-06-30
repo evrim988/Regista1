@@ -14,5 +14,7 @@ namespace Regista.Domain.Entities
 
         [DisplayName("Açıklama")]
         public string Description { get; set; }
+        public int TaskID { get; set; }
+        public Task Task { get; set; }
     }
 }
