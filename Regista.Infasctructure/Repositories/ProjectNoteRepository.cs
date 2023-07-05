@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Regista.Application.Repositories;
+using Regista.Domain.Dto.ResponsibleHelperModels;
 using Regista.Domain.Entities;
 using Regista.Persistance.Db;
 using System;
@@ -56,6 +57,28 @@ namespace Regista.Infasctructure.Repositories
             await uow.SaveChanges();
             return "";
         }
-
+        public async Task<List<ResponsibleDevextremeSelectListHelper>> GetProject()
+        {
+            try
+            {
+                List<ResponsibleDevextremeSelectListHelper> ResponsibleHelpers = new List<ResponsibleDevextremeSelectListHelper>();
+                var model = context.Projects
+                    .Where(t => true);
+                foreach (var item in model)
+                {
+                    ResponsibleDevextremeSelectListHelper helper = new ResponsibleDevextremeSelectListHelper()
+                    {
+                        ID = item.ID,
+                        Name = item.ProjectName,
+                    };
+                    ResponsibleHelpers.Add(helper);
+                }
+                return ResponsibleHelpers;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }

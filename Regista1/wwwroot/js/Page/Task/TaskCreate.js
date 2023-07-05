@@ -151,6 +151,7 @@ function SaveTask() {
     data.append('ResponsibleID', $('#ResponsibleID').val());
     data.append('TaskStatus', $('#TaskStatus').val());
     data.append('PriorityStatus', $('#PriorityStatus').val());
+    data.append('RequestID', $('#RequestID').val());
     data.append('base64', $('#base64').val());
 
     $.ajax({
@@ -162,7 +163,6 @@ function SaveTask() {
         contentType: false,
         success: function (data) {
             if (data == '1') {
-               // toastr.success('İşlem Başarılı');
                 window.location.href = "/Task/Index";
             }
 

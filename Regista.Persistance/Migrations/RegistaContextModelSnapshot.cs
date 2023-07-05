@@ -117,6 +117,9 @@ namespace Regista.Persistance.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("ProjectGuid")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("ProjectName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -147,7 +150,7 @@ namespace Regista.Persistance.Migrations
                     b.Property<DateTime?>("CreatedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("CustomerID")
+                    b.Property<int?>("CustomerID")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Date")
@@ -170,10 +173,17 @@ namespace Regista.Persistance.Migrations
                     b.Property<int>("ObjectStatus")
                         .HasColumnType("int");
 
+                    b.Property<int>("ProjectID")
+                        .HasColumnType("int");
+
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("CustomerID");
+
+                    b.HasIndex("ProjectID");
 
                     b.ToTable("projectNotes");
                 });
@@ -186,11 +196,21 @@ namespace Regista.Persistance.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
+                    b.Property<int>("CategoryStatus")
+                        .HasColumnType("int");
+
                     b.Property<int>("CreatedBy")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("CreatedOn")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("CustomerID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CustomerName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -205,6 +225,9 @@ namespace Regista.Persistance.Migrations
                     b.Property<int>("ObjectStatus")
                         .HasColumnType("int");
 
+                    b.Property<int>("ProjectID")
+                        .HasColumnType("int");
+
                     b.Property<string>("RequestName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -213,6 +236,10 @@ namespace Regista.Persistance.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("CustomerID");
+
+                    b.HasIndex("ProjectID");
 
                     b.ToTable("requests");
                 });
@@ -255,6 +282,9 @@ namespace Regista.Persistance.Migrations
                     b.Property<int>("PriorityStatus")
                         .HasColumnType("int");
 
+                    b.Property<int>("RequestID")
+                        .HasColumnType("int");
+
                     b.Property<int>("ResponsibleID")
                         .HasColumnType("int");
 
@@ -275,6 +305,8 @@ namespace Regista.Persistance.Migrations
                     b.HasKey("ID");
 
                     b.HasIndex("CustomerID");
+
+                    b.HasIndex("RequestID");
 
                     b.ToTable("Tasks");
                 });
@@ -341,15 +373,57 @@ namespace Regista.Persistance.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Regista.Domain.Entities.Task", b =>
+            modelBuilder.Entity("Regista.Domain.Entities.ProjectNote", b =>
+                {
+                    b.HasOne("Regista.Domain.Entities.Customer", null)
+                        .WithMany("projectNotes")
+                        .HasForeignKey("CustomerID");
+
+                    b.HasOne("Regista.Domain.Entities.Project", "Project")
+                        .WithMany("ProjectNotes")
+                        .HasForeignKey("ProjectID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Project");
+                });
+
+            modelBuilder.Entity("Regista.Domain.Entities.Request", b =>
                 {
                     b.HasOne("Regista.Domain.Entities.Customer", "Customer")
+                        .WithMany("Requests")
+                        .HasForeignKey("CustomerID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Regista.Domain.Entities.Project", "Project")
+                        .WithMany("Requests")
+                        .HasForeignKey("ProjectID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+
+                    b.Navigation("Project");
+                });
+
+            modelBuilder.Entity("Regista.Domain.Entities.Task", b =>
+                {
+                    b.HasOne("Regista.Domain.Entities.Customer", "customer")
                         .WithMany()
                         .HasForeignKey("CustomerID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Customer");
+                    b.HasOne("Regista.Domain.Entities.Request", "Request")
+                        .WithMany("Tasks")
+                        .HasForeignKey("RequestID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Request");
+
+                    b.Navigation("customer");
                 });
 
             modelBuilder.Entity("Regista.Domain.Entities.User", b =>
@@ -361,6 +435,25 @@ namespace Regista.Persistance.Migrations
                         .IsRequired();
 
                     b.Navigation("Customer");
+                });
+
+            modelBuilder.Entity("Regista.Domain.Entities.Customer", b =>
+                {
+                    b.Navigation("Requests");
+
+                    b.Navigation("projectNotes");
+                });
+
+            modelBuilder.Entity("Regista.Domain.Entities.Project", b =>
+                {
+                    b.Navigation("ProjectNotes");
+
+                    b.Navigation("Requests");
+                });
+
+            modelBuilder.Entity("Regista.Domain.Entities.Request", b =>
+                {
+                    b.Navigation("Tasks");
                 });
 #pragma warning restore 612, 618
         }

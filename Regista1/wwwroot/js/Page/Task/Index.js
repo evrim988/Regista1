@@ -211,7 +211,7 @@ function GetList() {
                             ajaxOptions.xhrFields = { withCredentials: true, };
                         },
                     }),
-                    valueExpr: "Id",
+                    valueExpr: "id",
                     displayExpr: "Text",
                 }
             },
@@ -227,8 +227,24 @@ function GetList() {
                             ajaxOptions.xhrFields = { withCredentials: true, };
                         },
                     }),
-                    valueExpr: "Id",
+                    valueExpr: "id",
                     displayExpr: "Text",
+                }
+            },
+            {
+                dataField: "requestID",
+                caption: "Talep Adı",
+                alignment: 'center',
+                lookup: {
+                    dataSource: DevExpress.data.AspNet.createStore({
+                        key: "Id",
+                        loadUrl: "/Task/GetRequest/",
+                        onBeforeSend: function (method, ajaxOptions) {
+                            ajaxOptions.xhrFields = { withCredentials: true, };
+                        },
+                    }),
+                    valueExpr: "id",
+                    displayExpr: "name",
                 }
             },
             {

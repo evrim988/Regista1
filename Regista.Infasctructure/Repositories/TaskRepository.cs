@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using Regista.Application.Repositories;
 using Regista.Application.Services.EmailServices;
 using Regista.Domain.Dto.EmailModels;
+using Regista.Domain.Dto.ResponsibleHelperModels;
 using Regista.Domain.Entities;
 using Regista.Infasctructure.Services.EmailServices;
 using Regista.Persistance.Db;
@@ -40,10 +41,18 @@ namespace Regista.Infasctructure.Repositories
 
         public async Task<string> AddTask(Task model)
         {
-            model.CustomerID = session.CustomerID;
-            await uow.repository.Add(model);
-            await uow.SaveChanges();
-            return "";
+            try
+            {
+                model.CustomerID = session.CustomerID;
+                await uow.repository.Add(model);
+                await uow.SaveChanges();
+                return "";
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+         
         }
         public async Task<string> TaskUpdate(Task model)
         {
@@ -94,7 +103,18 @@ namespace Regista.Infasctructure.Repositories
                 throw ex;
             }
         }
-
+        public async Task<List<SelectListItem>> RequestModelList()
+        {
+            try
+            {
+                return GetNonDeletedAndActive<Request>(t => true)
+                    .Select(s => new SelectListItem { Value = s.ID.ToString(), Text = s.RequestName }).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public async Task<IQueryable<Task>> GetMyTaskUserID()
         {
             try
@@ -120,6 +140,29 @@ namespace Regista.Infasctructure.Repositories
                     TaskModel.TaskStatus = task.TaskStatus;
 
                 return "1";
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+        public async Task<List<ResponsibleDevextremeSelectListHelper>> GetRequest()
+        {
+            try
+            {
+                List<ResponsibleDevextremeSelectListHelper> ResponsibleHelpers = new List<ResponsibleDevextremeSelectListHelper>();
+                var model = context.requests
+                    .Where(t => true);
+                foreach (var item in model)
+                {
+                    ResponsibleDevextremeSelectListHelper helper = new ResponsibleDevextremeSelectListHelper()
+                    {
+                        ID = item.ID,
+                        Name = item.RequestName,
+                    };
+                    ResponsibleHelpers.Add(helper);
+                }
+                return ResponsibleHelpers;
             }
             catch (Exception e)
             {

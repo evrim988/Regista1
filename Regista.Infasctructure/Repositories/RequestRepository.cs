@@ -1,4 +1,5 @@
 ﻿using Regista.Application.Repositories;
+using Regista.Domain.Dto.ResponsibleHelperModels;
 using Regista.Domain.Entities;
 using Regista.Persistance.Db;
 using System;
@@ -26,6 +27,7 @@ namespace Regista.Infasctructure.Repositories
         {
             try
             {
+                model.CustomerID = session.CustomerID;
                 await uow.repository.Add(model);
                 await uow.SaveChanges();
                 return "";
@@ -55,6 +57,28 @@ namespace Regista.Infasctructure.Repositories
             var model = GetNonDeletedAndActive<Request>(t => true);
             return model;
         }
-
+        public async Task<List<ResponsibleDevextremeSelectListHelper>> GetProject()
+        {
+            try
+            {
+                List<ResponsibleDevextremeSelectListHelper> ResponsibleHelpers = new List<ResponsibleDevextremeSelectListHelper>();
+                var model = context.Projects
+                    .Where(t => true);
+                foreach (var item in model)
+                {
+                    ResponsibleDevextremeSelectListHelper helper = new ResponsibleDevextremeSelectListHelper()
+                    {
+                        ID = item.ID,
+                        Name = item.ProjectName,
+                    };
+                    ResponsibleHelpers.Add(helper);
+                }
+                return ResponsibleHelpers;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Regista.Domain.Entities;
+﻿using Regista.Domain.Dto.ResponsibleHelperModels;
+using Regista.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,6 @@ namespace Regista.Application.Repositories
         public Task<string> ProjectNoteAdd(ProjectNote projectNote);
         public void Delete(int id);
         public Task<IQueryable<ProjectNote>> GetList();
+        Task<List<ResponsibleDevextremeSelectListHelper>> GetProject();
     }
 }

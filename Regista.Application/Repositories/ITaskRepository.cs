@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Regista.Domain.Dto.ResponsibleHelperModels;
 using Regista.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -20,5 +21,7 @@ namespace Regista.Application.Repositories
         public void Delete(int id);
         public Task<string> SendMail(Task task);
         public Task<List<SelectListItem>> ResponsiblehelperModelList();
+        public Task<List<SelectListItem>> RequestModelList();
+        Task<List<ResponsibleDevextremeSelectListHelper>> GetRequest();
     }
 }

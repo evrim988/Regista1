@@ -99,6 +99,21 @@ function GetList() {
                             dataField: "addUserNote",
                             caption: "Not Ekleyen Kullanıcı",
                         },
+                        {
+                            dataField: "projectID",
+                            caption: "Proje",
+                            lookup: {
+                                dataSource: DevExpress.data.AspNet.createStore({
+                                    key: "Id",
+                                    loadUrl: "/ProjectNote/GetProject/",
+                                    onBeforeSend: function (method, ajaxOptions) {
+                                        ajaxOptions.xhrFields = { withCredentials: true, };
+                                    },
+                                }),
+                                valueExpr: "id",
+                                displayExpr: "name",
+                            }
+                        },
                     ],
                 }],
 
@@ -131,6 +146,21 @@ function GetList() {
                 dataField: "addUserNote",
                 caption: "Not Ekleyen Kullanıcı",
                 alignment: 'center',
+            },
+            {
+                dataField: "projectID",
+                caption: "Proje",
+                lookup: {
+                    dataSource: DevExpress.data.AspNet.createStore({
+                        key: "Id",
+                        loadUrl: "/ProjectNote/GetProject/",
+                        onBeforeSend: function (method, ajaxOptions) {
+                            ajaxOptions.xhrFields = { withCredentials: true, };
+                        },
+                    }),
+                    valueExpr: "id",
+                    displayExpr: "name",
+                }
             },
             //{
             //    type: "buttons",

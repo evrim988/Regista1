@@ -2,7 +2,6 @@
     DevExpress.localization.locale('tr');
     GetList();
 });
-
 function GetList() {
     var grid = $(requestGridContainer).dxDataGrid({
         dataSource: DevExpress.data.AspNet.createStore({
@@ -30,12 +29,10 @@ function GetList() {
         groupPanel: {
             visible: true   // or "auto"
         },
-
         columnAutoWidth: true,
         remoteOperations: true,
         allowColumnReordering: true,
         showBorders: true,
-        
         searchPanel: {
             visible: true,
             width: 240,
@@ -88,6 +85,40 @@ function GetList() {
                             dataField: "description",
                             caption: "Açıklama",
                         },
+                        {
+                            dataField: "categoryStatus",
+                            caption: "Kategori",
+                            lookup: {
+                                dataSource: DevExpress.data.AspNet.createStore({
+                                    key: "iD",
+                                    loadUrl: "/Request/GetCategoryStatus/",
+                                    onBeforeSend: function (method, ajaxOptions) {
+                                        ajaxOptions.xhrFields = { withCredentials: true, };
+                                    },
+                                }),
+                                valueExpr: "Id",
+                                displayExpr: "Text",
+                            }
+                        },
+                        {
+                            dataField: "customerName",
+                            caption: "Müşteri Adı",
+                        },
+                        {
+                            dataField: "projectID",
+                            caption: "Proje",
+                            lookup: {
+                                dataSource: DevExpress.data.AspNet.createStore({
+                                    key: "Id",
+                                    loadUrl: "/Request/GetProject/",
+                                    onBeforeSend: function (method, ajaxOptions) {
+                                        ajaxOptions.xhrFields = { withCredentials: true, };
+                                    },
+                                }),
+                                valueExpr: "id",
+                                displayExpr: "name",
+                            }
+                        }
                     ],
                 }],
 
@@ -107,11 +138,48 @@ function GetList() {
                 caption: "Açıklama",
                 alignment: 'center',
             },
-           
+            {
+                dataField: "categoryStatus",
+                caption: "Kategori",
+                alignment: 'center',
+                lookup: {
+                    dataSource: DevExpress.data.AspNet.createStore({
+                        key: "ID",
+                        loadUrl: "/Request/GetCategoryStatus/",
+                        onBeforeSend: function (method, ajaxOptions) {
+                            ajaxOptions.xhrFields = { withCredentials: true, };
+                        },
+                    }),
+                    valueExpr: "Id",
+                    displayExpr: "Text",
+                }
+            },
+            {
+                dataField: "customerName",
+                caption: "Müşteri Adı",
+                alignment: 'center',
+            },
+            {
+                dataField: "projectID",
+                caption: "Proje",
+                alignment: 'center',
+                lookup: {
+                    dataSource: DevExpress.data.AspNet.createStore({
+                        key: "Id",
+                        loadUrl: "/Request/GetProject/",
+                        onBeforeSend: function (method, ajaxOptions) {
+                            ajaxOptions.xhrFields = { withCredentials: true, };
+                        },
+                    }),
+                    valueExpr: "id",
+                    displayExpr: "name",
+                }
+            },
             {
                 type: "buttons",
                 buttons: ["edit", "delete"]
             },
+            
         ],
 
     }).dxDataGrid("instance");

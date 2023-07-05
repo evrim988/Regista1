@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Regista.Application.Repositories;
 using Regista.Domain.Entities;
+using Regista.Domain.Enums;
 using Regista.Infasctructure.Repositories;
 using Regista.Persistance.Db;
 
@@ -67,6 +68,31 @@ namespace Regista1.WebApp.Controllers
                 await uow.SaveChanges();
                 return "1";
 
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public async Task<IActionResult> GetCategoryStatus()
+        {
+            try
+            {
+                var models = uow.repository.GetEnumSelect<CategoryStatus>();
+                var resultJson = JsonConvert.SerializeObject(models);
+                return Content(resultJson, "application/json");
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+        public async Task<object> GetProject(DataSourceLoadOptions loadOptions)
+        {
+            try
+            {
+                var responsibleHelpers = await uow.requestRepository.GetProject();
+                return DataSourceLoader.Load(responsibleHelpers, loadOptions);
             }
             catch (Exception ex)
             {

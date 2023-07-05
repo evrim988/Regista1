@@ -36,7 +36,8 @@ namespace Regista.Domain.Entities
         [DisplayName("Öncelik")]
         public PriorityStatus PriorityStatus { get; set; }
         public int CustomerID { get; set; }
-        public virtual Customer Customer { get; set; }
-        public ICollection<Request> Requests { get; set; }
+        public Customer customer { get; set; }
+        public int RequestID { get; set; }
+        public Request Request { get; set; }
     }
 }

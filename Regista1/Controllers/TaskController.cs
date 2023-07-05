@@ -35,6 +35,7 @@ namespace Regista1.WebApp.Controllers
         {
             var model = new TaskDto();
             model.ResponsiblehelperModelList = await uow.taskRepository.ResponsiblehelperModelList();
+            model.RequestModelList = await uow.taskRepository.RequestModelList();
             model.PlanedStart = DateTime.Now;
             return View(model);
         }
@@ -62,7 +63,7 @@ namespace Regista1.WebApp.Controllers
                     Image = fileName,
                     TaskStatus = TaskStatus.NotStart,
                     PriorityStatus = PriorityStatus.low,
-
+                    RequestID = model.RequestID
                 };
                 await uow.taskRepository.AddTask(task);
                
@@ -110,23 +111,23 @@ namespace Regista1.WebApp.Controllers
             var models = await uow.taskRepository.Getlist();
             return DataSourceLoader.Load(models, options);
         }
-        public async Task<IActionResult> AddTask(string values)
-        {
-            try
-            {
+        //public async Task<IActionResult> AddTask(string values)
+        //{
+        //    try
+        //    {
                 
-                var model = JsonConvert.DeserializeObject<Task>(values);
-                model.PlanedEnd = DateTime.Now.AddDays(7);
-                await uow.taskRepository.AddTask(model);
-                var email = await uow.taskRepository.SendMail(model);
-                return Ok();
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
+        //        var model = JsonConvert.DeserializeObject<Task>(values);
+        //        model.PlanedEnd = DateTime.Now.AddDays(7);
+        //        await uow.taskRepository.AddTask(model);
+        //        var email = await uow.taskRepository.SendMail(model);
+        //        return Ok();
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        throw e;
+        //    }
            
-        }
+        //}
         public async Task<string> TaskUpdate(int Key, string values)
         {
             var size = await uow.taskRepository.GetById<Task>(Key);
@@ -208,6 +209,18 @@ namespace Regista1.WebApp.Controllers
                 await uow.SaveChanges();
 
             return Ok();
+        }
+        public async Task<object> GetRequest(DataSourceLoadOptions loadOptions)
+        {
+            try
+            {
+                var responsibleHelpers = await uow.taskRepository.GetRequest();
+                return DataSourceLoader.Load(responsibleHelpers, loadOptions);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

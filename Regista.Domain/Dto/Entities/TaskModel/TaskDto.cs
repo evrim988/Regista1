@@ -43,7 +43,9 @@ namespace Regista.Domain.Dto.Entities.TaskModel
         [DisplayName("Görüntü")]
         public string img { get; set; }
         public int CustomerID { get; set; }
+        public int RequestID { get; set; }
         public string base64 { get; set; }
         public List<SelectListItem> ResponsiblehelperModelList { get; set; }
+        public List<SelectListItem> RequestModelList { get; set; }
     }
 }

@@ -70,5 +70,17 @@ namespace Regista1.WebApp.Controllers
                 throw ex;
             }
         }
+        public async Task<object> GetProject(DataSourceLoadOptions loadOptions)
+        {
+            try
+            {
+                var responsibleHelpers = await uow.projectNoteRepository.GetProject();
+                return DataSourceLoader.Load(responsibleHelpers, loadOptions);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

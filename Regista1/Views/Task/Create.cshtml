@@ -119,6 +119,17 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label style="font-weight:bold;" class="col-md-2 col-form-label">Talep Seçiniz:<span class="text-danger"></span></label>
+                                        <div class="col-md-9">
+                                            <select asp-for="RequestID" asp-items="@Model.RequestModelList" id="RequestID" name="RequestID" class="form-control select2">
+                                                <option selected="selected" disabled value="0">Lütfen Seçiniz</option>
+                                            </select>
+                                            <span asp-validation-for="RequestID" class="text-danger" />
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="col-md-12">
                                     <div class="form-group row">
                                         <label class="col-md-4 label-control">Görüntü <br /> <span class="text-black-50">(WINDOWS Kullanıcıları İçin, Windows + Shift + S Tuş Kombinasyonu veya PRTSC Tuşu İle Resminizi Kopyalayıp (CTRL+C / CTRL+V) Yapıştırabilirsiniz. MAC Kullanıcıları İçin Shift + Command + 4 Tuş Kombinasyonu İle Yapabilir)</span></label>
