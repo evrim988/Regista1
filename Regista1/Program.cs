@@ -11,7 +11,6 @@ builder.Services.AddSession();
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<RegistaContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("RegistaDbConnection")));
 builder.Services.MyRepository();
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
