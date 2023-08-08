@@ -6,7 +6,10 @@ using Regista.Persistance.Db;
 var builder = WebApplication.CreateBuilder(args);
 
 
-builder.Services.AddSession();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(20);
+});
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<RegistaContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("RegistaDbConnection")));

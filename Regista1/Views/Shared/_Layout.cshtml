@@ -39,7 +39,7 @@
                         <li class="sidebar-item">
                             <a class="sidebar-link" asp-action="Index" asp-controller="Home" aria-expanded="false">
                                 <span>
-                                    <i class="ti ti-layout-dashboard"></i>
+                                    <i class="ti ti-home"></i>
                                 </span>
                                 <span class="hide-menu">Ana Sayfa</span>
                             </a>
@@ -59,7 +59,7 @@
                         <li class="sidebar-item">
                             <a class="sidebar-link" asp-action="Index" asp-controller="ProjectNote" aria-expanded="false">
                                 <span>
-                                    <i class="ti ti-alert-circle"></i>
+                                    <i class="ti ti-checklist"></i>
                                 </span>
                                 <span class="hide-menu">Proje Notları</span>
                             </a>
@@ -72,7 +72,7 @@
                         <li class="sidebar-item">
                             <a class="sidebar-link" asp-action="Index" asp-controller="Customer" aria-expanded="false">
                                 <span>
-                                    <i class="ti ti-user"></i>
+                                    <i class="ti ti-users"></i>
                                 </span>
                                 <span class="hide-menu">Müşteriler</span>
                             </a>
@@ -85,7 +85,7 @@
                         <li class="sidebar-item">
                             <a class="sidebar-link" asp-action="Index" asp-controller="Request" aria-expanded="false">
                                 <span>
-                                    <i class="ti  ti-file-description"></i>
+                                    <i class="ti  ti-writing"></i>
                                 </span>
                                 <span class="hide-menu">Talepler</span>
                             </a>
@@ -98,7 +98,7 @@
                         <li class="sidebar-item">
                             <a class="sidebar-link" asp-action="Index" asp-controller="Task" aria-expanded="false">
                                 <span>
-                                    <i class="ti ti-aperture"></i>
+                                    <i class="ti ti-clipboard-text"></i>
                                 </span>
                                 <span class="hide-menu">Görevler</span>
                             </a>
@@ -112,7 +112,7 @@
                         <li class="sidebar-item">
                             <a class="sidebar-link" asp-action="Index" asp-controller="User" aria-expanded="false">
                                 <span>
-                                    <i class="ti ti-login"></i>
+                                    <i class="ti ti-user-circle"></i>
                                 </span>
                                 <span class="hide-menu">Kullanıcılar</span>
                             </a>
@@ -149,7 +149,7 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
                                    aria-expanded="false">
-                                    <span class="mr-1">Merhaba,<span class="user-name text-bold-700">@user.Name @user.Surname</span></span><span class="avatar avatar-online"><img style="height:37px; width:37px;" src='@((user.Image!=null)?"/Modernize/Img/ProfilePhotos/"+user.Image:"/Modernize/src/assets/images/profile/user-1.jpg")' alt="avatar"><i></i></span>
+                                    <span class="mr-1">Merhaba,<span class="user-name text-bold-700" >@user.Name @user.Surname</span></span><span class="avatar avatar-online"><img style="height:37px; width:37px;" src='@((user.Image!=null)?"/Modernize/Img/ProfilePhotos/"+user.Image:"/Modernize/src/assets/images/profile/user-1.jpg")' alt="avatar"><i></i></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
