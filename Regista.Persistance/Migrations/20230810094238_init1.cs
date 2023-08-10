@@ -6,11 +6,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Regista.Persistance.Migrations
 {
     /// <inheritdoc />
-<<<<<<<< HEAD:Regista.Persistance/Migrations/20230810120936_1000_mySql.cs
-    public partial class _1000_mySql : Migration
-========
+
     public partial class init1 : Migration
->>>>>>>> 50341c1ffca980883816b4591b11e4d7689707d3:Regista.Persistance/Migrations/20230810091625_init1.cs
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -166,12 +163,8 @@ namespace Regista.Persistance.Migrations
                         principalTable: "Customers",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
-<<<<<<<< HEAD:Regista.Persistance/Migrations/20230810120936_1000_mySql.cs
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
-========
-                });
->>>>>>>> 50341c1ffca980883816b4591b11e4d7689707d3:Regista.Persistance/Migrations/20230810091625_init1.cs
 
             migrationBuilder.CreateTable(
                 name: "projectNotes",
@@ -209,12 +202,8 @@ namespace Regista.Persistance.Migrations
                         principalTable: "Projects",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
-<<<<<<<< HEAD:Regista.Persistance/Migrations/20230810120936_1000_mySql.cs
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
-========
-                });
->>>>>>>> 50341c1ffca980883816b4591b11e4d7689707d3:Regista.Persistance/Migrations/20230810091625_init1.cs
 
             migrationBuilder.CreateTable(
                 name: "requests",
@@ -253,12 +242,9 @@ namespace Regista.Persistance.Migrations
                         principalTable: "Projects",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
-<<<<<<<< HEAD:Regista.Persistance/Migrations/20230810120936_1000_mySql.cs
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
-========
-                });
->>>>>>>> 50341c1ffca980883816b4591b11e4d7689707d3:Regista.Persistance/Migrations/20230810091625_init1.cs
+                
 
             migrationBuilder.CreateTable(
                 name: "Tasks",
@@ -300,17 +286,10 @@ namespace Regista.Persistance.Migrations
                         column: x => x.RequestID,
                         principalTable: "requests",
                         principalColumn: "ID",
-<<<<<<< HEAD:Regista.Persistance/Migrations/20230810094238_init1.cs
                         onDelete: ReferentialAction.NoAction);
-=======
-                        onDelete: ReferentialAction.Cascade);
-<<<<<<<< HEAD:Regista.Persistance/Migrations/20230810120936_1000_mySql.cs
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
-========
->>>>>>> 2ea14542654ea6dc04049358b173c8853f39179a:Regista.Persistance/Migrations/20230810091625_init1.cs
-                });
->>>>>>>> 50341c1ffca980883816b4591b11e4d7689707d3:Regista.Persistance/Migrations/20230810091625_init1.cs
+                
 
             migrationBuilder.CreateIndex(
                 name: "IX_projectNotes_CustomerID",

@@ -33,12 +33,8 @@ namespace Regista1.WebApp.Controllers
 
         public async Task<IActionResult> GetRequestDetail(int ID)
         {
-<<<<<<< HEAD
-            return View();
-=======
             var models = await uow.requestRepository.GetActionDetail(ID);
             return Ok(models);
->>>>>>> 50341c1ffca980883816b4591b11e4d7689707d3
         }
 
         public async Task<IActionResult> RequestAdd(string values)
