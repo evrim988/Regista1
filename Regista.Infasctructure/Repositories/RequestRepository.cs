@@ -1,4 +1,6 @@
-﻿using Regista.Application.Repositories;
+﻿using Microsoft.EntityFrameworkCore;
+using Regista.Application.Repositories;
+using Regista.Domain.Dto.ActionModels;
 using Regista.Domain.Dto.ResponsibleHelperModels;
 using Regista.Domain.Entities;
 using Regista.Persistance.Db;
@@ -79,6 +81,31 @@ namespace Regista.Infasctructure.Repositories
             {
                 throw e;
             }
+        }
+
+        public async Task<List<ActionDTO>> GetActionDetail(int RequestId)
+        {
+            //return await GetNonDeletedAndActive<Actions>(t => t.RequestID == RequestId).Select(s => new ActionDTO()
+            //{
+            //    ID = s.ID,
+            //    Description = s.Description,
+            //    EndDate = s.EndDate,
+            //    OpeningDate = s.OpeningDate,
+            //    ResponsibleID = s.ResponsibleID,
+            //    ActionStatus = s.ActionStatus,
+            //    ActionDescription = s.ActionDescription
+
+            //}).ToListAsync();
+            return await GetNonDeletedAndActive<Actions>(t => true).Select(s => new ActionDTO()
+            {
+                ID = s.ID,
+                Description = s.Description,
+                EndDate = s.EndDate,
+                OpeningDate = s.OpeningDate,
+                ResponsibleID = s.ResponsibleID,
+                ActionStatus = s.ActionStatus,
+                ActionDescription = s.ActionDescription
+            }).ToListAsync();
         }
     }
 }

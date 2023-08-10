@@ -185,6 +185,96 @@ function GetList() {
             enabled: true,
             template: function (container, options) {
                 return $("<div>")
+                    .dxDataGrid({
+                        columnAutoWidth: true,
+                        showBorders: true,
+                        showColumnLines: true,
+                        showRowLines: true,
+                        rowAlternationEnabled: true,
+                        allowColumnReordering: true,
+                        onRowPrepared: function (e) {
+                            if (e.rowType == "header") { e.rowElement.css("background-color", "#fcfae3"); e.rowElement.css('color', '#4f5052'); };
+                        },
+                        onEditingStart(e) {
+                            title = e.data.ElementDescription;
+                        },
+                        onInitNewRow: function (e) {
+                            title = "";
+                        },
+                        onInitialized: function (e) {
+                            actionGridContainer = e.component;
+                        },
+                        columns: [
+                            {
+                                dataField: "id",
+                                caption: "Aksiyon No",
+                                alignment: 'center',
+                            },
+                            {
+                                dataField: "actionDescription",
+                                caption: "Aksiyon Açıklaması",
+                                alignment: 'left',
+                            },
+                            {
+                                dataField: "ResponsibleID",
+                                caption: "Sorumlu",
+                                alignment: 'center',
+                                lookup: {
+                                    dataSource: DevExpress.data.AspNet.createStore({
+                                        key: "id",
+                                        loadUrl: "/Action/GetResponsible/",
+                                        onBeforeSend: function (method, ajaxOptions) {
+                                            ajaxOptions.xhrFields = { withCredentials: true };
+                                        }
+                                    }),
+                                    valueExpr: "Id",
+                                    displayExpr: "name"
+                                }
+                            },
+                            {
+                                dataField: "openingDate",
+                                caption: "Açılma Tarihi",
+                                alignment: 'center',
+                                dataType: 'date',
+                                format: 'dd/MM/yyyy',
+                            },
+                            {
+                                dataField: "endDate",
+                                caption: "Son Tarih",
+                                alignment: 'left',
+                                dataType: 'date',
+                                format: 'dd/MM/yyyy',
+                            },
+                            {
+                                dataField: "description",
+                                caption: "Açıklama",
+                                alignment: 'left',
+                            },
+                            {
+                                dataField: "actionStatus",
+                                caption: "Durum",
+                                alignment: 'center',
+                                lookup: {
+                                    dataSource: DevExpress.data.AspNet.createStore({
+                                        key: "Id",
+                                        loadUrl: "/Action/GetActionStatus",
+                                        onBeforeSend: function (method, ajaxoptions) {
+                                            ajaxoptions.xhrFields = { withCredentials: true };
+                                        },
+                                    }),
+                                    valueExpr: "Id",
+                                    displayExpr: "Text"
+                                }
+                            }
+                        ],
+                        dataSource: DevExpress.data.AspNet.createStore({
+                            key: "ID",
+                            loadUrl: "/Request/GetRequestDetail/" + options.data.ID,
+                            onBeforeSend: function (method, ajaxoptions) {
+                                ajaxoptions.xhrFields = { withCredentials: true };
+                            }
+                        })
+                    })
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using Regista.Domain.Dto.ResponsibleHelperModels;
+﻿using Regista.Domain.Dto.ActionModels;
+using Regista.Domain.Dto.ResponsibleHelperModels;
 using Regista.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,6 @@ namespace Regista.Application.Repositories
         public void Delete(int id);
         public Task<IQueryable<Request>> GetList();
         Task<List<ResponsibleDevextremeSelectListHelper>> GetProject();
-
-
+        Task<List<ActionDTO>> GetActionDetail(int RequestId);
     }
 }
