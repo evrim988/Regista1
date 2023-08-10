@@ -81,6 +81,13 @@ namespace Regista1.WebApp.Controllers
                 throw ex;
             }
         }
+        public async Task<IActionResult> AddActionItem(string values)
+        {
+            var model = JsonConvert.DeserializeObject<Actions>(values);
+            await uow.actionRepository.AddActions(model);
+            return Ok(model);
+        }
+
         public async Task<IActionResult> GetCategoryStatus()
         {
             try

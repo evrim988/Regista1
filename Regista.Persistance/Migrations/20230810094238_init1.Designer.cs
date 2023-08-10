@@ -12,7 +12,7 @@ using Regista.Persistance.Db;
 namespace Regista.Persistance.Migrations
 {
     [DbContext(typeof(RegistaContext))]
-    [Migration("20230810091625_init1")]
+    [Migration("20230810094238_init1")]
     partial class init1
     {
         /// <inheritdoc />

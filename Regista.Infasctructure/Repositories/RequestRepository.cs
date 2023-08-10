@@ -85,18 +85,7 @@ namespace Regista.Infasctructure.Repositories
 
         public async Task<List<ActionDTO>> GetActionDetail(int RequestId)
         {
-            //return await GetNonDeletedAndActive<Actions>(t => t.RequestID == RequestId).Select(s => new ActionDTO()
-            //{
-            //    ID = s.ID,
-            //    Description = s.Description,
-            //    EndDate = s.EndDate,
-            //    OpeningDate = s.OpeningDate,
-            //    ResponsibleID = s.ResponsibleID,
-            //    ActionStatus = s.ActionStatus,
-            //    ActionDescription = s.ActionDescription
-
-            //}).ToListAsync();
-            return await GetNonDeletedAndActive<Actions>(t => true).Select(s => new ActionDTO()
+            return await GetNonDeletedAndActive<Actions>(t => t.RequestID == RequestId).Select(s => new ActionDTO()
             {
                 ID = s.ID,
                 Description = s.Description,
@@ -105,7 +94,18 @@ namespace Regista.Infasctructure.Repositories
                 ResponsibleID = s.ResponsibleID,
                 ActionStatus = s.ActionStatus,
                 ActionDescription = s.ActionDescription
+
             }).ToListAsync();
+            //return await GetNonDeletedAndActive<Actions>(t => true).Select(s => new ActionDTO()
+            //{
+            //    ID = s.ID,
+            //    Description = s.Description,
+            //    EndDate = s.EndDate,
+            //    OpeningDate = s.OpeningDate,
+            //    ResponsibleID = s.ResponsibleID,
+            //    ActionStatus = s.ActionStatus,
+            //    ActionDescription = s.ActionDescription
+            //}).ToListAsync();
         }
     }
 }

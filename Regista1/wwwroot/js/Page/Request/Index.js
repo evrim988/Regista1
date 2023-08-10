@@ -60,71 +60,71 @@ function GetList() {
         loadPanel: {
             enabled: true,
         },
-        editing: {
-            mode: 'popup',
-            allowUpdating: true,
-            allowDeleting: true,
-            allowAdding: true,
-            popup: {
-                title: 'Ekle',
-                showTitle: true,
-                width: 500,
-                height: 325,
-            },
-            form: {
-                items: [{
-                    itemType: 'group',
-                    colCount: 2,
-                    colSpan: 2,
-                    items: [
-                        {
-                            dataField: "requestName",
-                            caption: "Talep Adı",
-                        },
-                        {
-                            dataField: "description",
-                            caption: "Açıklama",
-                        },
-                        {
-                            dataField: "categoryStatus",
-                            caption: "Kategori",
-                            lookup: {
-                                dataSource: DevExpress.data.AspNet.createStore({
-                                    key: "iD",
-                                    loadUrl: "/Request/GetCategoryStatus/",
-                                    onBeforeSend: function (method, ajaxOptions) {
-                                        ajaxOptions.xhrFields = { withCredentials: true, };
-                                    },
-                                }),
-                                valueExpr: "Id",
-                                displayExpr: "Text",
-                            }
-                        },
-                        {
-                            dataField: "customerName",
-                            caption: "Müşteri Adı",
-                        },
-                        {
-                            dataField: "projectID",
-                            caption: "Proje",
-                            lookup: {
-                                dataSource: DevExpress.data.AspNet.createStore({
-                                    key: "Id",
-                                    loadUrl: "/Request/GetProject/",
-                                    onBeforeSend: function (method, ajaxOptions) {
-                                        ajaxOptions.xhrFields = { withCredentials: true, };
-                                    },
-                                }),
-                                valueExpr: "id",
-                                displayExpr: "name",
-                            }
-                        }
-                    ],
-                }],
+        //editing: {
+        //    mode: 'popup',
+        //    allowUpdating: true,
+        //    allowDeleting: true,
+        //    allowAdding: true,
+        //    popup: {
+        //        title: 'Ekle',
+        //        showTitle: true,
+        //        width: 500,
+        //        height: 325,
+        //    },
+        //    form: {
+        //        items: [{
+        //            itemType: 'group',
+        //            colCount: 2,
+        //            colSpan: 2,
+        //            items: [
+        //                {
+        //                    dataField: "requestName",
+        //                    caption: "Talep Adı",
+        //                },
+        //                {
+        //                    dataField: "description",
+        //                    caption: "Açıklama",
+        //                },
+        //                {
+        //                    dataField: "categoryStatus",
+        //                    caption: "Kategori",
+        //                    lookup: {
+        //                        dataSource: DevExpress.data.AspNet.createStore({
+        //                            key: "iD",
+        //                            loadUrl: "/Request/GetCategoryStatus/",
+        //                            onBeforeSend: function (method, ajaxOptions) {
+        //                                ajaxOptions.xhrFields = { withCredentials: true, };
+        //                            },
+        //                        }),
+        //                        valueExpr: "Id",
+        //                        displayExpr: "Text",
+        //                    }
+        //                },
+        //                {
+        //                    dataField: "customerName",
+        //                    caption: "Müşteri Adı",
+        //                },
+        //                {
+        //                    dataField: "projectID",
+        //                    caption: "Proje",
+        //                    lookup: {
+        //                        dataSource: DevExpress.data.AspNet.createStore({
+        //                            key: "Id",
+        //                            loadUrl: "/Request/GetProject/",
+        //                            onBeforeSend: function (method, ajaxOptions) {
+        //                                ajaxOptions.xhrFields = { withCredentials: true, };
+        //                            },
+        //                        }),
+        //                        valueExpr: "id",
+        //                        displayExpr: "name",
+        //                    }
+        //                }
+        //            ],
+        //        }],
 
-            },
+        //    },
 
-        },
+        //},
 
         columns: [
 
@@ -176,8 +176,9 @@ function GetList() {
                 }
             },
             {
+                caption:"İşlemler",
                 type: "buttons",
-                buttons: ["edit", "delete"]
+                buttons: ["edit", "delete"],
             },
 
         ],
@@ -204,11 +205,16 @@ function GetList() {
                         onInitialized: function (e) {
                             actionGridContainer = e.component;
                         },
+                        editing: {
+                            mode: 'row',
+                            allowAdding: true,
+                        },
                         columns: [
                             {
                                 dataField: "id",
                                 caption: "Aksiyon No",
                                 alignment: 'center',
+                                allowEditing: false,
                             },
                             {
                                 dataField: "actionDescription",
@@ -269,8 +275,10 @@ function GetList() {
                         ],
                         dataSource: DevExpress.data.AspNet.createStore({
                             key: "ID",
-                            loadUrl: "/Request/GetRequestDetail/" + options.data.ID,
+                            loadUrl: "/Request/GetRequestDetail/" + options.data.id,
+                            insertUrl: "/Request/AddActionItem" + options.data.id,
                             onBeforeSend: function (method, ajaxoptions) {
+                                console.log(options.data.id);
                                 ajaxoptions.xhrFields = { withCredentials: true };
                             }
                         })

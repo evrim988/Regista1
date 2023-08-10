@@ -42,6 +42,7 @@ namespace Regista.Infasctructure.Repositories
         {
             try
             {
+                var actions = await GetById<Actions>(model.RequestID);
                 await _uow.repository.Add(model);
                 await _uow.SaveChanges();
                 return "";

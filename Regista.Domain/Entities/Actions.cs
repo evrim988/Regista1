@@ -26,5 +26,7 @@ namespace Regista.Domain.Entities
 
         [DisplayName("Durum")]
         public ActionStatus ActionStatus { get; set; }
+        public int RequestID { get; set; }
+        public Request Request { get; set; }
     }
 }
