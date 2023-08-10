@@ -33,7 +33,7 @@ namespace Regista1.WebApp.Controllers
 
         public async Task<IActionResult> GetRequestDetail(int ID)
         {
-
+            return View();
         }
 
         public async Task<IActionResult> RequestAdd(string values)

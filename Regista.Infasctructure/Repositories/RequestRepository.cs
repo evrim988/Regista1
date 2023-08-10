@@ -27,7 +27,7 @@ namespace Regista.Infasctructure.Repositories
         {
             try
             {
-                model.CustomerID = session.CustomerID;
+                //model.CustomerID = session.CustomerID;
                 await uow.repository.Add(model);
                 await uow.SaveChanges();
                 return "";
