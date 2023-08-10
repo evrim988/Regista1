@@ -71,6 +71,11 @@ namespace Regista.Infasctructure.Repositories
         {
             get => _homeRepository ?? (_homeRepository = new HomeRepository(context, session, this));
         }
+        private IActionRepository _actionRepository;
+        public IActionRepository actionRepository
+        {
+            get => _actionRepository ?? (_actionRepository = new ActionRepository(context, session,this));
+        }
 
         public async Task<int> SaveChanges()
         {

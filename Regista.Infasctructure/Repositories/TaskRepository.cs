@@ -96,7 +96,7 @@ namespace Regista.Infasctructure.Repositories
             try
             {
                 return GetNonDeletedAndActive<User>(t => true)
-                    .Select(s => new SelectListItem { Value = s.ID.ToString(), Text = s.Name + s.SurName}).ToList();
+                    .Select(s => new SelectListItem { Value = s.ID.ToString(), Text = s.Name + " " + s.SurName}).ToList();
             }
             catch (Exception ex)
             {

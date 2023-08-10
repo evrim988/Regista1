@@ -179,8 +179,14 @@ function GetList() {
                 type: "buttons",
                 buttons: ["edit", "delete"]
             },
-            
+
         ],
+        masterDetail: {
+            enabled: true,
+            template: function (container, options) {
+                return $("<div>")
+            }
+        }
 
     }).dxDataGrid("instance");
 
