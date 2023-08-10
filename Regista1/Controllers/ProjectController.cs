@@ -12,7 +12,7 @@ namespace Regista1.WebApp.Controllers
         private readonly IUnitOfWork uow;
         public ProjectController(IUnitOfWork _uow)
         {
-            this.uow = _uow;
+            uow = _uow;
         }
         public async Task<object> GetList(DataSourceLoadOptions options)
 

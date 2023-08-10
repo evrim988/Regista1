@@ -17,26 +17,29 @@
                 </div>
                 <div class="card-content collapse show">
                     <div class="heading-elements">
-                       @* <div class="row col-md-2" style="position:absolute; right:15px; margin:15px;">
-                            <a asp-action="Create" asp-controller="Task" class="btn btn-primary"><i class="ion ion-android-add"></i>Talebi Göreve Ekle</a>
-                        </div>*@
+                        <div class="row col-md-2" style="position:absolute; right:15px; margin:15px;">
+                            <a asp-action="Create" asp-controller="Action" class="btn btn-primary"><i class="ion ion-android-add"></i>Yeni Aksiyon Ekle</a>
+                        </div>
                     </div>
                     <div class="card-body card-dashboard">
-                        <h3>Talepler</h3>
+                        <h3>Aksiyonlar</h3>
+
                         <div class="demo-container">
-                            <div id="requestGridContainer"></div>
+                            <div id="actionGridContainer"></div>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
 
+
 @section Scripts
     {
 
-    <script src="~/js/Page/Request/Index.js"></script>
+    <script src="~/js/Page/Action/Index.js"></script>
 
 
 }

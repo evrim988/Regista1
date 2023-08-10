@@ -30,6 +30,12 @@ namespace Regista1.WebApp.Controllers
             var models = await uow.requestRepository.GetList();
             return DataSourceLoader.Load(models, options);
         }
+
+        public async Task<IActionResult> GetRequestDetail(int ID)
+        {
+
+        }
+
         public async Task<IActionResult> RequestAdd(string values)
         {
             try
