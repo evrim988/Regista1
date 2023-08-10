@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Regista.Persistance.Db;
 
@@ -10,9 +11,16 @@ using Regista.Persistance.Db;
 namespace Regista.Persistance.Migrations
 {
     [DbContext(typeof(RegistaContext))]
-    partial class RegistaContextModelSnapshot : ModelSnapshot
+<<<<<<<< HEAD:Regista.Persistance/Migrations/20230810120936_1000_mySql.Designer.cs
+    [Migration("20230810120936_1000_mySql")]
+    partial class _1000_mySql
+========
+    [Migration("20230810091625_init1")]
+    partial class init1
+>>>>>>>> 50341c1ffca980883816b4591b11e4d7689707d3:Regista.Persistance/Migrations/20230810091625_init1.Designer.cs
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -57,9 +65,6 @@ namespace Regista.Persistance.Migrations
                     b.Property<DateTime>("OpeningDate")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("RequestID")
-                        .HasColumnType("int");
-
                     b.Property<int>("ResponsibleID")
                         .HasColumnType("int");
 
@@ -67,8 +72,6 @@ namespace Regista.Persistance.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("RequestID");
 
                     b.ToTable("Actions");
                 });
@@ -410,17 +413,6 @@ namespace Regista.Persistance.Migrations
                     b.HasIndex("CustomerID");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("Regista.Domain.Entities.Actions", b =>
-                {
-                    b.HasOne("Regista.Domain.Entities.Request", "Request")
-                        .WithMany()
-                        .HasForeignKey("RequestID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Request");
                 });
 
             modelBuilder.Entity("Regista.Domain.Entities.ProjectNote", b =>

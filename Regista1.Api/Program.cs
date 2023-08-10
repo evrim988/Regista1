@@ -7,7 +7,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddDbContext<RegistaContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("RegistaDbConnection"))); builder.Services.AddEndpointsApiExplorer();
+var connectionString = builder.Configuration.GetConnectionString("RegistaDbConnection");
+builder.Services.AddDbContext<RegistaContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString(connectionString)));
+//builder.Services.AddDbContext<RegistaContext>(opt => opt.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSession();
 builder.Services.MyRepository();
 builder.Services.AddDistributedMemoryCache();
