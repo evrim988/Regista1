@@ -6,11 +6,35 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Regista.Persistance.Migrations
 {
     /// <inheritdoc />
-    public partial class _1000 : Migration
+    public partial class init1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Actions",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ActionDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ResponsibleID = table.Column<int>(type: "int", nullable: false),
+                    OpeningDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ActionStatus = table.Column<int>(type: "int", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<int>(type: "int", nullable: false),
+                    LastModifiedBy = table.Column<int>(type: "int", nullable: false),
+                    ObjectStatus = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Actions", x => x.ID);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Customers",
                 columns: table => new
@@ -88,7 +112,7 @@ namespace Regista.Persistance.Migrations
                         column: x => x.CustomerID,
                         principalTable: "Customers",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -123,7 +147,7 @@ namespace Regista.Persistance.Migrations
                         column: x => x.ProjectID,
                         principalTable: "Projects",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -153,13 +177,13 @@ namespace Regista.Persistance.Migrations
                         column: x => x.CustomerID,
                         principalTable: "Customers",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_requests_Projects_ProjectID",
                         column: x => x.ProjectID,
                         principalTable: "Projects",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -193,13 +217,13 @@ namespace Regista.Persistance.Migrations
                         column: x => x.CustomerID,
                         principalTable: "Customers",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Tasks_requests_RequestID",
                         column: x => x.RequestID,
                         principalTable: "requests",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -241,6 +265,9 @@ namespace Regista.Persistance.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Actions");
+
             migrationBuilder.DropTable(
                 name: "projectNotes");
 
