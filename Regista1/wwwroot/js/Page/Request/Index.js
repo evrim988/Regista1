@@ -208,6 +208,8 @@ function GetList() {
                         editing: {
                             mode: 'row',
                             allowAdding: true,
+                            allowUpdating: true,
+                            allowDeleting: true,
                         },
                         columns: [
                             {
@@ -274,9 +276,10 @@ function GetList() {
                             }
                         ],
                         dataSource: DevExpress.data.AspNet.createStore({
-                            key: "ID",
+                            keyExpr: "id",
                             loadUrl: "/Request/GetRequestDetail/" + options.data.id,
-                            insertUrl: "/Request/AddActionItem" + options.data.id,
+                            updateUrl: "/Request/EditActionItem/" + options.data.id,
+                            insertUrl: "/Request/AddActionItem/" + options.data.id,
                             onBeforeSend: function (method, ajaxoptions) {
                                 console.log(options.data.id);
                                 ajaxoptions.xhrFields = { withCredentials: true };

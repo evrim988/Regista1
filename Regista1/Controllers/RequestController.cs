@@ -81,11 +81,32 @@ namespace Regista1.WebApp.Controllers
                 throw ex;
             }
         }
-        public async Task<IActionResult> AddActionItem(string values)
+        public async Task<IActionResult> AddActionItem(string values,int ID)
         {
             var model = JsonConvert.DeserializeObject<Actions>(values);
+            model.RequestID = ID;
             await uow.actionRepository.AddActions(model);
             return Ok(model);
+        }
+        public async Task<IActionResult> EditActionItem(int key,string values)
+        {
+            var model = await uow.repository.GetById<Actions>(key);
+            JsonConvert.PopulateObject(values, model);
+            await uow.actionRepository.ActionsUpdate(model);
+            return Ok();
+        }
+
+        public async Task<IActionResult> DeleteActionItem(int key)
+        {
+            try
+            {
+                var model = await uow.actionRepository.Delete(key);
+                return Ok(model);
+            } 
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public async Task<IActionResult> GetCategoryStatus()

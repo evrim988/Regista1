@@ -96,16 +96,7 @@ namespace Regista.Infasctructure.Repositories
                 ActionDescription = s.ActionDescription
 
             }).ToListAsync();
-            //return await GetNonDeletedAndActive<Actions>(t => true).Select(s => new ActionDTO()
-            //{
-            //    ID = s.ID,
-            //    Description = s.Description,
-            //    EndDate = s.EndDate,
-            //    OpeningDate = s.OpeningDate,
-            //    ResponsibleID = s.ResponsibleID,
-            //    ActionStatus = s.ActionStatus,
-            //    ActionDescription = s.ActionDescription
-            //}).ToListAsync();
+           
         }
     }
 }

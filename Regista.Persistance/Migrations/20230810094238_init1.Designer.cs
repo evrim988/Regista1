@@ -11,17 +11,7 @@ using Regista.Persistance.Db;
 namespace Regista.Persistance.Migrations
 {
     [DbContext(typeof(RegistaContext))]
-<<<<<<< HEAD:Regista.Persistance/Migrations/20230810094238_init1.Designer.cs
-    [Migration("20230810094238_init1")]
-=======
-<<<<<<<< HEAD:Regista.Persistance/Migrations/20230810120936_1000_mySql.Designer.cs
-    [Migration("20230810120936_1000_mySql")]
-    partial class _1000_mySql
-========
-    [Migration("20230810091625_init1")]
->>>>>>> 2ea14542654ea6dc04049358b173c8853f39179a:Regista.Persistance/Migrations/20230810091625_init1.Designer.cs
     partial class init1
->>>>>>>> 50341c1ffca980883816b4591b11e4d7689707d3:Regista.Persistance/Migrations/20230810091625_init1.Designer.cs
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
