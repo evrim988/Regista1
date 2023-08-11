@@ -15,6 +15,7 @@ namespace Regista.Application.Repositories
         public void Delete(int id);
         public Task<IQueryable<Request>> GetList();
         Task<List<ResponsibleDevextremeSelectListHelper>> GetProject();
+        Task<List<ResponsibleDevextremeSelectListHelper>> GetCustomer();
         Task<List<ActionDTO>> GetActionDetail(int RequestId);
     }
 }

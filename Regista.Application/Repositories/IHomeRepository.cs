@@ -11,5 +11,6 @@ namespace Regista.Application.Repositories
     public interface IHomeRepository : IRepository
     {
         public Task<IQueryable<Task>> GetTaskHome();
+        public Task<IQueryable<Actions>> GetActionHome();
     }
 }

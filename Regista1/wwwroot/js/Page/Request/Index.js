@@ -154,9 +154,20 @@ function GetList() {
                 }
             },
             {
-                dataField: "customerName",
+                dataField: "customerID",
                 caption: "Müşteri Adı",
                 alignment: 'center',
+                lookup: {
+                    dataSource: DevExpress.data.AspNet.createStore({
+                        key: "Id",
+                        loadUrl: "/Request/GetCustomer/",
+                        onBeforeSend: function (method, ajaxOptions) {
+                            ajaxOptions.xhrFields = { withCredentials: true, };
+                        },
+                    }),
+                    valueExpr: "id",
+                    displayExpr: "name",
+                }
             },
             {
                 dataField: "projectID",

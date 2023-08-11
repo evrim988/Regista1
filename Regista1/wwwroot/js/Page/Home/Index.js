@@ -4,11 +4,10 @@
 });
 
 function GetList() {
-    var grid = $(tasksGridContainer).dxDataGrid({
+    var grid = $(actionsGridContainer).dxDataGrid({
         dataSource: DevExpress.data.AspNet.createStore({
             key: "id",
-            loadUrl: "/Home/GetTaskHome",
-           
+            loadUrl: "/Home/GetActionHome",
             onBeforeSend: function (method, ajaxOptions) {
                 ajaxOptions.xhrFields = { withCredentials: true };
             }
@@ -61,94 +60,70 @@ function GetList() {
         loadPanel: {
             enabled: true,
         },
-     
-        columns: [
 
+        columns: [
             {
                 dataField: "id",
-                caption: "No",
+                caption: "Aksiyon No",
                 alignment: 'center',
-                allowEditing: false,
             },
             {
-                dataField: "planedStart",
-                caption: "Planlanan Başlangıç Tarihi",
+                dataField: "ActionDescription",
+                caption: "Aksiyon Açıklaması",
+                alignment: 'left',
+            },
+            {
+                dataField: "ResponsibleID",
+                caption: "Sorumlu",
+                alignment: 'center',
+                lookup: {
+                    dataSource: DevExpress.data.AspNet.createStore({
+                        key: "id",
+                        loadUrl: "/Action/GetResponsible/",
+                        onBeforeSend: function (method, ajaxOptions) {
+                            ajaxOptions.xhrFields = { withCredentials: true };
+                        }
+                    }),
+                    valueExpr: "Id",
+                    displayExpr: "name"
+                }
+            },
+            {
+                dataField: "openingDate",
+                caption: "Açılma Tarihi",
                 alignment: 'center',
                 dataType: 'date',
                 format: 'dd/MM/yyyy',
-                allowEditing: false,
             },
             {
-                dataField: "planedEnd",
-                caption: "Planlanan Bitiş Tarihi",
-                alignment: 'center',
+                dataField: "endDate",
+                caption: "Son Tarih",
+                alignment: 'left',
                 dataType: 'date',
                 format: 'dd/MM/yyyy',
-                allowEditing: false,
-            },
-            {
-                dataField: "title",
-                caption: "Konu",
-                alignment: 'center',
-                allowEditing: false,
             },
             {
                 dataField: "description",
                 caption: "Açıklama",
-                alignment: 'center',
-                allowEditing: false,
+                alignment: 'left',
             },
             {
-                dataField: "responsibleID",
-                caption: "Sorumlu",
-                alignment: 'center',
-                allowEditing: false,
-                lookup: {
-                    dataSource: DevExpress.data.AspNet.createStore({
-                        key: "Id",
-                        loadUrl: "/Task/GetResponsible/",
-                        onBeforeSend: function (method, ajaxOptions) {
-                            ajaxOptions.xhrFields = { withCredentials: true, };
-                        },
-                    }),
-                    valueExpr: "id",
-                    displayExpr: "name",
-                }
-            },
-            {
-                dataField: "taskStatus",
+                dataField: "actionStatus",
                 caption: "Durum",
                 alignment: 'center',
                 lookup: {
                     dataSource: DevExpress.data.AspNet.createStore({
                         key: "Id",
-                        loadUrl: "/Task/GetTaskStatus/",
-                        onBeforeSend: function (method, ajaxOptions) {
-                            ajaxOptions.xhrFields = { withCredentials: true, };
+                        loadUrl: "/Action/GetActionStatus",
+                        onBeforeSend: function (method, ajaxoptions) {
+                            ajaxoptions.xhrFields = { withCredentials: true };
                         },
                     }),
                     valueExpr: "Id",
-                    displayExpr: "Text",
+                    displayExpr: "Text"
                 }
-            },
-            {
-                dataField: "priorityStatus",
-                caption: "Öncelik",
-                alignment: 'center',
-                allowEditing: false,
-                lookup: {
-                    dataSource: DevExpress.data.AspNet.createStore({
-                        key: "Id",
-                        loadUrl: "/Task/GetPriorityStatus/",
-                        onBeforeSend: function (method, ajaxOptions) {
-                            ajaxOptions.xhrFields = { withCredentials: true, };
-                        },
-                    }),
-                    valueExpr: "Id",
-                    displayExpr: "Text",
-                }
-            },
-          
+            }
+
         ],
 
     }).dxDataGrid("instance");
