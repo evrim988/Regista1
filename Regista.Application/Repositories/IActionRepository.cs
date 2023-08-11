@@ -18,7 +18,7 @@ namespace Regista.Application.Repositories
         
         public Task<string> ActionsUpdate(Actions model);
 
-        Task<string> Delete(int ID);
+        public string Delete(int ID);
 
         public Task<List<SelectListItem>> ResponsiblehelperModelList();
     }

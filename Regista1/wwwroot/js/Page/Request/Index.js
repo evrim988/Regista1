@@ -9,7 +9,6 @@ function GetList() {
             loadUrl: "/Request/GetList",
             insertUrl: "/Request/RequestAdd",
             updateUrl: "/Request/RequestEdit",
-            deleteUrl: "/Request/RequestDelete",
             onBeforeSend: function (method, ajaxOptions) {
                 ajaxOptions.xhrFields = { withCredentials: true };
             }
@@ -178,7 +177,16 @@ function GetList() {
             {
                 caption:"İşlemler",
                 type: "buttons",
-                buttons: ["edit", "delete"],
+                buttons: [
+                    {
+                        hint: "Sil",
+                        icon: "remove",
+                        onClick: function (e) {
+                            DeleteConfirme('/Request/RequestDelete/' + e.row.data.id);
+                            console.log(e.row.data.id);
+                        }
+                    }
+                ],
             },
 
         ],
@@ -276,12 +284,15 @@ function GetList() {
                             }
                         ],
                         dataSource: DevExpress.data.AspNet.createStore({
-                            keyExpr: "id",
-                            loadUrl: "/Request/GetRequestDetail/" + options.data.id,
-                            updateUrl: "/Request/EditActionItem/" + options.data.id,
-                            insertUrl: "/Request/AddActionItem/" + options.data.id,
+                            key: "id",
+                            loadUrl: "/Request/GetRequestDetail/",
+                            loadParams: { ID: options.data.id },
+                            updateUrl: "/Request/EditActionItem/" ,
+                            insertUrl: "/Request/AddActionItem/",
+                            deleteUrl:"/Request/DeleteActionItem/",
                             onBeforeSend: function (method, ajaxoptions) {
                                 console.log(options.data.id);
+                                ajaxoptions.data.id = options.data.id;
                                 ajaxoptions.xhrFields = { withCredentials: true };
                             }
                         })
@@ -293,3 +304,35 @@ function GetList() {
 
 }
 
+function deleteRequestAsk(id) {
+    DeleteDialog("RequestDelete", id, "Talep Silinecektir!");
+}
+
+function DeleteDialog(id) {
+
+    var data = new FormData();
+
+    data.append('id', id);
+
+    $.ajax({
+        url: "/Request/RequestDelete/",
+        type: 'POST',
+        async: false,
+        data: data,
+        cache: false,
+        processData: false,
+        contentType: false,
+        success: function (data2) {
+            if (data2 > 0) {
+                messah("Başarılı", "Firma Silindi", "success");
+                location.reload();
+            }
+            else {
+                ShowToastr("Hata", "Bir Hata Oluştu", "error");
+            }
+        },
+        error: function (textStatus) {
+            console.log('ERRORS:23 ');
+        },
+    });
+}

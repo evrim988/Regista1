@@ -67,6 +67,7 @@ namespace Regista1.WebApp.Controllers
                 throw ex;
             }
         }
+        [HttpPost]
         public async Task<string> RequestDelete(int Key)
         {
             try
@@ -96,12 +97,13 @@ namespace Regista1.WebApp.Controllers
             return Ok();
         }
 
-        public async Task<IActionResult> DeleteActionItem(int key)
+        public async Task<string> DeleteActionItem(int key)
         {
             try
             {
-                var model = await uow.actionRepository.Delete(key);
-                return Ok(model);
+                await uow.repository.Delete<Actions>(key);
+                await uow.SaveChanges();
+                return "";
             } 
             catch (Exception e)
             {
