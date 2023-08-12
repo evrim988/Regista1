@@ -67,6 +67,7 @@ namespace Regista1.WebApp.Controllers
                 throw ex;
             }
         }
+        [HttpPost]
         public async Task<string> RequestDelete(int Key)
         {
             try
@@ -81,11 +82,33 @@ namespace Regista1.WebApp.Controllers
                 throw ex;
             }
         }
-        public async Task<IActionResult> AddActionItem(string values)
+        public async Task<IActionResult> AddActionItem(string values,int ID)
         {
             var model = JsonConvert.DeserializeObject<Actions>(values);
+            model.RequestID = ID;
             await uow.actionRepository.AddActions(model);
             return Ok(model);
+        }
+        public async Task<IActionResult> EditActionItem(int key,string values)
+        {
+            var model = await uow.repository.GetById<Actions>(key);
+            JsonConvert.PopulateObject(values, model);
+            await uow.actionRepository.ActionsUpdate(model);
+            return Ok();
+        }
+
+        public async Task<string> DeleteActionItem(int key)
+        {
+            try
+            {
+                await uow.repository.Delete<Actions>(key);
+                await uow.SaveChanges();
+                return "";
+            } 
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public async Task<IActionResult> GetCategoryStatus()
@@ -107,6 +130,19 @@ namespace Regista1.WebApp.Controllers
             {
                 var responsibleHelpers = await uow.requestRepository.GetProject();
                 return DataSourceLoader.Load(responsibleHelpers, loadOptions);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<object> GetCustomer(DataSourceLoadOptions loadOptions)
+        {
+            try
+            {
+                var model = await uow.requestRepository.GetCustomer();
+                return DataSourceLoader.Load(model, loadOptions);
             }
             catch (Exception ex)
             {

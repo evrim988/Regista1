@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Task = Regista.Domain.Entities.Task;
 
 namespace Regista.Application.Repositories
 {
@@ -17,7 +18,7 @@ namespace Regista.Application.Repositories
         
         public Task<string> ActionsUpdate(Actions model);
 
-        public void Delete(int ID);
+        public string Delete(int ID);
 
         public Task<List<SelectListItem>> ResponsiblehelperModelList();
     }

@@ -20,7 +20,7 @@ function GetList() {
             }
         },
         onRowPrepared: function (e) {
-            if (e.rowType == "header") { e.rowElement.css("background-color", "#b9ceff"); e.rowElement.css('color', '#dff0f7'); e.rowElement.css('font-weight', 'bold'); };
+            if (e.rowType == "header") { e.rowElement.css("background-color", "#dff0f7"); e.rowElement.css('color', '#4f5052'); e.rowElement.css('font-weight', 'bold'); };
         },
         rowAlternationEnabled: true,
         columnAutoWidth: true,

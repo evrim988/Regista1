@@ -16,6 +16,24 @@ namespace Regista.Infasctructure.Repositories
             session = _session;
             uow = _uow;
         }
+
+        public async Task<IQueryable<Actions>> GetActionHome()
+        {
+            try
+            { 
+                var model = GetNonDeletedAndActive<Actions>(t => t.ResponsibleID == session.ID);
+                foreach (var item in model)
+                {
+                    Console.WriteLine("ResponsibleID: " + item.ResponsibleID);
+                }
+                return model;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public async Task<IQueryable<Task>> GetTaskHome()
         {
             try

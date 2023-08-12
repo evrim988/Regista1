@@ -53,11 +53,12 @@ namespace Regista.Infasctructure.Repositories
             }
         }
 
-        public void Delete(int ID)
+        public string Delete(int ID)
         {
-            var action = GetNonDeletedAndActive <Actions>(t => t.ID == ID);
+            var action = GetNonDeletedAndActive<Actions>(t => t.ID == ID);
             DeleteRange(action.ToList());
             Delete<Actions>(ID);
+            return "";
         }
 
         public IQueryable<ActionDTO> GetList()

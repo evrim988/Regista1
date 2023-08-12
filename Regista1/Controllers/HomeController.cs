@@ -29,6 +29,12 @@ namespace Regista1.WebApp.Controllers
             return DataSourceLoader.Load(models, options);
         }
 
+        public async Task<object> GetActionHome(DataSourceLoadOptions options)
+        {
+            var models = await _uow.homeRepository.GetActionHome();
+            return DataSourceLoader.Load(models, options);
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

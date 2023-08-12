@@ -13,7 +13,7 @@
 
     <link href="~/lib/dropzone-5.7.0/dist/dropzone.css" rel="stylesheet" />
     <link href="~/lib/dropzone-5.7.0/dist/basic.css" rel="stylesheet" />
-
+    <link href="~/Modernize/sweetalert2.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -157,7 +157,7 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
                                    aria-expanded="false">
-                                    <span class="mr-1">Merhaba,<span class="user-name text-bold-700" >@user.Name @user.Surname</span></span><span class="avatar avatar-online"><img style="height:37px; width:37px;" src='@((user.Image!=null)?"/Modernize/Img/ProfilePhotos/"+user.Image:"/Modernize/src/assets/images/profile/user-1.jpg")' alt="avatar"><i></i></span>
+                                    <span class="mr-1">Merhaba,<span class="user-name text-bold-700">@user.Name @user.Surname</span></span><span class="avatar avatar-online"><img style="height:37px; width:37px;" src='@((user.Image!=null)?"/Modernize/Img/ProfilePhotos/"+user.Image:"/Modernize/src/assets/images/profile/user-1.jpg")' alt="avatar"><i></i></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
@@ -207,11 +207,12 @@
     <script src="/Modernize/DevextremeJs/js/globalize/currency.js"></script>
     <script src="/Modernize/DevextremeJs/js/globalize/date.js"></script>
 
-  
+
     <script src="/Modernize/DevextremeJs/js/localization/dx.messages.tr.js"></script>
     <script src="/Modernize/DevextremeJs/js/localization/dx.messages.en.js"></script>
 
-
+     <script src="/Modernize/sweetalert.min.js"></script>
+     <script src="/Modernize/sweetalert2.min.js"></script>
 
     <script src="/Modernize/src/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/Modernize/src/assets/js/sidebarmenu.js"></script> .
@@ -226,6 +227,50 @@
     </script>
 
     @RenderSection("Scripts", required: false)
+
+    <script type="text/javascript">
+
+        function DeleteConfirme(href) {
+
+            const swalWithBootstrapButtons = swal.mixin({
+                confirmButtonClass: 'btn btn-success',
+                cancelButtonClass: 'btn btn-danger',
+                buttonsStyling: false,
+            })
+
+            swalWithBootstrapButtons({
+                title: "Uyarı",
+                text: "Silme İşlemini Onaylıyor Musunuz?",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Evet',
+                cancelButtonText: 'Hayır',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.value) {
+                    var Href;
+                    if ('Sütun Seçici' == 'Sütun Seçici') {
+                        Href = "/tr-TR";
+                    } else {
+                        Href = "/en-US";
+                    }
+                    location.href = Href + href;
+
+                } else if (result.dismiss === swal.DismissReason.cancel) {
+                    swalWithBootstrapButtons(
+                        'Bilgi',
+                        'Silme İşlemi İptal Edildi',
+                        'info'
+                    )
+                }
+
+            })
+
+        }
+
+
+    </script>
+
 </body>
 
 </html>

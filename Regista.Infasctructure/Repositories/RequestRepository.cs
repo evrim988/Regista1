@@ -82,7 +82,30 @@ namespace Regista.Infasctructure.Repositories
                 throw e;
             }
         }
+        public async Task<List<ResponsibleDevextremeSelectListHelper>> GetCustomer()
+        {
+            try
+            {
+                List<ResponsibleDevextremeSelectListHelper> CustomerHelpers = new List<ResponsibleDevextremeSelectListHelper>();
+                var model = context.Customers
+                    .Where(t => true);
+                foreach (var item in model)
+                {
+                    ResponsibleDevextremeSelectListHelper helper = new ResponsibleDevextremeSelectListHelper()
+                    {
+                        ID = item.ID,
+                        Name = item.Name + " " + item.Surname,
+                    };
+                    CustomerHelpers.Add(helper);
+                }
+                return CustomerHelpers;
+            }
+            catch (Exception)
+            {
 
+                throw;
+            }
+        }
         public async Task<List<ActionDTO>> GetActionDetail(int RequestId)
         {
             return await GetNonDeletedAndActive<Actions>(t => t.RequestID == RequestId).Select(s => new ActionDTO()
@@ -96,16 +119,9 @@ namespace Regista.Infasctructure.Repositories
                 ActionDescription = s.ActionDescription
 
             }).ToListAsync();
-            //return await GetNonDeletedAndActive<Actions>(t => true).Select(s => new ActionDTO()
-            //{
-            //    ID = s.ID,
-            //    Description = s.Description,
-            //    EndDate = s.EndDate,
-            //    OpeningDate = s.OpeningDate,
-            //    ResponsibleID = s.ResponsibleID,
-            //    ActionStatus = s.ActionStatus,
-            //    ActionDescription = s.ActionDescription
-            //}).ToListAsync();
+           
         }
+
+       
     }
 }
