@@ -59,6 +59,32 @@ function GetList() {
         loadPanel: {
             enabled: true,
         },
+        onContentReady: function (e) {
+
+            var $refreshButton = $('<div id="refreshButton">').dxButton({
+                icon: 'refresh',
+                onClick: function () {
+                    grid.refresh();
+                }
+            });
+            if (e.element.find('#refreshButton').length == 0)
+                e.element
+                    .find('.dx-toolbar-after')
+                    .prepend($refreshButton);
+
+            var $filterButton = $('<div id="filterButton">').dxButton({
+                icon: 'clearformat',
+                onClick: function () {
+                    grid.clearFilter();
+                }
+            });
+            if (e.element.find('#filterButton').length == 0)
+                e.element
+                    .find('.dx-toolbar-after')
+                    .prepend($filterButton);
+
+
+        },
         //editing: {
         //    mode: 'popup',
         //    allowUpdating: true,
@@ -251,10 +277,11 @@ function GetList() {
                                         key: "id",
                                         loadUrl: "/Action/GetResponsible/",
                                         onBeforeSend: function (method, ajaxOptions) {
+                                            console.log(ajaxOptions.data.id);
                                             ajaxOptions.xhrFields = { withCredentials: true };
                                         }
                                     }),
-                                    valueExpr: "Id",
+                                    valueExpr: "iD",
                                     displayExpr: "name"
                                 }
                             },
@@ -302,7 +329,6 @@ function GetList() {
                             insertUrl: "/Request/AddActionItem/",
                             deleteUrl:"/Request/DeleteActionItem/",
                             onBeforeSend: function (method, ajaxoptions) {
-                                console.log(options.data.id);
                                 ajaxoptions.data.id = options.data.id;
                                 ajaxoptions.xhrFields = { withCredentials: true };
                             }
