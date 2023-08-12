@@ -20,7 +20,7 @@ function GetList() {
             }
         },
         onRowPrepared: function (e) {
-            if (e.rowType == "header") { e.rowElement.css("background-color", "#dff0f7"); e.rowElement.css('color', '#4f5052'); e.rowElement.css('font-weight', 'bold'); };
+            if (e.rowType == "header") { e.rowElement.css("background-color", "#b9ceff"); e.rowElement.css('color', '#4f5052'); e.rowElement.css('font-weight', 'bold'); };
         },
         rowAlternationEnabled: true,
         columnAutoWidth: true,
@@ -187,18 +187,14 @@ function GetList() {
                 alignment: 'left',
             },
             {
-                dataField: "ResponsibleID",
+                dataField: "responsibleID",
                 caption: "Sorumlu",
                 alignment: 'center',
                 lookup: {
                     dataSource: DevExpress.data.AspNet.createStore({
-                        key: "Id",
                         loadUrl: "/Action/GetResponsible/",
-                        onBeforeSend: function (method, ajaxOptions) {
-                            ajaxOptions.xhrFields = { withCredentials: true };
-                        }
                     }),
-                    valueExpr: "Id",
+                    valueExpr: "id",
                     displayExpr: "name"
                 }
             },

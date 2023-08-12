@@ -9,10 +9,16 @@ function GetList() {
             loadUrl: "/Request/GetList",
             insertUrl: "/Request/RequestAdd",
             updateUrl: "/Request/RequestEdit",
+            deleteUrl: "/Request/RequestDelete/",
             onBeforeSend: function (method, ajaxOptions) {
                 ajaxOptions.xhrFields = { withCredentials: true };
             }
         }),
+        editing: {
+            mode: 'row',
+            allowUpdating: true,
+            allowDeleting: true,
+        },
         onCellPrepared(e) {
             if (e.rowType == "header") {
                 e.cellElement.css("text-align", "center");
@@ -211,20 +217,6 @@ function GetList() {
                     displayExpr: "name",
                 }
             },
-            {
-                caption:"İşlemler",
-                type: "buttons",
-                buttons: [
-                    {
-                        hint: "Sil",
-                        icon: "remove",
-                        onClick: function (e) {
-                            DeleteConfirme('/Request/RequestDelete/' + e.row.data.id);
-                            console.log(e.row.data.id);
-                        }
-                    }
-                ],
-            },
 
         ],
         masterDetail: {
@@ -269,19 +261,14 @@ function GetList() {
                                 alignment: 'left',
                             },
                             {
-                                dataField: "ResponsibleID",
+                                dataField: "responsibleID",
                                 caption: "Sorumlu",
                                 alignment: 'center',
                                 lookup: {
                                     dataSource: DevExpress.data.AspNet.createStore({
-                                        key: "id",
                                         loadUrl: "/Action/GetResponsible/",
-                                        onBeforeSend: function (method, ajaxOptions) {
-                                            console.log(ajaxOptions.data.id);
-                                            ajaxOptions.xhrFields = { withCredentials: true };
-                                        }
                                     }),
-                                    valueExpr: "iD",
+                                    valueExpr: "id", 
                                     displayExpr: "name"
                                 }
                             },

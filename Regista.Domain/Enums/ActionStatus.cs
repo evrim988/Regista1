@@ -9,7 +9,7 @@ namespace Regista.Domain.Enums
 {
     public enum ActionStatus
     {
-        [Display(Name = "Tamamlanmadı")]
+        [Display(Name = "Başlamadı")]
         notCompleted = 0,
 
         [Display(Name ="Devam Ediyor")]
