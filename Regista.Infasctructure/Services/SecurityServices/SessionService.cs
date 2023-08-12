@@ -145,7 +145,6 @@ namespace Regista.Infasctructure.Services.SecurityServices
                     Name = s.ProjectName,
 
                 }).FirstOrDefault();
-                return null;
 
             }
             catch (Exception)
