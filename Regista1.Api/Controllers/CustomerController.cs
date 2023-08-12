@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Regista.Application.Repositories;
 using Regista.Domain.Dto.Entities.CustomerModel;
 using Regista.Domain.Entities;
@@ -8,6 +9,7 @@ namespace Regista1.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CustomerController : BaseController
     {
         private readonly IUnitOfWork _uow;

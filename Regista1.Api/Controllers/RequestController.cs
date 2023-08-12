@@ -1,14 +1,15 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Regista.Application.Repositories;
 using Regista.Domain.Dto.Entities.RequestModel;
-using Regista.Domain.Dto.Entities.TaskModel;
 using Regista.Domain.Entities;
+using Regista.Domain.Enums;
 
 namespace Regista1.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class RequestController : ControllerBase
     {
         private readonly IUnitOfWork _uow;
@@ -29,7 +30,7 @@ namespace Regista1.Api.Controllers
                     CustomerID = model.CustomerID,
                     CustomerName = model.CustomerName,
                     ProjectID = model.ProjectID,
-                    CategoryStatus = Regista.Domain.Enums.CategoryStatus.NewFunction,
+                    CategoryStatus = CategoryStatus.NewFunction
                 };
 
                 await _uow.requestRepository.RequestAdd(request);
