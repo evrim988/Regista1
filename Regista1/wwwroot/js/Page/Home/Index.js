@@ -93,23 +93,19 @@ function GetList() {
                 alignment: 'center',
             },
             {
-                dataField: "ActionDescription",
+                dataField: "actionDescription",
                 caption: "Aksiyon Açıklaması",
                 alignment: 'left',
             },
             {
-                dataField: "ResponsibleID",
+                dataField: "responsibleID",
                 caption: "Sorumlu",
                 alignment: 'center',
                 lookup: {
                     dataSource: DevExpress.data.AspNet.createStore({
-                        key: "id",
                         loadUrl: "/Action/GetResponsible/",
-                        onBeforeSend: function (method, ajaxOptions) {
-                            ajaxOptions.xhrFields = { withCredentials: true };
-                        }
                     }),
-                    valueExpr: "Id",
+                    valueExpr: "id", // "id" contains the same values as "authorId"
                     displayExpr: "name"
                 }
             },

@@ -250,7 +250,7 @@ function GetList() {
                             ajaxOptions.xhrFields = { withCredentials: true, };
                         },
                     }),
-                    valueExpr: "id",
+                    valueExpr: "Id",
                     displayExpr: "Text",
                 }
             },

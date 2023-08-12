@@ -67,14 +67,14 @@ namespace Regista1.WebApp.Controllers
                 throw ex;
             }
         }
-        [HttpPost]
-        public async Task<string> RequestDelete(int Key)
+        [HttpDelete]
+        public async Task<IActionResult> RequestDelete(int Key)
         {
             try
             {
                 await uow.repository.Delete<Request>(Key);
                 await uow.SaveChanges();
-                return "1";
+                return Ok();
 
             }
             catch (Exception ex)
@@ -89,7 +89,8 @@ namespace Regista1.WebApp.Controllers
             await uow.actionRepository.AddActions(model);
             return Ok(model);
         }
-        public async Task<IActionResult> EditActionItem(int key,string values)
+        [HttpPut]
+        public async Task<IActionResult> EditActionItem(int key,string values,int ID)
         {
             var model = await uow.repository.GetById<Actions>(key);
             JsonConvert.PopulateObject(values, model);
