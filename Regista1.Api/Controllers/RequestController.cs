@@ -1,24 +1,30 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Regista.Application.Repositories;
+using Regista.Application.Services.SecurityServices;
 using Regista.Domain.Dto.Entities.RequestModel;
+using Regista.Domain.Dto.SecurityModels;
 using Regista.Domain.Entities;
 using Regista.Domain.Enums;
+using Regista1.Api.Filters;
 
 namespace Regista1.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    
     public class RequestController : ControllerBase
     {
         private readonly IUnitOfWork _uow;
+        private readonly ProjectSessionModel projectSession;
 
-        public RequestController(IUnitOfWork uow)
+        public RequestController(IUnitOfWork uow, ISessionService sessionService)
         {
             _uow = uow;
+            projectSession = sessionService.GetProject();
         }
         [HttpPost("AddRequest")]
+        [Auth]
         public async Task<IActionResult> AddRequest(RequestDTO model)
         {
             try
@@ -27,9 +33,9 @@ namespace Regista1.Api.Controllers
                 {
                     RequestName = model.RequestName,
                     Description = model.Description,
-                    CustomerID = model.CustomerID,
+                    CustomerID = model.CustomerID, 
                     CustomerName = model.CustomerName,
-                    ProjectID = model.ProjectID,
+                    ProjectID = projectSession.ID,
                     CategoryStatus = CategoryStatus.NewFunction
                 };
 

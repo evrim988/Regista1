@@ -1,4 +1,5 @@
-﻿using Regista.Domain.Entities;
+﻿using Regista.Domain.Dto.SecurityModels;
+using Regista.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,6 @@ namespace Regista.Application.Repositories
         public Task<string> AddProject(Project model);
         public void Delete(int id);
         public Task<IQueryable<Project>> GetList();
+        ProjectSessionModel GetProjectKey(string key);
     }
 }

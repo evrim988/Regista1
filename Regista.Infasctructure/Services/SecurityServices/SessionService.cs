@@ -1,6 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Regista.Application.Repositories;
 using Regista.Application.Services.SecurityServices;
+using Regista.Domain.Dto.SecurityModels;
 using Regista.Domain.Entities;
+using Regista.Domain.Enums;
+using Regista.Persistance.Db;
+using Registalaser.Domain.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +19,12 @@ namespace Regista.Infasctructure.Services.SecurityServices
     public class SessionService : ISessionService
     {
         private readonly IHttpContextAccessor httpContextAccessor;
+        private readonly RegistaContext context;
 
-        public SessionService(IHttpContextAccessor _httpContextAccessor)
+        public SessionService(IHttpContextAccessor _httpContextAccessor, RegistaContext _context)
         {
             this.httpContextAccessor = _httpContextAccessor;
+            context = _context;
         }
 
         public void CleanSession()
@@ -127,5 +134,26 @@ namespace Regista.Infasctructure.Services.SecurityServices
             return Encoding.ASCII.GetBytes(objToString);
         }
 
+        public ProjectSessionModel GetProject()
+        {
+            try
+            {
+                var key = httpContextAccessor.HttpContext.Request.Headers["Authorization"].ToString();
+                return context.Projects.Where(t => t.ProjectGuid.ToString() == key && t.ObjectStatus == ObjectStatus.NonDeleted && t.Status == status.Active).Select(s => new ProjectSessionModel()
+                {
+                    ID = s.ID,
+                    Name = s.ProjectName,
+
+                }).FirstOrDefault();
+                return null;
+
+            }
+            catch (Exception)
+            {
+
+                throw new UnAuth("Giriş Yapılamadı");
+            }
+
+        }
     }
 }

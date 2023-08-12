@@ -18,7 +18,7 @@ namespace Regista.Infasctructure.Repositories
         public static void MyRepository(this IServiceCollection services)
         {
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<ISessionService, SessionService>();
             services.AddTransient<IEmailServices, EmailService>();
             services.AddTransient<ISecurityRepository, SecurityRepository>();

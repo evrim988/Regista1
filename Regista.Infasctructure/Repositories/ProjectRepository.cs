@@ -1,4 +1,5 @@
 ﻿using Regista.Application.Repositories;
+using Regista.Domain.Dto.SecurityModels;
 using Regista.Domain.Entities;
 using Regista.Persistance.Db;
 using System;
@@ -49,6 +50,24 @@ namespace Regista.Infasctructure.Repositories
         {
             var model = GetNonDeletedAndActive<Project>(t => true);
             return model;
+        }
+
+        public ProjectSessionModel GetProjectKey(string key)
+        {
+            try
+            {
+                return GetNonDeletedAndActive<Project>(t => t.ProjectGuid.ToString() == key ).Select(s=> new ProjectSessionModel()
+                {
+                    ID = s.ID,
+                    Name = s.ProjectName,
+
+                }).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public async Task<string> Update(Project model)

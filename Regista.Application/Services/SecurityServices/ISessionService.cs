@@ -1,4 +1,5 @@
-﻿using Regista.Domain.Entities;
+﻿using Regista.Domain.Dto.SecurityModels;
+using Regista.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,5 +21,7 @@ namespace Regista.Application.Services.SecurityServices
         SessionModel GetInjection();
 
         void CleanSession();
+
+        ProjectSessionModel GetProject();
     }
 }
