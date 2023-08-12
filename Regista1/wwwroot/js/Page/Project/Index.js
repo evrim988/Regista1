@@ -65,7 +65,32 @@ function GetList() {
         loadPanel: {
             enabled: true,
         },
+        onContentReady: function (e) {
 
+            var $refreshButton = $('<div id="refreshButton">').dxButton({
+                icon: 'refresh',
+                onClick: function () {
+                    grid.refresh();
+                }
+            });
+            if (e.element.find('#refreshButton').length == 0)
+                e.element
+                    .find('.dx-toolbar-after')
+                    .prepend($refreshButton);
+
+            var $filterButton = $('<div id="filterButton">').dxButton({
+                icon: 'clearformat',
+                onClick: function () {
+                    grid.clearFilter();
+                }
+            });
+            if (e.element.find('#filterButton').length == 0)
+                e.element
+                    .find('.dx-toolbar-after')
+                    .prepend($filterButton);
+
+
+        },
         editing: {
             mode: 'popup',
             allowUpdating: true,

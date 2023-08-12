@@ -165,6 +165,23 @@ function GetList() {
                 alignment: 'center',
             },
             {
+                dataField: "requestID",
+                caption: "Talep",
+                alignment: 'center',
+                lookup: {
+                    dataSource: DevExpress.data.AspNet.createStore({
+                        key: "Id",
+                        loadUrl: "/Action/GetRequest/",
+                        onBeforeSend: function (method, ajaxoptions) {
+                            console.log(ajaxoptions.data.ID);
+                            ajaxoptions.xhrFields = { withCredentials: true };
+                        }
+                    }),
+                    valueExpr: "Id",
+                    displayExpr: "name"
+                }
+            },
+            {
                 dataField: "actionDescription",
                 caption: "Aksiyon Açıklaması",
                 alignment: 'left',
@@ -175,7 +192,7 @@ function GetList() {
                 alignment: 'center',
                 lookup: {
                     dataSource: DevExpress.data.AspNet.createStore({
-                        key: "id",
+                        key: "Id",
                         loadUrl: "/Action/GetResponsible/",
                         onBeforeSend: function (method, ajaxOptions) {
                             ajaxOptions.xhrFields = { withCredentials: true };

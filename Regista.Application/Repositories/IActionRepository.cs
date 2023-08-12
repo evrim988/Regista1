@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Regista.Domain.Dto.ActionModels;
+using Regista.Domain.Dto.ResponsibleHelperModels;
 using Regista.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -21,5 +22,7 @@ namespace Regista.Application.Repositories
         public string Delete(int ID);
 
         public Task<List<SelectListItem>> ResponsiblehelperModelList();
+
+        Task<List<ResponsibleDevextremeSelectListHelper>> GetRequest();
     }
 }

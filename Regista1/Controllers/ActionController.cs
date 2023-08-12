@@ -114,5 +114,18 @@ namespace Regista1.WebApp.Controllers
                 throw ex;
             }
         }
+
+        public async Task<object> GetRequest(DataSourceLoadOptions loadOptions)
+        {
+            try
+            {
+                var model = await _uow.actionRepository.GetRequest();
+                return DataSourceLoader.Load(model, loadOptions);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

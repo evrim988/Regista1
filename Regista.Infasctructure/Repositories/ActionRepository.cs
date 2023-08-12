@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Regista.Application.Repositories;
 using Regista.Domain.Dto.ActionModels;
+using Regista.Domain.Dto.ResponsibleHelperModels;
 using Regista.Domain.Entities;
 using Regista.Persistance.Db;
 using System;
@@ -82,6 +83,31 @@ namespace Regista.Infasctructure.Repositories
             }
            
         }
+
+        public async Task<List<ResponsibleDevextremeSelectListHelper>> GetRequest()
+        {
+            try
+            {
+                List<ResponsibleDevextremeSelectListHelper> RequestHelpers = new List<ResponsibleDevextremeSelectListHelper>();
+                var model = context.requests
+                    .Where(t => true);
+                foreach (var item in model)
+                {
+                    ResponsibleDevextremeSelectListHelper helper = new ResponsibleDevextremeSelectListHelper()
+                    {
+                        ID = item.ID,
+                        Name = item.RequestName,
+                    };
+                    RequestHelpers.Add(helper);
+                }
+                return RequestHelpers;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public async Task<List<SelectListItem>> ResponsiblehelperModelList()
         {
             try
