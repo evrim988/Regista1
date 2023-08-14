@@ -13,7 +13,6 @@ builder.Services.AddSession(options =>
 
 var connectionString = builder.Configuration.GetConnectionString("RegistaDbConnection");
 builder.Services.AddControllersWithViews();
-//builder.Services.AddDbContext<RegistaContext>(opt => opt.UseSqlServer(connectionString));
 builder.Services.AddDbContext<RegistaContext>(opt => opt.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 builder.Services.MyRepository();
 var app = builder.Build();
