@@ -66,7 +66,7 @@ namespace Regista1.WebApp.Controllers
         {
             try
             {
-                await _uow.repository.Delete<Actions>(key);
+                await _uow.repository.Delete<Modules>(key);
                 await _uow.SaveChanges();
                 return Ok();
             }
