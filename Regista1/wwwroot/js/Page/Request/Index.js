@@ -109,7 +109,7 @@ function GetList() {
                     colSpan: 2,
                     items: [
                         {
-                            dataField: "NotificationType",
+                            dataField: "notificationType",
                             caption: "Bildirim Türü",
                         },
                         {
@@ -121,13 +121,25 @@ function GetList() {
                             caption: "Açıklama",
                         },
                         {
-                            dataField: "PageURL",
+                            dataField: "pageURL",
                             caption: "Sayfa Linki",
                         },
                         {
-                            dataField: "Category",
+                            dataField: "category",
                             caption: "Kategori",
                             alignment:"center"
+                        },
+                        {
+                            dataField: "version",
+                            caption: "Versiyon",
+                            alignment: 'center',
+                        },
+                        {
+                            dataField: "planedEndDate",
+                            caption: "Tamamlanma Tarihi",
+                            alignment: 'center',
+                            dataType: 'date',
+                            format: 'dd/MM/yyyy',
                         },
                         {
                             dataField: "customerID",
@@ -203,6 +215,7 @@ function GetList() {
             {
                 dataField: "modulesID",
                 caption: "Modül/Süreç",
+                alignment:"center",
                 lookup: {
                     dataSource: DevExpress.data.AspNet.createStore({
                         key: "Id",
@@ -232,7 +245,7 @@ function GetList() {
                 }
             },
             {
-                dataField: "NotificationType",
+                dataField: "notificationType",
                 caption: "Bildirim Türü",
                 alignment: 'center',
             },
@@ -247,32 +260,29 @@ function GetList() {
                 alignment: 'center',
             },
             {
-                dataField: "PageURL",
+                dataField: "pageURL",
                 caption: "Sayfa Linki",
                 alignment: 'center',
             },
             {
-                dataField: "Category",
+                dataField: "category",
                 caption: "Kategori",
                 alignment: 'center',
             },
             {
-                dataField: "PictureURL",
+                dataField: "pictureURL",
                 caption: "Görüntü",
                 alignment: 'center',
             },
             {
-                dataField: "PlanedEndDate",
+                dataField: "planedEndDate",
                 caption: "Tamamlanma Tarihi",
                 alignment: 'center',
+                dataType: 'date',
+                format: 'dd/MM/yyyy',
             },
             {
-                dataField: "RequestStatus",
-                caption: "Durum",
-                alignment: 'center',
-            },
-            {
-                dataField: "Version",
+                dataField: "version",
                 caption: "Versiyon",
                 alignment: 'center',
             },
@@ -340,7 +350,7 @@ function GetList() {
                             {
                                 dataField: "endDate",
                                 caption: "Son Tarih",
-                                alignment: 'left',
+                                alignment: 'center',
                                 dataType: 'date',
                                 format: 'dd/MM/yyyy',
                             },
