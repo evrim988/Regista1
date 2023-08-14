@@ -171,6 +171,22 @@ function GetList() {
                             }
                         },
                         {
+                            dataField: "requestStatus",
+                            caption: "Durum",
+                            alignment: 'center',
+                            lookup: {
+                                dataSource: DevExpress.data.AspNet.createStore({
+                                    key: "Id",
+                                    loadUrl: "/Request/GetRequestStatus",
+                                    onBeforeSend: function (method, ajaxoptions) {
+                                        ajaxoptions.xhrFields = { withCredentials: true };
+                                    },
+                                }),
+                                valueExpr: "Id",
+                                displayExpr: "Text"
+                            }
+                        },
+                        {
                             dataField: "modulesID",
                             caption: "Modül/Süreç",
                             lookup: {
@@ -298,6 +314,22 @@ function GetList() {
                 dataField: "pictureURL",
                 caption: "Görüntü",
                 alignment: 'center',
+            },
+            {
+                dataField: "requestStatus",
+                caption: "Durum",
+                alignment: 'center',
+                lookup: {
+                    dataSource: DevExpress.data.AspNet.createStore({
+                        key: "Id",
+                        loadUrl: "/Request/GetRequestStatus",
+                        onBeforeSend: function (method, ajaxoptions) {
+                            ajaxoptions.xhrFields = { withCredentials: true };
+                        },
+                    }),
+                    valueExpr: "Id",
+                    displayExpr: "Text"
+                }
             },
             {
                 dataField: "version",
