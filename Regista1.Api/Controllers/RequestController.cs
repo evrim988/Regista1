@@ -31,12 +31,12 @@ namespace Regista1.Api.Controllers
             {
                 var request = new Request()
                 {
-                    RequestName = model.RequestName,
+                    RequestSubject = model.RequestName,
                     Description = model.Description,
-                    CustomerID = model.CustomerID, 
+                    CustomerID = model.CustomerID,
                     CustomerName = model.CustomerName,
                     ProjectID = projectSession.ID,
-                    CategoryStatus = CategoryStatus.NewFunction
+                    Category = "Sınıflandırılmamış"
                 };
 
                 await _uow.requestRepository.RequestAdd(request);

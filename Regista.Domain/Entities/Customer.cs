@@ -26,9 +26,9 @@ namespace Regista.Domain.Entities
         [StringLength(600)]
         [MinLength(3, ErrorMessage = "{0} {1} karakterden küçük olamaz")]
         [MaxLength(600, ErrorMessage = "{0} {1} karakterden büyük olamaz")]
-        public string? Adress { get; set; }
+        public string? Address { get; set; }
 
-        public string? ContectEmail { get; set; }
+        public string? ContactEmail { get; set; }
 
         public string? EmailHost { get; set; }
 
@@ -39,7 +39,7 @@ namespace Regista.Domain.Entities
         public string? EmailPassword { get; set; }
 
         [DisplayName("EMail")]
-        public string EMail { get; set; }
+        public string Email { get; set; }
         
         public string? ApiKey { get; set; }
 
@@ -47,7 +47,7 @@ namespace Regista.Domain.Entities
         public int? CustomerDescriptionID { get; set; }
 
         public ICollection<Request> Requests { get; set; }
-        public ICollection<ProjectNote> projectNotes { get; set; }
+        public ICollection<ProjectNote> ProjectNotes { get; set; }
        
     }
 }

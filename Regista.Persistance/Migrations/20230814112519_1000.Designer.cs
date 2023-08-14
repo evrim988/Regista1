@@ -11,7 +11,7 @@ using Regista.Persistance.Db;
 namespace Regista.Persistance.Migrations
 {
     [DbContext(typeof(RegistaContext))]
-    [Migration("20230814070322_1000")]
+    [Migration("20230814112519_1000")]
     partial class _1000
     {
         /// <inheritdoc />
@@ -82,15 +82,14 @@ namespace Regista.Persistance.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Adress")
+                    b.Property<string>("Address")
                         .HasMaxLength(600)
                         .HasColumnType("varchar(600)");
 
                     b.Property<string>("ApiKey")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("ContectEmail")
+                    b.Property<string>("ContactEmail")
                         .HasColumnType("longtext");
 
                     b.Property<int>("CreatedBy")
@@ -99,10 +98,10 @@ namespace Regista.Persistance.Migrations
                     b.Property<DateTime?>("CreatedOn")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("CustomerDescriptionID")
+                    b.Property<int?>("CustomerDescriptionID")
                         .HasColumnType("int");
 
-                    b.Property<string>("EMail")
+                    b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("longtext");
 
@@ -143,6 +142,47 @@ namespace Regista.Persistance.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("Regista.Domain.Entities.Modules", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CreatedOn")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Key")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("LastModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("LastModifiedOn")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("ObjectStatus")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Modules");
                 });
 
             modelBuilder.Entity("Regista.Domain.Entities.Project", b =>
@@ -236,7 +276,7 @@ namespace Regista.Persistance.Migrations
 
                     b.HasIndex("ProjectID");
 
-                    b.ToTable("projectNotes");
+                    b.ToTable("ProjectNotes");
                 });
 
             modelBuilder.Entity("Regista.Domain.Entities.Request", b =>
@@ -245,8 +285,9 @@ namespace Regista.Persistance.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("CategoryStatus")
-                        .HasColumnType("int");
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<int>("CreatedBy")
                         .HasColumnType("int");
@@ -271,26 +312,56 @@ namespace Regista.Persistance.Migrations
                     b.Property<DateTime?>("LastModifiedOn")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("ModulesID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("NotificationType")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<int>("ObjectStatus")
                         .HasColumnType("int");
+
+                    b.Property<string>("PageURL")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("PictureURL")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("PlanedEndDate")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int>("ProjectID")
                         .HasColumnType("int");
 
-                    b.Property<string>("RequestName")
+                    b.Property<int>("RequestStatus")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RequestSubject")
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<int>("Status")
                         .HasColumnType("int");
+
+                    b.Property<string>("Version")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.HasKey("ID");
 
                     b.HasIndex("CustomerID");
 
+                    b.HasIndex("ModulesID");
+
                     b.HasIndex("ProjectID");
 
-                    b.ToTable("requests");
+                    b.ToTable("Requests");
                 });
 
             modelBuilder.Entity("Regista.Domain.Entities.Task", b =>
@@ -432,7 +503,7 @@ namespace Regista.Persistance.Migrations
             modelBuilder.Entity("Regista.Domain.Entities.ProjectNote", b =>
                 {
                     b.HasOne("Regista.Domain.Entities.Customer", null)
-                        .WithMany("projectNotes")
+                        .WithMany("ProjectNotes")
                         .HasForeignKey("CustomerID");
 
                     b.HasOne("Regista.Domain.Entities.Project", "Project")
@@ -452,6 +523,12 @@ namespace Regista.Persistance.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Regista.Domain.Entities.Modules", "Modules")
+                        .WithMany()
+                        .HasForeignKey("ModulesID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Regista.Domain.Entities.Project", "Project")
                         .WithMany("Requests")
                         .HasForeignKey("ProjectID")
@@ -459,6 +536,8 @@ namespace Regista.Persistance.Migrations
                         .IsRequired();
 
                     b.Navigation("Customer");
+
+                    b.Navigation("Modules");
 
                     b.Navigation("Project");
                 });
@@ -495,9 +574,9 @@ namespace Regista.Persistance.Migrations
 
             modelBuilder.Entity("Regista.Domain.Entities.Customer", b =>
                 {
-                    b.Navigation("Requests");
+                    b.Navigation("ProjectNotes");
 
-                    b.Navigation("projectNotes");
+                    b.Navigation("Requests");
                 });
 
             modelBuilder.Entity("Regista.Domain.Entities.Project", b =>

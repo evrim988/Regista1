@@ -108,7 +108,7 @@ namespace Regista.Infasctructure.Repositories
             try
             {
                 return GetNonDeletedAndActive<Request>(t => true)
-                    .Select(s => new SelectListItem { Value = s.ID.ToString(), Text = s.RequestName }).ToList();
+                    .Select(s => new SelectListItem { Value = s.ID.ToString(), Text = s.RequestSubject }).ToList();
             }
             catch (Exception ex)
             {
@@ -151,14 +151,14 @@ namespace Regista.Infasctructure.Repositories
             try
             {
                 List<ResponsibleDevextremeSelectListHelper> ResponsibleHelpers = new List<ResponsibleDevextremeSelectListHelper>();
-                var model = context.requests
+                var model = context.Requests
                     .Where(t => true);
                 foreach (var item in model)
                 {
                     ResponsibleDevextremeSelectListHelper helper = new ResponsibleDevextremeSelectListHelper()
                     {
                         ID = item.ID,
-                        Name = item.RequestName,
+                        Name = item.RequestSubject,
                     };
                     ResponsibleHelpers.Add(helper);
                 }

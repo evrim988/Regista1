@@ -35,8 +35,8 @@ namespace Regista1.Api.Controllers
                 var model = new CustomerDTO();
                 model.Name = currentCustomer.Name;
                 model.Surname = currentCustomer.Surname;
-                model.Email = currentCustomer.EMail;
-                model.Adress = currentCustomer.Adress;
+                model.Email = currentCustomer.Email;
+                model.Adress = currentCustomer.Address;
                 if (currentCustomer == null)
                     return BadRequest();
                 return Ok(model);
@@ -56,8 +56,8 @@ namespace Regista1.Api.Controllers
                 {
                     Name = model.Name,
                     Surname = model.Surname,
-                    Adress = model.Adress,
-                    EMail = model.Email
+                    Address = model.Adress,
+                    Email = model.Email
                 };
                 await _uow.customerRepository.CustomerAdd(customer);
                 return Ok();
