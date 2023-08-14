@@ -26,7 +26,7 @@ public class Request : BaseEntitiy
     [DisplayName("Versiyon")]
     public string Version { get; set; }
     public int ModulesID { get; set; }
-    public Modules Modules { get; set; }
+    //public Modules Modules { get; set; }
     [DisplayName("Müşteri Adı")]
     public string CustomerName { get; set; }
     public int CustomerID { get; set; }
