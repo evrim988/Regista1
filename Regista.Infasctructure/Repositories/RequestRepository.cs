@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Regista.Application.Repositories;
 using Regista.Domain.Dto.ActionModels;
 using Regista.Domain.Dto.ResponsibleHelperModels;
@@ -121,7 +122,15 @@ namespace Regista.Infasctructure.Repositories
             }).ToListAsync();
            
         }
+        //public Task<List<SelectListItem>> NotificationTypeSelectList()
+        //{
+        //    List<SelectListItem> selectListItems = new List<SelectListItem>();
 
-       
+        //    selectListItems.Add(new SelectListItem { Value = "-1", Text = "Hata" });
+        //    selectListItems.Add(new SelectListItem { Value = "0", Text = "Öneri" });
+
+        //    return selectListItems.ToList();
+
+        //}
     }
 }

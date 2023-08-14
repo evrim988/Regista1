@@ -97,24 +97,32 @@ function GetList() {
             allowDeleting: true,
             allowAdding: true,
             popup: {
-                title: 'Ekle',
+                title: 'Yeni Bildirim Ekle',
                 showTitle: true,
-                width: 500,
-                height: 325,
+                width: 800,
+                height: 525,
             },
             form: {
                 items: [{
                     itemType: 'group',
-                    colCount: 2,
+                    colCount: 1,
                     colSpan: 2,
                     items: [
                         {
-                            dataField: "requestName",
-                            caption: "Talep Adı",
+                            dataField: "NotificationType",
+                            caption: "Bildirim Türü",
+                        },
+                        {
+                            dataField: "RequestSubject",
+                            caption: "Konu",
                         },
                         {
                             dataField: "description",
                             caption: "Açıklama",
+                        },
+                        {
+                            dataField: "PageURL",
+                            caption: "Sayfa Linki",
                         },
                         {
                             dataField: "categoryStatus",
@@ -172,19 +180,41 @@ function GetList() {
         columns: [
 
             {
-                dataField: "ProjectID",
+                dataField: "projectID",
                 caption: "Proje",
                 alignment: 'center',
+                lookup: {
+                    dataSource: DevExpress.data.AspNet.createStore({
+                        key: "Id",
+                        loadUrl: "/Request/GetProject/",
+                        onBeforeSend: function (method, ajaxOptions) {
+                            ajaxOptions.xhrFields = { withCredentials: true, };
+                        },
+                    }),
+                    valueExpr: "id",
+                    displayExpr: "name",
+                }
             },
             {
                 dataField: "ModulesID",
-                caption: "Modül",
+                caption: "Modül/Süreç",
                 alignment: 'center',
             },
             {
-                dataField: "CustomerID",
-                caption: "Müşteri",
+                dataField: "customerID",
+                caption: "Müşteri Adı",
                 alignment: 'center',
+                lookup: {
+                    dataSource: DevExpress.data.AspNet.createStore({
+                        key: "Id",
+                        loadUrl: "/Request/GetCustomer/",
+                        onBeforeSend: function (method, ajaxOptions) {
+                            ajaxOptions.xhrFields = { withCredentials: true, };
+                        },
+                    }),
+                    valueExpr: "id",
+                    displayExpr: "name",
+                }
             },
             {
                 dataField: "NotificationType",
@@ -210,16 +240,6 @@ function GetList() {
                 dataField: "Category",
                 caption: "Kategori",
                 alignment: 'center',
-            },
-            {
-                dataField: "PictureURL",
-                caption: "Görüntü",
-                alignment: 'center',
-            },
-            {
-                dataField: "categoryStatus",
-                caption: "Kategori",
-                alignment: 'center',
                 lookup: {
                     dataSource: DevExpress.data.AspNet.createStore({
                         key: "ID",
@@ -233,38 +253,25 @@ function GetList() {
                 }
             },
             {
-                dataField: "customerID",
-                caption: "Müşteri Adı",
+                dataField: "PictureURL",
+                caption: "Görüntü",
                 alignment: 'center',
-                lookup: {
-                    dataSource: DevExpress.data.AspNet.createStore({
-                        key: "Id",
-                        loadUrl: "/Request/GetCustomer/",
-                        onBeforeSend: function (method, ajaxOptions) {
-                            ajaxOptions.xhrFields = { withCredentials: true, };
-                        },
-                    }),
-                    valueExpr: "id",
-                    displayExpr: "name",
-                }
             },
             {
-                dataField: "projectID",
-                caption: "Proje",
+                dataField: "PlanedEndDate",
+                caption: "Tamamlanma Tarihi",
                 alignment: 'center',
-                lookup: {
-                    dataSource: DevExpress.data.AspNet.createStore({
-                        key: "Id",
-                        loadUrl: "/Request/GetProject/",
-                        onBeforeSend: function (method, ajaxOptions) {
-                            ajaxOptions.xhrFields = { withCredentials: true, };
-                        },
-                    }),
-                    valueExpr: "id",
-                    displayExpr: "name",
-                }
             },
-
+            {
+                dataField: "RequestStatus",
+                caption: "Durum",
+                alignment: 'center',
+            },
+            {
+                dataField: "Version",
+                caption: "Versiyon",
+                alignment: 'center',
+            },
         ],
         masterDetail: {
             enabled: true,
