@@ -147,7 +147,6 @@ function GetList() {
                                 displayExpr: "name",
                             }
                         },
-
                         {
                             dataField: "projectID",
                             caption: "Proje",
