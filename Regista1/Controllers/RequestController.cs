@@ -108,9 +108,9 @@ namespace Regista1.WebApp.Controllers
                 await uow.SaveChanges();
                 return "";
             } 
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw e;
+                throw ex;
             }
         }
 
@@ -122,11 +122,26 @@ namespace Regista1.WebApp.Controllers
                 var resultJson = JsonConvert.SerializeObject(models);
                 return Content(resultJson, "application/json");
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw e;
+                throw ex;
             }
         }
+
+        public async Task<IActionResult> GetRequestStatus()
+        {
+            try
+            {
+                var models = uow.repository.GetEnumSelect<RequestStatus>();
+                var resultJson = JsonConvert.SerializeObject(models);
+                return Content(resultJson, "application/json");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public async Task<object> GetProject(DataSourceLoadOptions loadOptions)
         {
             try

@@ -145,13 +145,7 @@ function GetList() {
                             caption: "Versiyon",
                             alignment: 'center',
                         },
-                        {
-                            dataField: "planedEndDate",
-                            caption: "Tamamlanma Tarihi",
-                            alignment: 'center',
-                            dataType: 'date',
-                            format: 'dd/MM/yyyy',
-                        },
+                      
                         {
                             dataField: "customerID",
                             caption: "Müşteri Adı",
@@ -258,6 +252,7 @@ function GetList() {
             {
                 dataField: "notificationType",
                 caption: "Bildirim Türü",
+                alignment: 'center',
                 lookup: {
                     dataSource: DevExpress.data.AspNet.createStore({
                         key: "Id",
@@ -295,12 +290,22 @@ function GetList() {
                 caption: "Görüntü",
                 alignment: 'center',
             },
+            
             {
-                dataField: "planedEndDate",
-                caption: "Tamamlanma Tarihi",
+                dataField: "requestStatus",
+                caption: "Durum",
                 alignment: 'center',
-                dataType: 'date',
-                format: 'dd/MM/yyyy',
+                lookup: {
+                    dataSource: DevExpress.data.AspNet.createStore({
+                        key: "Id",
+                        loadUrl: "/Request/GetRequestStatus",
+                        onBeforeSend: function (method, ajaxoptions) {
+                            ajaxoptions.xhrFields = { withCredentials: true };
+                        },
+                    }),
+                    valueExpr: "Id",
+                    displayExpr: "Text"
+                }
             },
             {
                 dataField: "version",
@@ -395,7 +400,8 @@ function GetList() {
                                     valueExpr: "Id",
                                     displayExpr: "Text"
                                 }
-                            }
+                            },
+
                         ],
                         dataSource: DevExpress.data.AspNet.createStore({
                             key: "id",
