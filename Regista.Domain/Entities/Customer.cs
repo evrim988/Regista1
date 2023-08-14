@@ -38,9 +38,6 @@ namespace Regista.Domain.Entities
 
         public string? EmailPassword { get; set; }
 
-        [DisplayName("FirmaAdı")]
-        public string FirmaAdı { get; set; }
-
         [DisplayName("EMail")]
         public string EMail { get; set; }
         

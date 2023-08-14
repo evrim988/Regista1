@@ -96,10 +96,6 @@ function GetList() {
                             caption: "Adres",
                         },
                         {
-                            dataField: "firmaAdı",
-                            caption: "Firma Adı",
-                        },
-                        {
                             dataField: "eMail",
                             caption: "EMail",
                         },
@@ -154,20 +150,13 @@ function GetList() {
                 alignment: 'center',
             },
             {
-                dataField: "firmaAdı",
-                caption: "Firma Adı",
-                alignment: 'center',
-            },
-            {
                 dataField: "eMail",
                 caption: "EMail",
                 alignment: 'center',
             },
             {
                 type: "buttons",
-                buttons: ["edit", "delete",
-
-                ]
+                buttons: ["edit", "delete",]
 
             },
         ],
