@@ -151,7 +151,7 @@ namespace Regista.Persistance.Migrations
                         column: x => x.ProjectID,
                         principalTable: "Projects",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
