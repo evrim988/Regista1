@@ -7,6 +7,7 @@ using Regista.Domain.Entities;
 using Regista.Domain.Enums;
 using Regista.Infasctructure.Repositories;
 using Regista.Persistance.Db;
+using System.Xml.Linq;
 
 namespace Regista1.WebApp.Controllers
 {
@@ -131,6 +132,19 @@ namespace Regista1.WebApp.Controllers
             {
                 var responsibleHelpers = await uow.requestRepository.GetProject();
                 return DataSourceLoader.Load(responsibleHelpers, loadOptions);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<object> GetModules(DataSourceLoadOptions options)
+        {
+            try
+            {
+                var model = await uow.requestRepository.GetModuleSelect();
+                return DataSourceLoader.Load(model, options);
             }
             catch (Exception ex)
             {

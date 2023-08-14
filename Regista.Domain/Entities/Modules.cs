@@ -14,6 +14,6 @@ namespace Regista.Domain.Entities
 
         [DisplayName("Modül Açıklaması")]
         public string Description { get; set; }
-        public string Key { get; set; }
+        public string? Key { get; set; }
     }
 }

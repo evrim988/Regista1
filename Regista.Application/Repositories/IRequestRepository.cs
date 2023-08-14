@@ -1,4 +1,5 @@
-﻿using Regista.Domain.Dto.ActionModels;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Regista.Domain.Dto.ActionModels;
 using Regista.Domain.Dto.ResponsibleHelperModels;
 using Regista.Domain.Entities;
 using System;
@@ -16,6 +17,7 @@ namespace Regista.Application.Repositories
         public Task<IQueryable<Request>> GetList();
         Task<List<ResponsibleDevextremeSelectListHelper>> GetProject();
         Task<List<ResponsibleDevextremeSelectListHelper>> GetCustomer();
+        public Task<List<SelectListItem>> GetModuleSelect();
         Task<List<ActionDTO>> GetActionDetail(int RequestId);
     }
 }

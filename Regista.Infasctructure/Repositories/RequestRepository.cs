@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Regista.Application.Repositories;
 using Regista.Domain.Dto.ActionModels;
 using Regista.Domain.Dto.ResponsibleHelperModels;
@@ -122,6 +123,17 @@ namespace Regista.Infasctructure.Repositories
            
         }
 
-       
+        public async Task<List<SelectListItem>> GetModuleSelect()
+        {
+            try
+            {
+                return GetNonDeletedAndActive<Modules>(t => true)
+                    .Select(s => new SelectListItem { Value = s.ID.ToString(), Text = s.Name }).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
