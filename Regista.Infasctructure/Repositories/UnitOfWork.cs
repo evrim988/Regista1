@@ -77,6 +77,12 @@ namespace Regista.Infasctructure.Repositories
             get => _actionRepository ?? (_actionRepository = new ActionRepository(context, session,this));
         }
 
+        private IModulesRepository _modulesRepository;
+        public IModulesRepository modulesRepository 
+        {
+            get => _modulesRepository ?? (_modulesRepository=new ModulesRepository(context,session,this));
+        }
+
         public async Task<int> SaveChanges()
         {
             try

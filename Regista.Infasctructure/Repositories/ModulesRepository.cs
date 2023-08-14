@@ -46,21 +46,10 @@ namespace Regista.Infasctructure.Repositories
             return "";
         }
 
-        public IQueryable<ModulesDTO> GetModules()
+        public async Task<IQueryable<Modules>> GetModules()
         {
-            try
-            {
-                return GetNonDeletedAndActive<Modules>(t => true).Select(s => new ModulesDTO()
-                {
-                    Description = s.Description,
-                    Name = s.Name,
-                    Key = s.Key,
-                });
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
+            var model = GetNonDeletedAndActive<Modules>(t => true);
+            return model;
         }
 
         public async Task<string> UpdatesModules(Modules model)

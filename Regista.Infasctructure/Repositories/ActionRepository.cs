@@ -96,7 +96,7 @@ namespace Regista.Infasctructure.Repositories
                     ResponsibleDevextremeSelectListHelper helper = new ResponsibleDevextremeSelectListHelper()
                     {
                         ID = item.ID,
-                        Name = item.RequestName,
+                        Name = item.RequestSubject,
                     };
                     RequestHelpers.Add(helper);
                 }

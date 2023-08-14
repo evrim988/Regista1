@@ -18,6 +18,7 @@ namespace Regista.Application.Repositories
        ITaskRepository taskRepository { get; }
        IActionRepository actionRepository { get; }
        IHomeRepository homeRepository { get; }
+       IModulesRepository modulesRepository { get; }
        Task<int> SaveChanges();
        SessionModel GetSession();
     }

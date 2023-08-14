@@ -10,7 +10,7 @@ namespace Regista.Application.Repositories
 {
     public interface IModulesRepository
     {
-        IQueryable<ModulesDTO> GetModules();
+        public Task<IQueryable<Modules>> GetModules();
         public Task<string> CreateModules(Modules model);
         public Task<string> UpdatesModules(Modules model);
         public string DeleteModules(int ID);
