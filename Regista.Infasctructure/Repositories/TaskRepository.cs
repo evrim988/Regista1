@@ -151,7 +151,7 @@ namespace Regista.Infasctructure.Repositories
             try
             {
                 List<ResponsibleDevextremeSelectListHelper> ResponsibleHelpers = new List<ResponsibleDevextremeSelectListHelper>();
-                var model = context.Requests
+                var model = context.requests
                     .Where(t => true);
                 foreach (var item in model)
                 {

@@ -35,7 +35,7 @@ namespace Regista.Infasctructure.Services.EmailServices
             try
             {
                 MailMessage mm = new MailMessage();
-                mm.From = new MailAddress(UserWhitCustomer.ContactEmail, "Bildirim Mail");
+                mm.From = new MailAddress(UserWhitCustomer.ContectEmail, "Bildirim Mail");
                 mm.To.Add(email.To);
                 if (email.CCes != null)
                 {
@@ -53,11 +53,11 @@ namespace Regista.Infasctructure.Services.EmailServices
 
                 mm.IsBodyHtml = true;
                 mm.Body = email.Body;
-                SmtpClient smtp = new SmtpClient(UserWhitCustomer.ContactEmail);
+                SmtpClient smtp = new SmtpClient(UserWhitCustomer.ContectEmail);
                 smtp.Host = UserWhitCustomer.EmailHost;
                 smtp.Port = Convert.ToInt32(UserWhitCustomer.EmailPort);
                 smtp.EnableSsl = UserWhitCustomer.EnableSsl;
-                NetworkCredential nc = new NetworkCredential(UserWhitCustomer.ContactEmail, UserWhitCustomer.EmailPassword);//Emaili Gönderen Hesap
+                NetworkCredential nc = new NetworkCredential(UserWhitCustomer.ContectEmail, UserWhitCustomer.EmailPassword);//Emaili Gönderen Hesap
 
                 smtp.Credentials = nc;
                 System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate (object s,
