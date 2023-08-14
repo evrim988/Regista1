@@ -34,7 +34,6 @@ namespace Regista1.Api.Controllers
                     RequestSubject = model.RequestName,
                     Description = model.Description,
                     CustomerID = model.CustomerID,
-                    CustomerName = model.CustomerName,
                     ProjectID = projectSession.ID,
                     Category = "Sınıflandırılmamış"
                 };

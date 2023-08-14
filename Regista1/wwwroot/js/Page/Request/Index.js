@@ -113,7 +113,7 @@ function GetList() {
                             caption: "Bildirim Türü",
                         },
                         {
-                            dataField: "RequestSubject",
+                            dataField: "requestSubject",
                             caption: "Konu",
                         },
                         {
@@ -125,19 +125,9 @@ function GetList() {
                             caption: "Sayfa Linki",
                         },
                         {
-                            dataField: "categoryStatus",
+                            dataField: "Category",
                             caption: "Kategori",
-                            lookup: {
-                                dataSource: DevExpress.data.AspNet.createStore({
-                                    key: "iD",
-                                    loadUrl: "/Request/GetCategoryStatus/",
-                                    onBeforeSend: function (method, ajaxOptions) {
-                                        ajaxOptions.xhrFields = { withCredentials: true, };
-                                    },
-                                }),
-                                valueExpr: "Id",
-                                displayExpr: "Text",
-                            }
+                            alignment:"center"
                         },
                         {
                             dataField: "customerID",
@@ -169,6 +159,21 @@ function GetList() {
                                 valueExpr: "id",
                                 displayExpr: "name",
                             }
+                        },
+                        {
+                            dataField: "modulesID",
+                            caption: "Modül/Süreç",
+                            lookup: {
+                                dataSource: DevExpress.data.AspNet.createStore({
+                                    key: "Id",
+                                    loadUrl: "/Request/GetModules/",
+                                    onBeforeSend: function (method, ajaxOptions) {
+                                        ajaxOptions.xhrFields = { withCredentials: true, };
+                                    },
+                                }),
+                                valueExpr: "id",
+                                displayExpr: "text",
+                            }
                         }
                     ],
                 }],
@@ -196,9 +201,19 @@ function GetList() {
                 }
             },
             {
-                dataField: "ModulesID",
+                dataField: "modulesID",
                 caption: "Modül/Süreç",
-                alignment: 'center',
+                lookup: {
+                    dataSource: DevExpress.data.AspNet.createStore({
+                        key: "Id",
+                        loadUrl: "/Request/GetModules/",
+                        onBeforeSend: function (method, ajaxOptions) {
+                            ajaxOptions.xhrFields = { withCredentials: true, };
+                        },
+                    }),
+                    valueExpr: "id",
+                    displayExpr: "name",
+                }
             },
             {
                 dataField: "customerID",
@@ -240,17 +255,6 @@ function GetList() {
                 dataField: "Category",
                 caption: "Kategori",
                 alignment: 'center',
-                lookup: {
-                    dataSource: DevExpress.data.AspNet.createStore({
-                        key: "ID",
-                        loadUrl: "/Request/GetCategoryStatus/",
-                        onBeforeSend: function (method, ajaxOptions) {
-                            ajaxOptions.xhrFields = { withCredentials: true, };
-                        },
-                    }),
-                    valueExpr: "Id",
-                    displayExpr: "Text",
-                }
             },
             {
                 dataField: "PictureURL",
@@ -322,7 +326,7 @@ function GetList() {
                                     dataSource: DevExpress.data.AspNet.createStore({
                                         loadUrl: "/Action/GetResponsible/",
                                     }),
-                                    valueExpr: "id", 
+                                    valueExpr: "id",
                                     displayExpr: "name"
                                 }
                             },
@@ -366,9 +370,9 @@ function GetList() {
                             key: "id",
                             loadUrl: "/Request/GetRequestDetail/",
                             loadParams: { ID: options.data.id },
-                            updateUrl: "/Request/EditActionItem/" ,
+                            updateUrl: "/Request/EditActionItem/",
                             insertUrl: "/Request/AddActionItem/",
-                            deleteUrl:"/Request/DeleteActionItem/",
+                            deleteUrl: "/Request/DeleteActionItem/",
                             onBeforeSend: function (method, ajaxoptions) {
                                 ajaxoptions.data.id = options.data.id;
                                 ajaxoptions.xhrFields = { withCredentials: true };

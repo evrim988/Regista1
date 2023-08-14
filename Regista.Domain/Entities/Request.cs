@@ -10,13 +10,13 @@ public class Request : BaseEntitiy
     [DisplayName("Açıklama")]
     public string Description { get; set; }
     [DisplayName("Kategori")]
-    public string Category { get; set; }
+    public string? Category { get; set; }
     [DisplayName("Bildirim Türü")]
-    public string NotificationType { get; set; }
+    public string? NotificationType { get; set; }
     [DisplayName("Sayfa Linki")]
-    public string PageURL { get; set; }
+    public string? PageURL { get; set; }
     [DisplayName("Görüntü")]
-    public string PictureURL { get; set; }
+    public string? PictureURL { get; set; }
     [DisplayName("Başlangıç Tarihi")]
     public DateTime StartDate { get; set; }
     [DisplayName("Bitiş Tarihi")]
@@ -27,8 +27,6 @@ public class Request : BaseEntitiy
     public string Version { get; set; }
     public int ModulesID { get; set; }
     public Modules Modules { get; set; }
-    [DisplayName("Müşteri Adı")]
-    public string CustomerName { get; set; }
     public int CustomerID { get; set; }
     public Customer Customer { get; set; }
     public int ProjectID { get; set; }

@@ -122,15 +122,30 @@ namespace Regista.Infasctructure.Repositories
             }).ToListAsync();
            
         }
-        //public Task<List<SelectListItem>> NotificationTypeSelectList()
-        //{
-        //    List<SelectListItem> selectListItems = new List<SelectListItem>();
 
-        //    selectListItems.Add(new SelectListItem { Value = "-1", Text = "Hata" });
-        //    selectListItems.Add(new SelectListItem { Value = "0", Text = "Öneri" });
+        public async Task<List<ResponsibleDevextremeSelectListHelper>> GetModuleSelect()
+        {
+            try
+            {
+                List<ResponsibleDevextremeSelectListHelper> ModulersHelpers = new List<ResponsibleDevextremeSelectListHelper>();
+                var model = context.Modules
+                    .Where(t => true);
+                foreach (var item in model)
+                {
+                    ResponsibleDevextremeSelectListHelper helper = new ResponsibleDevextremeSelectListHelper()
+                    {
+                        ID = item.ID,
+                        Name = item.Name,
+                    };
+                    ModulersHelpers.Add(helper);
+                }
+                return ModulersHelpers;
+            }
+            catch (Exception)
+            {
 
-        //    return selectListItems.ToList();
-
-        //}
+                throw;
+            }
+        }
     }
 }
