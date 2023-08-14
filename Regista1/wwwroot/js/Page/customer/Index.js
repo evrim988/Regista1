@@ -155,6 +155,11 @@ function GetList() {
                 alignment: 'center',
             },
             {
+                dataField: "customerDescriptionID",  
+                caption: "Müşteri Tanım No",
+                alignment: 'center',
+            },
+            {
                 type: "buttons",
                 buttons: ["edit", "delete",]
 

@@ -37,7 +37,6 @@ namespace Regista1.Api.Controllers
                 model.Surname = currentCustomer.Surname;
                 model.Email = currentCustomer.EMail;
                 model.Adress = currentCustomer.Adress;
-                model.FirmaAdı = currentCustomer.FirmaAdı;
                 if (currentCustomer == null)
                     return BadRequest();
                 return Ok(model);
@@ -57,7 +56,6 @@ namespace Regista1.Api.Controllers
                 {
                     Name = model.Name,
                     Surname = model.Surname,
-                    FirmaAdı = model.FirmaAdı,
                     Adress = model.Adress,
                     EMail = model.Email
                 };
