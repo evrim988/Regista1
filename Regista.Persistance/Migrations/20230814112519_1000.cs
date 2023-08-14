@@ -25,9 +25,9 @@ namespace Regista.Persistance.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Surname = table.Column<string>(type: "varchar(150)", maxLength: 150, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Adress = table.Column<string>(type: "varchar(600)", maxLength: 600, nullable: true)
+                    Address = table.Column<string>(type: "varchar(600)", maxLength: 600, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    ContectEmail = table.Column<string>(type: "longtext", nullable: true)
+                    ContactEmail = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     EmailHost = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -36,11 +36,11 @@ namespace Regista.Persistance.Migrations
                     EnableSsl = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     EmailPassword = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    EMail = table.Column<string>(type: "longtext", nullable: false)
+                    Email = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    ApiKey = table.Column<string>(type: "longtext", nullable: false)
+                    ApiKey = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    CustomerDescriptionID = table.Column<int>(type: "int", nullable: false),
+                    CustomerDescriptionID = table.Column<int>(type: "int", nullable: true),
                     CreatedOn = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     LastModifiedOn = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     CreatedBy = table.Column<int>(type: "int", nullable: false),
@@ -51,6 +51,31 @@ namespace Regista.Persistance.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Customers", x => x.ID);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Modules",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Description = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Key = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    CreatedOn = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    LastModifiedOn = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    CreatedBy = table.Column<int>(type: "int", nullable: false),
+                    LastModifiedBy = table.Column<int>(type: "int", nullable: false),
+                    ObjectStatus = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Modules", x => x.ID);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -117,7 +142,7 @@ namespace Regista.Persistance.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "projectNotes",
+                name: "ProjectNotes",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
@@ -140,14 +165,14 @@ namespace Regista.Persistance.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_projectNotes", x => x.ID);
+                    table.PrimaryKey("PK_ProjectNotes", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_projectNotes_Customers_CustomerID",
+                        name: "FK_ProjectNotes_Customers_CustomerID",
                         column: x => x.CustomerID,
                         principalTable: "Customers",
                         principalColumn: "ID");
                     table.ForeignKey(
-                        name: "FK_projectNotes_Projects_ProjectID",
+                        name: "FK_ProjectNotes_Projects_ProjectID",
                         column: x => x.ProjectID,
                         principalTable: "Projects",
                         principalColumn: "ID",
@@ -156,16 +181,29 @@ namespace Regista.Persistance.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "requests",
+                name: "Requests",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    RequestName = table.Column<string>(type: "longtext", nullable: false)
+                    RequestSubject = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Description = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    CategoryStatus = table.Column<int>(type: "int", nullable: false),
+                    Category = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    NotificationType = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    PageURL = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    PictureURL = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    StartDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    PlanedEndDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    RequestStatus = table.Column<int>(type: "int", nullable: false),
+                    Version = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    ModulesID = table.Column<int>(type: "int", nullable: false),
                     CustomerName = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     CustomerID = table.Column<int>(type: "int", nullable: false),
@@ -179,15 +217,21 @@ namespace Regista.Persistance.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_requests", x => x.ID);
+                    table.PrimaryKey("PK_Requests", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_requests_Customers_CustomerID",
+                        name: "FK_Requests_Customers_CustomerID",
                         column: x => x.CustomerID,
                         principalTable: "Customers",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_requests_Projects_ProjectID",
+                        name: "FK_Requests_Modules_ModulesID",
+                        column: x => x.ModulesID,
+                        principalTable: "Modules",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Requests_Projects_ProjectID",
                         column: x => x.ProjectID,
                         principalTable: "Projects",
                         principalColumn: "ID",
@@ -221,9 +265,9 @@ namespace Regista.Persistance.Migrations
                 {
                     table.PrimaryKey("PK_Actions", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Actions_requests_RequestID",
+                        name: "FK_Actions_Requests_RequestID",
                         column: x => x.RequestID,
-                        principalTable: "requests",
+                        principalTable: "Requests",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 })
@@ -265,9 +309,9 @@ namespace Regista.Persistance.Migrations
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Tasks_requests_RequestID",
+                        name: "FK_Tasks_Requests_RequestID",
                         column: x => x.RequestID,
-                        principalTable: "requests",
+                        principalTable: "Requests",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 })
@@ -279,23 +323,28 @@ namespace Regista.Persistance.Migrations
                 column: "RequestID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_projectNotes_CustomerID",
-                table: "projectNotes",
+                name: "IX_ProjectNotes_CustomerID",
+                table: "ProjectNotes",
                 column: "CustomerID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_projectNotes_ProjectID",
-                table: "projectNotes",
+                name: "IX_ProjectNotes_ProjectID",
+                table: "ProjectNotes",
                 column: "ProjectID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_requests_CustomerID",
-                table: "requests",
+                name: "IX_Requests_CustomerID",
+                table: "Requests",
                 column: "CustomerID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_requests_ProjectID",
-                table: "requests",
+                name: "IX_Requests_ModulesID",
+                table: "Requests",
+                column: "ModulesID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Requests_ProjectID",
+                table: "Requests",
                 column: "ProjectID");
 
             migrationBuilder.CreateIndex(
@@ -321,7 +370,7 @@ namespace Regista.Persistance.Migrations
                 name: "Actions");
 
             migrationBuilder.DropTable(
-                name: "projectNotes");
+                name: "ProjectNotes");
 
             migrationBuilder.DropTable(
                 name: "Tasks");
@@ -330,10 +379,13 @@ namespace Regista.Persistance.Migrations
                 name: "Users");
 
             migrationBuilder.DropTable(
-                name: "requests");
+                name: "Requests");
 
             migrationBuilder.DropTable(
                 name: "Customers");
+
+            migrationBuilder.DropTable(
+                name: "Modules");
 
             migrationBuilder.DropTable(
                 name: "Projects");

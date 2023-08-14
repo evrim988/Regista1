@@ -23,6 +23,5 @@ namespace Regista.Persistance.Db
         public DbSet<Actions> Actions { get; set; }
         public DbSet<ProjectNote> projectNotes { get; set; } 
         public DbSet<Request> requests { get; set; }
-        public DbSet<Modules> modules { get; set; }
     }
 }
