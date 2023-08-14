@@ -111,6 +111,17 @@ function GetList() {
                         {
                             dataField: "NotificationType",
                             caption: "Bildirim Türü",
+                            lookup: {
+                                dataSource: DevExpress.data.AspNet.createStore({
+                                    key: "Id",
+                                    loadUrl: "/Request/GetNotificationType/",
+                                    onBeforeSend: function (method, ajaxOptions) {
+                                        ajaxOptions.xhrFields = { withCredentials: true, };
+                                    },
+                                }),
+                                valueExpr: "value",
+                                displayExpr: "text",
+                            }
                         },
                         {
                             dataField: "requestSubject",
@@ -234,7 +245,17 @@ function GetList() {
             {
                 dataField: "NotificationType",
                 caption: "Bildirim Türü",
-                alignment: 'center',
+                lookup: {
+                    dataSource: DevExpress.data.AspNet.createStore({
+                        key: "Id",
+                        loadUrl: "/Request/GetNotificationType/",
+                        onBeforeSend: function (method, ajaxOptions) {
+                            ajaxOptions.xhrFields = { withCredentials: true, };
+                        },
+                    }),
+                    valueExpr: "value",
+                    displayExpr: "text",
+                }
             },
             {
                 dataField: "requestSubject",

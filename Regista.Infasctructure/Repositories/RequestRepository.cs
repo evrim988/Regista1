@@ -147,5 +147,16 @@ namespace Regista.Infasctructure.Repositories
                 throw;
             }
         }
+
+        public async Task<List<SelectListItem>> NotificationTypeSelectList()
+        {
+            List<SelectListItem> selectListItems = new()
+            {
+                new SelectListItem { Value = "-1", Text = "Hata" },
+                new SelectListItem { Value = "0" , Text = "Öneri"}
+            };
+            return selectListItems;
+
+        }
     }
 }

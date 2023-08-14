@@ -1,6 +1,7 @@
 ﻿using DevExtreme.AspNet.Data;
 using DevExtreme.AspNet.Mvc;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using Regista.Application.Repositories;
 using Regista.Domain.Entities;
@@ -163,6 +164,10 @@ namespace Regista1.WebApp.Controllers
             {
                 throw ex;
             }
+        }
+        public async Task<List<SelectListItem>> GetNotificationType()
+        {
+            return await uow.requestRepository.NotificationTypeSelectList();
         }
     }
 }
