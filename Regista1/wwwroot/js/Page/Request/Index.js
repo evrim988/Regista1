@@ -99,7 +99,7 @@ function GetList() {
             popup: {
                 title: 'Yeni Bildirim Ekle',
                 showTitle: true,
-                width: 800,
+                width: 900,
                 height: 525,
             },
             form: {
@@ -138,35 +138,22 @@ function GetList() {
                         {
                             dataField: "category",
                             caption: "Kategori",
-                            alignment:"center"
+                            lookup: {
+                                dataSource: DevExpress.data.AspNet.createStore({
+                                    key: "Id",
+                                    loadUrl: "/Request/GetCategorySelect/",
+                                    onBeforeSend: function (method, ajaxOptions) {
+                                        ajaxOptions.xhrFields = { withCredentials: true, };
+                                    },
+                                }),
+                                valueExpr: "value",
+                                displayExpr: "text",
+                            }
                         },
                         {
                             dataField: "version",
                             caption: "Versiyon",
                             alignment: 'center',
-                        },
-                        {
-                            dataField: "planedEndDate",
-                            caption: "Tamamlanma Tarihi",
-                            alignment: 'center',
-                            dataType: 'date',
-                            format: 'dd/MM/yyyy',
-                        },
-                        {
-                            dataField: "customerID",
-                            caption: "Müşteri Adı",
-                            alignment: 'center',
-                            lookup: {
-                                dataSource: DevExpress.data.AspNet.createStore({
-                                    key: "Id",
-                                    loadUrl: "/Request/GetCustomer/",
-                                    onBeforeSend: function (method, ajaxOptions) {
-                                        ajaxOptions.xhrFields = { withCredentials: true, };
-                                    },
-                                }),
-                                valueExpr: "id",
-                                displayExpr: "name",
-                            }
                         },
                         {
                             dataField: "projectID",
@@ -241,7 +228,7 @@ function GetList() {
             },
             {
                 dataField: "customerID",
-                caption: "Müşteri Adı",
+                caption: "Müşteri",
                 alignment: 'center',
                 lookup: {
                     dataSource: DevExpress.data.AspNet.createStore({
@@ -288,12 +275,17 @@ function GetList() {
             {
                 dataField: "category",
                 caption: "Kategori",
-                alignment: 'center',
-            },
-            {
-                dataField: "pictureURL",
-                caption: "Görüntü",
-                alignment: 'center',
+                lookup: {
+                    dataSource: DevExpress.data.AspNet.createStore({
+                        key: "Id",
+                        loadUrl: "/Request/GetCategorySelect/",
+                        onBeforeSend: function (method, ajaxOptions) {
+                            ajaxOptions.xhrFields = { withCredentials: true, };
+                        },
+                    }),
+                    valueExpr: "value",
+                    displayExpr: "text",
+                }
             },
             {
                 dataField: "planedEndDate",
@@ -301,6 +293,11 @@ function GetList() {
                 alignment: 'center',
                 dataType: 'date',
                 format: 'dd/MM/yyyy',
+            },
+            {
+                dataField: "pictureURL",
+                caption: "Görüntü",
+                alignment: 'center',
             },
             {
                 dataField: "version",

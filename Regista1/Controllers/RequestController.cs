@@ -169,5 +169,9 @@ namespace Regista1.WebApp.Controllers
         {
             return await uow.requestRepository.NotificationTypeSelectList();
         }
+        public async Task<List<SelectListItem>> GetCategorySelect()
+        {
+            return await uow.requestRepository.CategorySelectList();
+        }
     }
 }

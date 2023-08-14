@@ -20,7 +20,6 @@ namespace Regista.Application.Repositories
         public Task<List<ResponsibleDevextremeSelectListHelper>> GetModuleSelect();
         Task<List<ActionDTO>> GetActionDetail(int RequestId);
         public Task<List<SelectListItem>> NotificationTypeSelectList();
-
-
+        public Task<List<SelectListItem>> CategorySelectList();
     }
 }

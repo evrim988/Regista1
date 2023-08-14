@@ -30,7 +30,9 @@ namespace Regista.Infasctructure.Repositories
         {
             try
             {
-                //model.CustomerID = session.CustomerID;
+                model.CustomerID = session.CustomerID;
+                model.StartDate = DateTime.Now;
+                model.PlanedEndDate = model.StartDate.AddDays(7);
                 await uow.repository.Add(model);
                 await uow.SaveChanges();
                 return "";
@@ -150,13 +152,26 @@ namespace Regista.Infasctructure.Repositories
 
         public async Task<List<SelectListItem>> NotificationTypeSelectList()
         {
-            List<SelectListItem> selectListItems = new()
+            List<SelectListItem> notificationTypeSelectList = new()
             {
-                new SelectListItem { Value = "-1", Text = "Hata" },
-                new SelectListItem { Value = "0" , Text = "Öneri"}
+                new SelectListItem { Value = "0", Text = "Hata" },
+                new SelectListItem { Value = "1" , Text = "Öneri"}
             };
-            return selectListItems;
+            return notificationTypeSelectList;
 
+        }
+
+        public async Task<List<SelectListItem>> CategorySelectList()
+        {
+            List<SelectListItem> categorySelectList = new()
+            {
+                new SelectListItem { Value = "0" , Text = "Sınıflandırılmamış" },
+                new SelectListItem { Value = "1" , Text = "Yeni Fonksiyon"},
+                new SelectListItem { Value = "2" , Text = "Hata Giderme"},
+                new SelectListItem { Value = "3" , Text = "Veri Düzeltme"},
+                new SelectListItem { Value = "4" , Text = "Uyumluluk"}
+            };
+            return categorySelectList;
         }
     }
 }
