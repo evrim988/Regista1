@@ -41,10 +41,10 @@ namespace Regista.Domain.Entities
         [DisplayName("EMail")]
         public string EMail { get; set; }
         
-        public string ApiKey { get; set; }
+        public string? ApiKey { get; set; }
 
         [DisplayName("Müşteri Tanım No")]
-        public int CustomerDescriptionID { get; set; }
+        public int? CustomerDescriptionID { get; set; }
 
         public ICollection<Request> Requests { get; set; }
         public ICollection<ProjectNote> projectNotes { get; set; }
