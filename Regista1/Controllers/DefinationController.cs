@@ -7,10 +7,10 @@ using Regista.Domain.Entities;
 
 namespace Regista1.WebApp.Controllers
 {
-    public class ModulesController : Controller
+    public class DefinationController : Controller
     {
         private readonly IUnitOfWork _uow;
-        public ModulesController(IUnitOfWork uow)
+        public DefinationController(IUnitOfWork uow)
         {
             _uow = uow;
         }
