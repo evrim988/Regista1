@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Task = Regista.Domain.Entities.Task;
+using Version = Regista.Domain.Entities.Version;
 
 namespace Regista.Persistance.Db
 {
@@ -24,5 +25,6 @@ namespace Regista.Persistance.Db
         public DbSet<ProjectNote> ProjectNotes { get; set; } 
         public DbSet<Request> Requests { get; set; }
         public DbSet<Modules> Modules { get; set; }
+        public DbSet<Version> Versions { get; set; }
     }
 }

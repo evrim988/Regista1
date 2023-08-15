@@ -82,6 +82,11 @@ namespace Regista.Infasctructure.Repositories
         {
             get => _modulesRepository ?? (_modulesRepository=new ModulesRepository(context,session,this));
         }
+        private IVersionRepository _versionRepository;
+        public IVersionRepository versionRepository 
+        {
+            get => _versionRepository ?? (_versionRepository = new VersionRepository(context, session,this));
+        }
 
         public async Task<int> SaveChanges()
         {
