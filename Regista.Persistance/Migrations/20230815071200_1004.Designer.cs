@@ -11,8 +11,8 @@ using Regista.Persistance.Db;
 namespace Regista.Persistance.Migrations
 {
     [DbContext(typeof(RegistaContext))]
-    [Migration("20230815070741_1003")]
-    partial class _1003
+    [Migration("20230815071200_1004")]
+    partial class _1004
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -336,7 +336,6 @@ namespace Regista.Persistance.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Version")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("ID");
