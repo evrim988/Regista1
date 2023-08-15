@@ -6,6 +6,7 @@ using Regista.Domain.Dto.ResponsibleHelperModels;
 using Regista.Domain.Entities;
 using Regista.Persistance.Db;
 using Regista.Domain.Enums;
+using Action = Regista.Domain.Entities.Action;
 
 namespace Regista.Infasctructure.Repositories
 {
@@ -107,7 +108,7 @@ namespace Regista.Infasctructure.Repositories
         }
         public async Task<List<ActionDTO>> GetActionDetail(int RequestId)
         {
-            return await GetNonDeletedAndActive<Actions>(t => t.RequestID == RequestId).Select(s => new ActionDTO()
+            return await GetNonDeletedAndActive<Action>(t => t.RequestID == RequestId).Select(s => new ActionDTO()
             {
                 ID = s.ID,
                 Description = s.Description,

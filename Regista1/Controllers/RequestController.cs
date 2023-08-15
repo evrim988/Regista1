@@ -86,7 +86,7 @@ namespace Regista1.WebApp.Controllers
         }
         public async Task<IActionResult> AddActionItem(string values,int ID)
         {
-            var model = JsonConvert.DeserializeObject<Actions>(values);
+            var model = JsonConvert.DeserializeObject<Regista.Domain.Entities.Action>(values);
             model.RequestID = ID;
             await uow.actionRepository.AddActions(model);
             return Ok(model);
@@ -94,7 +94,7 @@ namespace Regista1.WebApp.Controllers
         [HttpPut]
         public async Task<IActionResult> EditActionItem(int key,string values,int ID)
         {
-            var model = await uow.repository.GetById<Actions>(key);
+            var model = await uow.repository.GetById<Regista.Domain.Entities.Action>(key);
             JsonConvert.PopulateObject(values, model);
             await uow.actionRepository.ActionsUpdate(model);
             return Ok();
@@ -104,7 +104,7 @@ namespace Regista1.WebApp.Controllers
         {
             try
             {
-                await uow.repository.Delete<Actions>(key);
+                await uow.repository.Delete<Regista.Domain.Entities.Action>(key);
                 await uow.SaveChanges();
                 return "";
             } 

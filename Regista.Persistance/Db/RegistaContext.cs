@@ -20,7 +20,7 @@ namespace Regista.Persistance.Db
         public DbSet<User> Users { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<Task> Tasks { get; set; }
-        public DbSet<Actions> Actions { get; set; }
+        public DbSet<Domain.Entities.Action> Actions { get; set; }
         public DbSet<ProjectNote> ProjectNotes { get; set; } 
         public DbSet<Request> Requests { get; set; }
         public DbSet<Modules> Modules { get; set; }

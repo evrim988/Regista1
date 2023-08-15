@@ -48,7 +48,7 @@ namespace Regista1.WebApp.Controllers
         {
             try
             {
-                var model = JsonConvert.DeserializeObject<Actions>(values);
+                var model = JsonConvert.DeserializeObject<Regista.Domain.Entities.Action>(values);
                 await _uow.actionRepository.AddActions(model);
                 return Ok();
             }
@@ -62,7 +62,7 @@ namespace Regista1.WebApp.Controllers
         {
             try
             {
-                var model = await _uow.repository.GetById<Actions>(key);
+                var model = await _uow.repository.GetById<Regista.Domain.Entities.Action>(key);
                 JsonConvert.PopulateObject(values, model);
                 await _uow.actionRepository.ActionsUpdate(model);
                 await _uow.SaveChanges();
@@ -78,7 +78,7 @@ namespace Regista1.WebApp.Controllers
         {
             try
             {
-                await _uow.repository.Delete<Actions>(key);
+                await _uow.repository.Delete<Regista.Domain.Entities.Action>(key);
                 await _uow.SaveChanges();
                 return Ok();
             }
@@ -86,6 +86,11 @@ namespace Regista1.WebApp.Controllers
             {
                 throw ex;
             }
+        }
+        public async Task<IActionResult> Detail (int ID)
+        {
+            var actionDetail = await _uow.actionRepository.GetAction(ID);
+            return View(actionDetail);
         }
         public async Task<IActionResult> GetActionStatus()
         {

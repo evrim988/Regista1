@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Regista.Domain.Entities
 {
-    public class Actions : BaseEntitiy
+    public class Action : BaseEntitiy
     {
         [DisplayName("Aksiyon Açıklaması")]
         public string ActionDescription { get; set; }

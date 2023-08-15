@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Regista.Domain.Dto.ActionModels;
+using Regista.Domain.Dto.Entities.ActionModels;
 using Regista.Domain.Dto.ResponsibleHelperModels;
 using Regista.Domain.Entities;
 using System;
@@ -15,14 +16,15 @@ namespace Regista.Application.Repositories
     {
         IQueryable<ActionDTO> GetList();
 
-        public Task<string> AddActions(Actions model);
+        public Task<string> AddActions(Domain.Entities.Action model);
         
-        public Task<string> ActionsUpdate(Actions model);
+        public Task<string> ActionsUpdate(Domain.Entities.Action model);
 
         public string Delete(int ID);
 
         public Task<List<SelectListItem>> ResponsiblehelperModelList();
 
         Task<List<ResponsibleDevextremeSelectListHelper>> GetRequest();
+        Task<ActionPageDTO> GetAction(int ID);
     }
 }

@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Regista.Application.Repositories;
 using Regista.Domain.Dto.ActionModels;
+using Regista.Domain.Dto.Entities.ActionModels;
 using Regista.Domain.Dto.ResponsibleHelperModels;
 using Regista.Domain.Entities;
 using Regista.Persistance.Db;
@@ -9,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Action = Regista.Domain.Entities.Action;
 
 namespace Regista.Infasctructure.Repositories
 {
@@ -25,7 +28,7 @@ namespace Regista.Infasctructure.Repositories
         }
        
 
-        public async Task<string> ActionsUpdate(Actions model)
+        public async Task<string> ActionsUpdate(Domain.Entities.Action model)
         {
             try
             {
@@ -39,11 +42,11 @@ namespace Regista.Infasctructure.Repositories
             }
         }
 
-        public async Task<string> AddActions(Actions model)
+        public async Task<string> AddActions(Domain.Entities.Action model)
         {
             try
             {
-                var actions = await GetById<Actions>(model.RequestID);
+                var actions = await GetById<Domain.Entities.Action>(model.RequestID);
                 await _uow.repository.Add(model);
                 await _uow.SaveChanges();
                 return "";
@@ -56,17 +59,39 @@ namespace Regista.Infasctructure.Repositories
 
         public string Delete(int ID)
         {
-            var action = GetNonDeletedAndActive<Actions>(t => t.ID == ID);
+            var action = GetNonDeletedAndActive((Domain.Entities.Action t) => t.ID == ID);
             DeleteRange(action.ToList());
-            Delete<Actions>(ID);
+            Delete<Domain.Entities.Action>(ID);
             return "";
+        }
+
+        public async Task<ActionPageDTO> GetAction(int ID)
+        {
+            try
+            {
+                return await GetNonDeletedAndActive<Action>(t => t.ID == ID).Select(s => new ActionPageDTO
+                {
+                    ID = s.ID,
+                    ReponsibleID = s.ResponsibleID,
+                    OpeningDate = s.OpeningDate,
+                    EndDate = s.EndDate,
+                    Description = s.Description,
+                    ActionStatus = s.ActionStatus,
+                    RequestID = s.RequestID
+                }).FirstOrDefaultAsync();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public IQueryable<ActionDTO> GetList()
         {
             try
             {
-                return GetNonDeletedAndActive<Actions>(t => true).Select(s => new ActionDTO()
+                return GetNonDeletedAndActive<Action>(t => true).Select(s => new ActionDTO()
                 {
                     ID = s.ID,
                     Description = s.Description,
@@ -120,5 +145,6 @@ namespace Regista.Infasctructure.Repositories
                 throw ex;
             }
         }
+
     }
 }

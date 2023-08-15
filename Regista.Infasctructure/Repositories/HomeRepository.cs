@@ -17,11 +17,11 @@ namespace Regista.Infasctructure.Repositories
             uow = _uow;
         }
 
-        public async Task<IQueryable<Actions>> GetActionHome()
+        public async Task<IQueryable<Domain.Entities.Action>> GetActionHome()
         {
             try
             { 
-                var model = GetNonDeletedAndActive<Actions>(t => t.ResponsibleID == session.ID);
+                var model = GetNonDeletedAndActive((Domain.Entities.Action t) => t.ResponsibleID == session.ID);
                 foreach (var item in model)
                 {
                     Console.WriteLine("ResponsibleID: " + item.ResponsibleID);
