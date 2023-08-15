@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Regista.Domain.Enums
 {
-    public enum status
+    public enum Status
     {
         Active = 1,
         Passive = 0,

@@ -5,12 +5,7 @@ using Regista.Domain.Dto.ActionModels;
 using Regista.Domain.Dto.ResponsibleHelperModels;
 using Regista.Domain.Entities;
 using Regista.Persistance.Db;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+using Regista.Domain.Enums;
 
 namespace Regista.Infasctructure.Repositories
 {
@@ -33,6 +28,7 @@ namespace Regista.Infasctructure.Repositories
                 model.CustomerID = session.CustomerID;
                 model.StartDate = DateTime.Now;
                 model.PlanedEndDate = model.StartDate.AddDays(7);
+                model.RequestStatus = RequestStatus.NotStart;
                 await uow.repository.Add(model);
                 await uow.SaveChanges();
                 return "";

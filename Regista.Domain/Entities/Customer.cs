@@ -22,7 +22,7 @@ namespace Regista.Domain.Entities
         [MaxLength(150, ErrorMessage = "{0} {1} karakterden büyük olamaz")]
         public string Surname { get; set; }
 
-        [DisplayName("Adress")]
+        [DisplayName("Adres")]
         [StringLength(600)]
         [MinLength(3, ErrorMessage = "{0} {1} karakterden küçük olamaz")]
         [MaxLength(600, ErrorMessage = "{0} {1} karakterden büyük olamaz")]
@@ -38,7 +38,7 @@ namespace Regista.Domain.Entities
 
         public string? EmailPassword { get; set; }
 
-        [DisplayName("EMail")]
+        [DisplayName("Email")]
         public string Email { get; set; }
         
         public string? ApiKey { get; set; }

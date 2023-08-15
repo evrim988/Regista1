@@ -34,6 +34,6 @@ namespace Regista.Domain.Entities
 
         [DisplayName("Durum")]
         [DefaultValue(1)]
-        public status Status { get; set; }
+        public Status Status { get; set; }
     }
 }

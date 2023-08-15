@@ -21,7 +21,7 @@ namespace Regista.Infasctructure.Repositories
 
         public async Task<User> Login(string username, string password)
         {
-            return await _context.Users.FirstOrDefaultAsync(t => (t.UserName == username || t.EMail == username) && t.password == password && t.ObjectStatus == ObjectStatus.NonDeleted && t.Status == status.Active);
+            return await _context.Users.FirstOrDefaultAsync(t => (t.Username == username || t.Email == username) && t.Password == password && t.ObjectStatus == ObjectStatus.NonDeleted && t.Status == Status.Active);
         }
     }
 }

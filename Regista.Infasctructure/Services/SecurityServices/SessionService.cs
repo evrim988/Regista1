@@ -112,7 +112,7 @@ namespace Regista.Infasctructure.Services.SecurityServices
                     CustomerID = user.CustomerID,
                     ID = user.ID,
                     Name = user.Name,
-                    Surname = user.SurName
+                    Surname = user.Surname
                 };
                 SetSession("login", sesionmodel);
             }
@@ -139,7 +139,7 @@ namespace Regista.Infasctructure.Services.SecurityServices
             try
             {
                 var key = httpContextAccessor.HttpContext.Request.Headers["Authorization"].ToString();
-                return context.Projects.Where(t => t.ProjectGuid.ToString() == key && t.ObjectStatus == ObjectStatus.NonDeleted && t.Status == status.Active).Select(s => new ProjectSessionModel()
+                return context.Projects.Where(t => t.ProjectGuid.ToString() == key && t.ObjectStatus == ObjectStatus.NonDeleted && t.Status == Status.Active).Select(s => new ProjectSessionModel()
                 {
                     ID = s.ID,
                     Name = s.ProjectName,

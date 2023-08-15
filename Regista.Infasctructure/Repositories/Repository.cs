@@ -64,7 +64,7 @@ namespace Regista.Infasctructure.Repositories
                 foreach (var item in _objectList)
                 {
                     item.ObjectStatus = ObjectStatus.Deleted;
-                    item.Status = status.Passive;
+                    item.Status = Status.Passive;
                 }
                 await UpdateRange(_objectList);
             }
@@ -77,7 +77,7 @@ namespace Regista.Infasctructure.Repositories
         {
             try
             {
-                return GetQueryable<T>(t => t.ObjectStatus == ObjectStatus.NonDeleted && t.Status == status.Active)
+                return GetQueryable<T>(t => t.ObjectStatus == ObjectStatus.NonDeleted && t.Status == Status.Active)
                     .Where(expression);
             }
             catch (Exception e)
@@ -91,7 +91,7 @@ namespace Regista.Infasctructure.Repositories
             _object.LastModifiedBy = session.ID;
             _object.LastModifiedOn = DateTime.Now;
             _object.CreatedOn = DateTime.Now;
-            _object.Status = status.Active;
+            _object.Status = Status.Active;
             _object.ObjectStatus = ObjectStatus.NonDeleted;
             await GetTable<T>().AddAsync(_object);
             return _object;
@@ -108,7 +108,7 @@ namespace Regista.Infasctructure.Repositories
             try
             {
                 model.ObjectStatus = ObjectStatus.Deleted;
-                model.Status = status.Passive;
+                model.Status = Status.Passive;
                 Update<T>(model);
                 return model;
             }

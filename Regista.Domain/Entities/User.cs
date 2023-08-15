@@ -18,18 +18,18 @@ namespace Regista.Domain.Entities
         [DisplayName("Surname")]
         [MinLength(3, ErrorMessage = "{0} {1} karakterden küçük olamaz")]
         [MaxLength(150, ErrorMessage = "{0} {1} karakterden büyük olamaz")]
-        public string SurName { get; set; }
+        public string Surname { get; set; }
 
-        [DisplayName("UserName")]
-        public string UserName { get; set; }
+        [DisplayName("Username")]
+        public string Username { get; set; }
 
         public string? Image { get; set; }
 
         [MinLength(3, ErrorMessage = "{0} {1} karakterden küçük olamaz")]
         [MaxLength(256, ErrorMessage = "{0} {1} karakterden büyük olamaz")]
-        [EmailAddress(ErrorMessage = "Geçerli mail Adresi giriniz")]
-        public string EMail { get; set; }
-        public string password { get; set; }
+        [EmailAddress(ErrorMessage = "Geçerli Mail Adresi giriniz")]
+        public string Email { get; set; }
+        public string Password { get; set; }
         public virtual Customer Customer { get; set; }
         public int CustomerID { get; set; }
 

@@ -171,22 +171,6 @@ function GetList() {
                             }
                         },
                         {
-                            dataField: "requestStatus",
-                            caption: "Durum",
-                            alignment: 'center',
-                            lookup: {
-                                dataSource: DevExpress.data.AspNet.createStore({
-                                    key: "Id",
-                                    loadUrl: "/Request/GetRequestStatus",
-                                    onBeforeSend: function (method, ajaxoptions) {
-                                        ajaxoptions.xhrFields = { withCredentials: true };
-                                    },
-                                }),
-                                valueExpr: "Id",
-                                displayExpr: "Text"
-                            }
-                        },
-                        {
                             dataField: "modulesID",
                             caption: "Modül/Süreç",
                             lookup: {
@@ -261,6 +245,7 @@ function GetList() {
             {
                 dataField: "notificationType",
                 caption: "Bildirim Türü",
+                alignment: 'center',
                 lookup: {
                     dataSource: DevExpress.data.AspNet.createStore({
                         key: "Id",
@@ -291,6 +276,7 @@ function GetList() {
             {
                 dataField: "category",
                 caption: "Kategori",
+                alignment: 'center',
                 lookup: {
                     dataSource: DevExpress.data.AspNet.createStore({
                         key: "Id",
@@ -376,7 +362,7 @@ function GetList() {
                             {
                                 dataField: "actionDescription",
                                 caption: "Aksiyon Açıklaması",
-                                alignment: 'left',
+                                alignment: 'center',
                             },
                             {
                                 dataField: "responsibleID",
@@ -407,7 +393,7 @@ function GetList() {
                             {
                                 dataField: "description",
                                 caption: "Açıklama",
-                                alignment: 'left',
+                                alignment: 'center',
                             },
                             {
                                 dataField: "actionStatus",

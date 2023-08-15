@@ -78,11 +78,11 @@ namespace Regista1.WebApp.Controllers
                 var userdetail = new UserDetailDto()
                 {
                     ID = model.ID.ToString(),
-                    UserName = model.UserName,
+                    Username = model.Username,
                     Name = model.Name,
-                    Surname = model.SurName,
-                    Parola = model.password,
-                    Email = model.EMail,
+                    Surname = model.Surname,
+                    Parola = model.Password,
+                    Email = model.Email,
                 };
 
                 return View(userdetail);
@@ -100,10 +100,10 @@ namespace Regista1.WebApp.Controllers
             {
                 var model = await uow.userRepository.GetById<User>(uow.GetSession().ID);
 
-                model.UserName = userDetail.UserName;
+                model.Username = userDetail.Username;
                 model.Name = userDetail.Name;
-                model.password = userDetail.Parola;
-                model.EMail = userDetail.Email;
+                model.Password = userDetail.Parola;
+                model.Email = userDetail.Email;
 
 
                 uow.userRepository.Update<User>(model);
@@ -129,10 +129,10 @@ namespace Regista1.WebApp.Controllers
             var user = new User()
             {
                 Name = userDetailDto.Name,
-                SurName = userDetailDto.Surname,
-                UserName = userDetailDto.UserName,
-                EMail = userDetailDto.Email,
-                password = userDetailDto.Parola,
+                Surname = userDetailDto.Surname,
+                Username = userDetailDto.Username,
+                Email = userDetailDto.Email,
+                Password = userDetailDto.Parola,
                 Image=userDetailDto.Image
             };
 
