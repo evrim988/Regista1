@@ -87,12 +87,6 @@ namespace Regista1.WebApp.Controllers
                 throw ex;
             }
         }
-
-        public async Task<IActionResult>Detail(int ID)
-        {
-
-        }
-
         public async Task<IActionResult> GetActionStatus()
         {
             try
