@@ -88,16 +88,12 @@ function GetList() {
                             caption: "Müşteri Adı",
                         },
                         {
-                            dataField: "surname",
-                            caption: "Müşteri Soyadı",
-                        },
-                        {
-                            dataField: "adress",
+                            dataField: "address",
                             caption: "Adres",
                         },
                         {
-                            dataField: "eMail",
-                            caption: "EMail",
+                            dataField: "email",
+                            caption: "Email",
                         },
                     ],
                 }],
@@ -136,12 +132,7 @@ function GetList() {
 
             {
                 dataField: "name",
-                caption: "Müşteri Adı",
-                alignment: 'center',
-            },
-            {
-                dataField: "surname",
-                caption: "Müşteri Soyadı",
+                caption: "Firma Adı",
                 alignment: 'center',
             },
             {
@@ -150,13 +141,13 @@ function GetList() {
                 alignment: 'center',
             },
             {
-                dataField: "eMail",
-                caption: "EMail",
+                dataField: "email",
+                caption: "Email",
                 alignment: 'center',
             },
             {
                 dataField: "customerDescriptionID",  
-                caption: "Müşteri Tanım No",
+                caption: "Firma Tanım No",
                 alignment: 'center',
             },
             {

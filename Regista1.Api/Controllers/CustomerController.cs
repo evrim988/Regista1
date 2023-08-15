@@ -34,7 +34,6 @@ namespace Regista1.Api.Controllers
 
                 var model = new CustomerDTO();
                 model.Name = currentCustomer.Name;
-                model.Surname = currentCustomer.Surname;
                 model.Email = currentCustomer.Email;
                 model.Adress = currentCustomer.Address;
                 if (currentCustomer == null)
@@ -55,7 +54,6 @@ namespace Regista1.Api.Controllers
                 var customer = new Customer()
                 {
                     Name = model.Name,
-                    Surname = model.Surname,
                     Address = model.Adress,
                     Email = model.Email
                 };

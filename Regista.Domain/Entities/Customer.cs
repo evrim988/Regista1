@@ -16,11 +16,11 @@ namespace Regista.Domain.Entities
         [MaxLength(150, ErrorMessage = "{0} {1} karakterden büyük olamaz")]
         public string Name { get; set; }
 
-        [DisplayName("Surname")]
-        [StringLength(150)]
-        [MinLength(3, ErrorMessage = "{0} {1} karakterden küçük olamaz")]
-        [MaxLength(150, ErrorMessage = "{0} {1} karakterden büyük olamaz")]
-        public string Surname { get; set; }
+        //[DisplayName("Surname")]
+        //[StringLength(150)]
+        //[MinLength(3, ErrorMessage = "{0} {1} karakterden küçük olamaz")]
+        //[MaxLength(150, ErrorMessage = "{0} {1} karakterden büyük olamaz")]
+        //public string Surname { get; set; }
 
         [DisplayName("Adres")]
         [StringLength(600)]

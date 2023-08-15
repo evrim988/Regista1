@@ -93,7 +93,7 @@ namespace Regista.Infasctructure.Repositories
                     ResponsibleDevextremeSelectListHelper helper = new ResponsibleDevextremeSelectListHelper()
                     {
                         ID = item.ID,
-                        Name = item.Name + " " + item.Surname,
+                        Name = item.Name,
                     };
                     CustomerHelpers.Add(helper);
                 }
