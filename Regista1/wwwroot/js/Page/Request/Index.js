@@ -97,7 +97,7 @@ function GetList() {
             allowDeleting: true,
             allowAdding: true,
             popup: {
-                title: 'Yeni Bildirim Ekle',
+                title: 'Yeni Talep Ekle',
                 showTitle: true,
                 width: 900,
                 height: 525,

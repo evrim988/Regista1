@@ -88,7 +88,7 @@ function GetList() {
                             caption: "Müşteri Adı",
                         },
                         {
-                            dataField: "address",
+                            dataField: "adress",
                             caption: "Adres",
                         },
                         {

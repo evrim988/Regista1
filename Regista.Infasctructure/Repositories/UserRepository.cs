@@ -70,7 +70,7 @@ namespace Regista.Infasctructure.Repositories
                     ResponsibleDevextremeSelectListHelper helper = new ResponsibleDevextremeSelectListHelper()
                     {
                         ID = item.ID,
-                        Name = item.Name,
+                        Name = item.Name + " " + item.Surname,
                     };
                     ResponsibleHelpers.Add(helper);
                 }
