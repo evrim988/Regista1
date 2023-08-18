@@ -10,7 +10,7 @@ namespace Regista.Domain.Dto.Entities.ActionModels
     public class ActionPageDTO
     {
         public int ID { get; set; }
-        public int ReponsibleID { get; set; }
+        public string Reponsible { get; set; }
         public DateTime OpeningDate { get; set; }
         public DateTime EndDate { get; set; }
         public string Description { get; set; }

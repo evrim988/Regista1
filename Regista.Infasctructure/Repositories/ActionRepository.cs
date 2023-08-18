@@ -72,7 +72,7 @@ namespace Regista.Infasctructure.Repositories
                 return await GetNonDeletedAndActive<Action>(t => t.ID == ID).Select(s => new ActionPageDTO
                 {
                     ID = s.ID,
-                    ReponsibleID = s.ResponsibleID,
+                    Reponsible = s.Responsible.Fullname,
                     OpeningDate = s.OpeningDate,
                     EndDate = s.EndDate,
                     Description = s.Description,
