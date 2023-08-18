@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "Regista1.Api": {
+    "Regista.Api": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

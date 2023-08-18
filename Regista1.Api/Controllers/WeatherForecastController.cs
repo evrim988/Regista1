@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Regista1.Api.Controllers
+namespace Regista.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]

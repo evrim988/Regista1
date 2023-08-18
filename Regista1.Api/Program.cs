@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Regista.Infasctructure.Repositories;
 using Regista.Persistance.Db;
-using Regista1.Api.Extensions;
+using Regista.Api.Extensions;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);

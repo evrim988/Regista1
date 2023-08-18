@@ -1,6 +1,6 @@
-﻿using Regista1.Api.Middlewares;
+﻿using Regista.Api.Middlewares;
 
-namespace Regista1.Api.Extensions
+namespace Regista.Api.Extensions
 {
     static public class Extension
     {

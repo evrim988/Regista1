@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Regista1.Api.Controllers
+namespace Regista.Api.Controllers
 {
     public class VersionController : Controller
     {

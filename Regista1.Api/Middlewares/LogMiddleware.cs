@@ -1,4 +1,4 @@
-﻿namespace Regista1.Api.Middlewares
+﻿namespace Regista.Api.Middlewares
 {
     public class LogMiddleware
     {

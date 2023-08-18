@@ -5,7 +5,7 @@ using Regista.Domain.Dto.Entities.CustomerModel;
 using Regista.Domain.Entities;
 using Regista.Persistance.Db;
 
-namespace Regista1.Api.Controllers
+namespace Regista.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

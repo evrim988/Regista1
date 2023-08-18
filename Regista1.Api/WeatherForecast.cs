@@ -1,4 +1,4 @@
-namespace Regista1.Api
+namespace Regista.Api
 {
     public class WeatherForecast
     {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Registalaser.Domain.Exceptions;
 
-namespace Regista1.Api.Controllers
+namespace Regista.Api.Controllers
 {
     public class BaseController : Controller
     {

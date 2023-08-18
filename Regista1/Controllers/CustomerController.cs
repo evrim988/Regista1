@@ -7,7 +7,7 @@ using Regista.Application.Repositories;
 using Regista.Domain.Entities;
 using static DevExpress.Data.Helpers.ExpressiveSortInfo;
 
-namespace Regista1.WebApp.Controllers
+namespace Regista.WebApp.Controllers
 {
     public class CustomerController : Controller
     {

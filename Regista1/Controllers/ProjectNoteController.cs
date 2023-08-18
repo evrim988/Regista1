@@ -6,7 +6,7 @@ using Regista.Application.Repositories;
 using Regista.Domain.Entities;
 using Regista.Infasctructure.Repositories;
 
-namespace Regista1.WebApp.Controllers
+namespace Regista.WebApp.Controllers
 {
     public class ProjectNoteController : Controller
     {

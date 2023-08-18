@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 using Regista.Application.Repositories;
 using Regista.Domain.Entities;
 
-namespace Regista1.WebApp.Controllers
+namespace Regista.WebApp.Controllers
 {
     public class ProjectController : Controller
     {

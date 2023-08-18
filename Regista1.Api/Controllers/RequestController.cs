@@ -6,9 +6,9 @@ using Regista.Domain.Dto.Entities.RequestModel;
 using Regista.Domain.Dto.SecurityModels;
 using Regista.Domain.Entities;
 using Regista.Domain.Enums;
-using Regista1.Api.Filters;
+using Regista.Api.Filters;
 
-namespace Regista1.Api.Controllers
+namespace Regista.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

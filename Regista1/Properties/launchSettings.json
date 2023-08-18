@@ -8,7 +8,7 @@
     }
   },
   "profiles": {
-    "Regista1": {
+    "Regista": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

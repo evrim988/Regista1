@@ -7,13 +7,13 @@ using Regista.Application.Repositories;
 using Regista.Domain.Dto.Entities.TaskModel;
 using Regista.Domain.Entities;
 using Regista.Domain.Enums;
-using Regista1.WebApp.Filter;
+using Regista.WebApp.Filter;
 using System.Net.Sockets;
 using System.Xml.Linq;
 using Task = Regista.Domain.Entities.Task;
 using TaskStatus = Regista.Domain.Enums.TaskStatus;
 
-namespace Regista1.WebApp.Controllers
+namespace Regista.WebApp.Controllers
 {
     public class TaskController : Controller
     {

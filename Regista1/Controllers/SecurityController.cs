@@ -2,9 +2,9 @@
 using Regista.Application.Repositories;
 using Regista.Application.Services.SecurityServices;
 using Regista.Persistance.Db;
-using Regista1.WebApp.Models.SecurityModels;
+using Regista.WebApp.Models.SecurityModels;
 
-namespace Regista1.WebApp.Controllers
+namespace Regista.WebApp.Controllers
 {
     public class SecurityController : Controller
     {

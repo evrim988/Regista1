@@ -1,4 +1,4 @@
-﻿namespace Regista1.WebApp.Models.SecurityModels
+﻿namespace Regista.WebApp.Models.SecurityModels
 {
     public class LoginModel
     {

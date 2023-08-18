@@ -10,7 +10,7 @@ using Regista.Infasctructure.Repositories;
 using Regista.Persistance.Db;
 using System.Xml.Linq;
 
-namespace Regista1.WebApp.Controllers
+namespace Regista.WebApp.Controllers
 {
     public class RequestController : Controller
     {

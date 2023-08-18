@@ -2,11 +2,11 @@
 using DevExtreme.AspNet.Mvc;
 using Microsoft.AspNetCore.Mvc;
 using Regista.Application.Repositories;
-using Regista1.Models;
-using Regista1.WebApp.Filter;
+using Regista.Models;
+using Regista.WebApp.Filter;
 using System.Diagnostics;
 
-namespace Regista1.WebApp.Controllers
+namespace Regista.WebApp.Controllers
 {
     public class HomeController : Controller
     {

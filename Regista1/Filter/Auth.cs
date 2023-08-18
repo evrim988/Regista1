@@ -4,7 +4,7 @@ using Regista.Domain.Entities;
 using System.Text;
 using System.Text.Json;
 
-namespace Regista1.WebApp.Filter
+namespace Regista.WebApp.Filter
 {
     public class Auth : ResultFilterAttribute, IAuthorizationFilter
     {

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Regista.Domain.Entities;
 using Regista.Persistance.Db;
 
-namespace Regista1.Api.Filters
+namespace Regista.Api.Filters
 {
     public class Auth : ResultFilterAttribute, IAuthorizationFilter
     {

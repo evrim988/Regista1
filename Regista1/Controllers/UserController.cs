@@ -6,7 +6,7 @@ using Regista.Application.Repositories;
 using Regista.Domain.Dto.Entities.UserModel;
 using Regista.Domain.Entities;
 
-namespace Regista1.WebApp.Controllers
+namespace Regista.WebApp.Controllers
 {
     public class UserController : Controller
     {

@@ -1,4 +1,4 @@
-namespace Regista1.Models
+namespace Regista.Models
 {
     public class ErrorViewModel
     {

@@ -7,7 +7,7 @@ using Regista.Domain.Dto.ActionModels;
 using Regista.Domain.Entities;
 using Regista.Domain.Enums;
 
-namespace Regista1.WebApp.Controllers
+namespace Regista.WebApp.Controllers
 {
     public class ActionController : Controller
     {
