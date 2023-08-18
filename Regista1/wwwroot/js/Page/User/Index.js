@@ -165,12 +165,12 @@ function GetList() {
                 alignment: 'center',
             },
             {
-                dataField: "surName",
+                dataField: "surname",
                 caption: "Soyadı",
                 alignment: 'center',
             },
             {
-                dataField: "userName",
+                dataField: "username",
                 caption: "Kullanıcı Adı",
                 alignment: 'center',
             },
@@ -180,7 +180,7 @@ function GetList() {
                 alignment: 'center',
             },
             {
-                dataField: "eMail",
+                dataField: "email",
                 caption: "EMail",
                 alignment: 'center',
             },
