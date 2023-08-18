@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Regista.Domain.Entities
 {
@@ -22,6 +23,8 @@ namespace Regista.Domain.Entities
 
         [DisplayName("Username")]
         public string Username { get; set; }
+        [NotMapped]
+        public string Fullname => Name + " " + Surname;
 
         public string? Image { get; set; }
 

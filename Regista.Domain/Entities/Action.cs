@@ -15,6 +15,7 @@ namespace Regista.Domain.Entities
 
         [DisplayName("Sorumlu")]
         public int ResponsibleID { get; set; }
+        public User Responsible { get; set; }
 
         [DisplayName("Açılma Tarihi")]
         public DateTime OpeningDate { get; set; }
