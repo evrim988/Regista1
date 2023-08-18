@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Regista.Application.Repositories;
 using Regista.Domain.Entities;
+using Version = Regista.Domain.Entities.Version;
 
 namespace Regista1.WebApp.Controllers
 {
@@ -46,7 +47,7 @@ namespace Regista1.WebApp.Controllers
             }
         }
 
-        public async Task<IActionResult> ModulesUpdate(int key,string values)
+        public async Task<IActionResult> ModulesUpdate(int key, string values)
         {
             try
             {
@@ -75,5 +76,63 @@ namespace Regista1.WebApp.Controllers
                 throw ex;
             }
         }
+
+        public async Task<object> GetVersion(DataSourceLoadOptions loadOptions)
+        {
+            try
+            {
+                var model = await _uow.versionRepository.GetList();
+                return DataSourceLoader.Load(model, loadOptions);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<IActionResult> AddVersion(string values)
+        {
+            try
+            {
+                var model = JsonConvert.DeserializeObject<Version>(values);
+                await _uow.versionRepository.AddVersion(model);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<IActionResult> UpdateVersion(int key,string values)
+        {
+            try
+            {
+                var model=await _uow.repository.GetById<Version>(key);
+                JsonConvert.PopulateObject(values, model);
+                await _uow.versionRepository.UpdateVersion(model);
+                await _uow.SaveChanges();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<object> DeleteVersion(int key)
+        {
+            try
+            {
+                await _uow.repository.Delete<Version>(key);
+                await _uow.SaveChanges();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }

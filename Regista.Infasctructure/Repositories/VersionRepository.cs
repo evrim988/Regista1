@@ -16,7 +16,7 @@ namespace Regista.Infasctructure.Repositories
         private readonly IUnitOfWork _uow;
         private readonly SessionModel _session;
         private readonly RegistaContext _context;
-        public VersionRepository(RegistaContext context, IUnitOfWork uow, SessionModel session) : base(context, session)
+        public VersionRepository(RegistaContext context, SessionModel session,IUnitOfWork uow) : base(context, session)
         {
             _uow = uow;
             _session = session;
