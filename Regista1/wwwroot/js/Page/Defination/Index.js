@@ -87,6 +87,7 @@ function GetModules() {
                         {
                             dataField: "name",
                             caption: "Adı",
+                            validationRules: [{ type: "required", message: "Bu alan zorunludur." }],
                         },
                         {
                             dataField: "description",
@@ -190,9 +191,6 @@ function GetVersion() {
         onInitNewRow: function (e) {
             title = "";
         },
-        export: {
-            enabled: true
-        },
         loadPanel: {
             enabled: true,
         },
@@ -216,18 +214,27 @@ function GetVersion() {
                         {
                             dataField: "name",
                             caption: "Adı",
+                            validationRules: [{ type: "required", message: "Bu alan zorunludur." }],
                         },
                         {
                             dataField: "description",
                             caption: "Açıklama",
                         },
                         {
-                            dataField: "date",
-                            caption: "Tarih",
-                        },
-                        {
                             dataField: "databaseChangeStatus",
                             caption: "Veritabanı Değişiliği Var Mı?",
+                            validationRules: [{ type: "required", message: "Bu alan zorunludur." }],
+                            lookup: {
+                                dataSource: DevExpress.data.AspNet.createStore({
+                                    key: "Id",
+                                    loadUrl: "/Defination/GetDatabaseStatus",
+                                    onBeforeSend: function (method, ajaxoptions) {
+                                        ajaxoptions.xhrFields = { withCredentials: true };
+                                    },
+                                }),
+                                valueExpr: "Id",
+                                displayExpr: "Text"
+                            }
                         },
                     ],
                 }],
@@ -264,10 +271,24 @@ function GetVersion() {
             {
                 dataField: "date",
                 caption: "Tarih",
+                alignment:'center',
+                dataType: 'date',
+                format: 'dd/MM/yyyy',
             },
             {
                 dataField: "databaseChangeStatus",
                 caption: "Veritabanı Değişiliği Var Mı?",
+                lookup: {
+                    dataSource: DevExpress.data.AspNet.createStore({
+                        key: "Id",
+                        loadUrl: "/Defination/GetDatabaseStatus",
+                        onBeforeSend: function (method, ajaxoptions) {
+                            ajaxoptions.xhrFields = { withCredentials: true };
+                        },
+                    }),
+                    valueExpr: "Id",
+                    displayExpr: "Text"
+                }
             },
 
         ],

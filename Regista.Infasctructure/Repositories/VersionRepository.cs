@@ -28,6 +28,7 @@ namespace Regista.Infasctructure.Repositories
             try
             {
                 await _uow.repository.Add(model);
+                model.Date = DateTime.Now;
                 await _uow.SaveChanges();
                 return "";
             }

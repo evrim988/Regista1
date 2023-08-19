@@ -28,7 +28,7 @@ namespace Regista.Infasctructure.Repositories
         }
        
 
-        public async Task<string> ActionsUpdate(Domain.Entities.Action model)
+        public async Task<string> ActionsUpdate(Action model)
         {
             try
             {
@@ -42,12 +42,13 @@ namespace Regista.Infasctructure.Repositories
             }
         }
 
-        public async Task<string> AddActions(Domain.Entities.Action model)
+        public async Task<string> AddActions(Action model)
         {
             try
             {
-                var actions = await GetById<Domain.Entities.Action>(model.RequestID);
+                var actions = await GetById<Action>(model.RequestID);
                 await _uow.repository.Add(model);
+                
                 await _uow.SaveChanges();
                 return "";
             }
@@ -59,9 +60,9 @@ namespace Regista.Infasctructure.Repositories
 
         public string Delete(int ID)
         {
-            var action = GetNonDeletedAndActive((Domain.Entities.Action t) => t.ID == ID);
+            var action = GetNonDeletedAndActive((Action t) => t.ID == ID);
             DeleteRange(action.ToList());
-            Delete<Domain.Entities.Action>(ID);
+            Delete<Action>(ID);
             return "";
         }
 
@@ -86,6 +87,7 @@ namespace Regista.Infasctructure.Repositories
                 throw ex;
             }
         }
+
 
         public IQueryable<ActionDTO> GetList()
         {

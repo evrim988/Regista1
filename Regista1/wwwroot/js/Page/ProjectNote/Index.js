@@ -89,11 +89,13 @@ function GetList() {
                         },
                         {
                             dataField: "noteType",
-                            caption: "Not Türü",
+                            caption: "Not Konusu",
+                            validationRules: [{ type: "required", message: "Bu alan zorunludur." }],
                         },
                         {
                             dataField: "description",
                             caption: "Not Açıklaması",
+                            validationRules: [{ type: "required", message: "Bu alan zorunludur." }],
                         },
                         {
                             dataField: "addUserNote",

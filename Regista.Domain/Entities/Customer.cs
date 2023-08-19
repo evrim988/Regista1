@@ -33,7 +33,7 @@ namespace Regista.Domain.Entities
         public string? EmailPassword { get; set; }
 
         [DisplayName("Email")]
-        public string Email { get; set; }
+        public string? Email { get; set; }
         
         public string? ApiKey { get; set; }
 

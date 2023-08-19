@@ -111,6 +111,7 @@ function GetList() {
                         {
                             dataField: "projectName",
                             caption: "Proje Adı",
+                            validationRules: [{ type: "required", message: "Bu alan zorunludur." }],
                         },
                         {
                             dataField: "projectDescription",

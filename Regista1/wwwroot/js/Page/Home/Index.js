@@ -105,7 +105,7 @@ function GetList() {
                     dataSource: DevExpress.data.AspNet.createStore({
                         loadUrl: "/Action/GetResponsible/",
                     }),
-                    valueExpr: "id", // "id" contains the same values as "authorId"
+                    valueExpr: "id", 
                     displayExpr: "name"
                 }
             },
@@ -143,6 +143,11 @@ function GetList() {
                     valueExpr: "Id",
                     displayExpr: "Text"
                 }
+            },
+            {
+                dataField: "lastModifiedBy",
+                caption: "Aksiyon Açan Kişi",
+                alignment: 'center',
             }
 
         ],

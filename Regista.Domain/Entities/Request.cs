@@ -8,7 +8,7 @@ public class Request : BaseEntitiy
     [DisplayName("Konu")]
     public string RequestSubject { get; set; }
     [DisplayName("Açıklama")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
     [DisplayName("Kategori")]
     public string? Category { get; set; }
     [DisplayName("Bildirim Türü")]
@@ -25,7 +25,7 @@ public class Request : BaseEntitiy
     public RequestStatus RequestStatus { get; set; }
     [DisplayName("Versiyon")]
     public string? Version { get; set; }
-    public int ModulesID { get; set; }
+    public int? ModulesID { get; set; }
     public Modules Modules { get; set; }
     public int CustomerID { get; set; }
     public Customer Customer { get; set; }

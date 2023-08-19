@@ -21,11 +21,8 @@ namespace Regista.Infasctructure.Repositories
         {
             try
             { 
-                var model = GetNonDeletedAndActive((Domain.Entities.Action t) => t.ResponsibleID == session.ID);
-                foreach (var item in model)
-                {
-                    Console.WriteLine("ResponsibleID: " + item.ResponsibleID);
-                }
+                var model = GetNonDeletedAndActive((Domain.Entities.Action t) => t.ResponsibleID == session.ID || t.LastModifiedBy == session.Name + " " + session.Surname);
+                
                 return model;
             }
             catch (Exception ex)

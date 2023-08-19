@@ -168,6 +168,19 @@ namespace Regista.WebApp.Controllers
             }
         }
 
+        public async Task<object> GetVersion(DataSourceLoadOptions loadOptions)
+        {
+            try
+            {
+                var model = await uow.requestRepository.GetVersionSelect();
+                return DataSourceLoader.Load(model,loadOptions);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public async Task<object> GetCustomer(DataSourceLoadOptions loadOptions)
         {
             try

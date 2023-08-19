@@ -4,15 +4,13 @@
 
 namespace Regista.Persistance.Migrations
 {
-    /// <inheritdoc />
     public partial class _1003 : Migration
     {
-        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
-                name: "Version",
-                table: "Requests",
+                name: "Email",
+                table: "Customers",
                 type: "longtext",
                 nullable: true,
                 oldClrType: typeof(string),
@@ -21,19 +19,18 @@ namespace Regista.Persistance.Migrations
                 .OldAnnotation("MySql:CharSet", "utf8mb4");
         }
 
-        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.UpdateData(
-                table: "Requests",
-                keyColumn: "Version",
+                table: "Customers",
+                keyColumn: "Email",
                 keyValue: null,
-                column: "Version",
+                column: "Email",
                 value: "");
 
             migrationBuilder.AlterColumn<string>(
-                name: "Version",
-                table: "Requests",
+                name: "Email",
+                table: "Customers",
                 type: "longtext",
                 nullable: false,
                 oldClrType: typeof(string),

@@ -26,7 +26,7 @@ namespace Regista.Domain.Entities
         public int CreatedBy { get; set; }
 
         [DisplayName("Güncelleyen Kullanıcı")]
-        public int LastModifiedBy { get; set; }
+        public string LastModifiedBy { get; set; }
 
         [DisplayName("Silindi Bilgisi")]
         [DefaultValue(0)]

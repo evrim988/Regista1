@@ -88,7 +88,7 @@ namespace Regista.Infasctructure.Repositories
         public async Task<T> Add<T>(T _object) where T : BaseEntitiy
         {
             _object.CreatedBy = session.ID;
-            _object.LastModifiedBy = session.ID;
+            _object.LastModifiedBy = session.Name;
             _object.LastModifiedOn = DateTime.Now;
             _object.CreatedOn = DateTime.Now;
             _object.Status = Status.Active;

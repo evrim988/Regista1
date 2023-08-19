@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Regista.Application.Repositories;
 using Regista.Domain.Entities;
+using Regista.Domain.Enums;
 using Version = Regista.Domain.Entities.Version;
 
 namespace Regista.WebApp.Controllers
@@ -127,6 +128,20 @@ namespace Regista.WebApp.Controllers
                 await _uow.repository.Delete<Version>(key);
                 await _uow.SaveChanges();
                 return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<IActionResult> GetDatabaseStatus()
+        {
+            try
+            {
+                var model = _uow.repository.GetEnumSelect<DatabaseChangeStatus>();
+                var resultjson = JsonConvert.SerializeObject(model);
+                return Content(resultjson, "application/json");
             }
             catch (Exception ex)
             {

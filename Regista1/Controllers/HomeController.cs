@@ -22,12 +22,12 @@ namespace Regista.WebApp.Controllers
         {
             return View();
         }
-        [Auth]
-        public async Task<object> GetTaskHome(DataSourceLoadOptions options)
-        {
-            var models = await _uow.homeRepository.GetTaskHome();
-            return DataSourceLoader.Load(models, options);
-        }
+        //[Auth]
+        //public async Task<object> GetTaskHome(DataSourceLoadOptions options)
+        //{
+        //    var models = await _uow.homeRepository.GetTaskHome();
+        //    return DataSourceLoader.Load(models, options);
+        //}
 
         public async Task<object> GetActionHome(DataSourceLoadOptions options)
         {

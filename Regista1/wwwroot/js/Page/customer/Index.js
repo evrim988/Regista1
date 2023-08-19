@@ -86,6 +86,7 @@ function GetList() {
                         {
                             dataField: "name",
                             caption: "Müşteri Adı",
+                            validationRules: [{ type: "required", message: "Bu alan zorunludur." }],
                         },
                         {
                             dataField: "adress",

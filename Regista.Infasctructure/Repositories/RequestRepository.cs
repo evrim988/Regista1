@@ -116,8 +116,9 @@ namespace Regista.Infasctructure.Repositories
                 OpeningDate = s.OpeningDate,
                 ResponsibleID = s.ResponsibleID,
                 ActionStatus = s.ActionStatus,
-                ActionDescription = s.ActionDescription
-
+                ActionDescription = s.ActionDescription,
+                LastModifiedBy=s.LastModifiedBy,
+                
             }).ToListAsync();
            
         }
@@ -169,6 +170,31 @@ namespace Regista.Infasctructure.Repositories
                 new SelectListItem { Value = "4" , Text = "Uyumluluk"}
             };
             return categorySelectList;
+        }
+
+        public async Task<List<ResponsibleDevextremeSelectListHelper>> GetVersionSelect()
+        {
+            try
+            {
+                List<ResponsibleDevextremeSelectListHelper> ModulersHelpers = new List<ResponsibleDevextremeSelectListHelper>();
+                var model = context.Versions
+                    .Where(t => true);
+                foreach (var item in model)
+                {
+                    ResponsibleDevextremeSelectListHelper helper = new ResponsibleDevextremeSelectListHelper()
+                    {
+                        ID = item.ID,
+                        Name = item.Name,
+                    };
+                    ModulersHelpers.Add(helper);
+                }
+                return ModulersHelpers;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }

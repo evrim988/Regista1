@@ -6,6 +6,7 @@ using Regista.Application.Repositories;
 using Regista.Domain.Dto.ActionModels;
 using Regista.Domain.Entities;
 using Regista.Domain.Enums;
+using Action = Regista.Domain.Entities.Action;
 
 namespace Regista.WebApp.Controllers
 {
@@ -48,7 +49,7 @@ namespace Regista.WebApp.Controllers
         {
             try
             {
-                var model = JsonConvert.DeserializeObject<Regista.Domain.Entities.Action>(values);
+                var model = JsonConvert.DeserializeObject<Action>(values);
                 await _uow.actionRepository.AddActions(model);
                 return Ok();
             }
@@ -62,7 +63,7 @@ namespace Regista.WebApp.Controllers
         {
             try
             {
-                var model = await _uow.repository.GetById<Regista.Domain.Entities.Action>(key);
+                var model = await _uow.repository.GetById<Action>(key);
                 JsonConvert.PopulateObject(values, model);
                 await _uow.actionRepository.ActionsUpdate(model);
                 await _uow.SaveChanges();
@@ -78,7 +79,7 @@ namespace Regista.WebApp.Controllers
         {
             try
             {
-                await _uow.repository.Delete<Regista.Domain.Entities.Action>(key);
+                await _uow.repository.Delete<Action>(key);
                 await _uow.SaveChanges();
                 return Ok();
             }
@@ -119,6 +120,7 @@ namespace Regista.WebApp.Controllers
             }
         }
 
+     
         public async Task<object> GetRequest(DataSourceLoadOptions loadOptions)
         {
             try
