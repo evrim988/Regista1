@@ -61,9 +61,7 @@ function GetModules() {
         onInitNewRow: function (e) {
             title = "";
         },
-        export: {
-            enabled: true
-        },
+        
         loadPanel: {
             enabled: true,
         },

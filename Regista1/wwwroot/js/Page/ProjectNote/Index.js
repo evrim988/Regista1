@@ -80,13 +80,7 @@ function GetList() {
                     colCount: 2,
                     colSpan: 2,
                     items: [
-                        {
-                            dataField: "date",
-                            caption: "Tarih",
-                            type: 'date',
-                            dataType: 'date',
-                            format: 'dd/MM/yyyy',
-                        },
+                       
                         {
                             dataField: "noteType",
                             caption: "Not Konusu",
@@ -96,10 +90,6 @@ function GetList() {
                             dataField: "description",
                             caption: "Not Açıklaması",
                             validationRules: [{ type: "required", message: "Bu alan zorunludur." }],
-                        },
-                        {
-                            dataField: "addUserNote",
-                            caption: "Not Ekleyen Kullanıcı",
                         },
                         {
                             dataField: "projectID",

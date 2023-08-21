@@ -29,6 +29,8 @@ namespace Regista.Infasctructure.Repositories
             try
             {
                 await uow.repository.Add(model);
+                model.Date=DateTime.Now;
+                model.AddUserNote = session.Name;
                 await uow.SaveChanges();
                 return "";
             }
